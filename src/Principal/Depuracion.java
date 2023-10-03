@@ -12,19 +12,25 @@ public class Depuracion {
         textoMenú();
         Scanner s = new Scanner(System.in);
         opción = s.nextInt();
-        
-        Afiliado a = new Afiliado("Juan", "Pérez", 12345678, true, "Calle 123", 1112345678);
+        int dni1;
+        dni1 = s.nextInt();
+        Afiliado a = new Afiliado("carlitos", "tevez", 115555677, true, "Calle 123", 1112345678);
         AfiliadoData ad = new AfiliadoData();
-        
+
         switch (opción) {
             case 1:
-            //Listar afiliados
+                ad.listarAfiliados();
+                break;
             case 2:
                 ad.añadirAfiliado(a);
+                break;
             case 3:
-            //Quitar afiliados
+                ad.modificarAfiliado(a);
+                break;
             case 4:
-            //Listar órdenes
+
+                ad.eliminarAfiliado(dni1);
+                break;
             case 5:
             //Añadir órdenes
             case 6:
