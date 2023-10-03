@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package massalud;
+package Principal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Monica
- */
 public class Conexion {
 
     private static final String URL = "jdbc:mariadb://localhost:3306/";
@@ -27,21 +18,25 @@ public class Conexion {
     }
 
     public static Connection getConexion() {
-
+        boolean conexión = false;
         if (connection == null) {
-
             try {
                 Class.forName("org.mariadb.jdbc.Driver");
                 connection = DriverManager.getConnection(URL + DB, USUARIO, PASSWORD);
+                conexión = true;
             } catch (ClassNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, "Error al conectarse a la BD: " + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al conectarse a la base datos, comprueba tu conexión a la red: " + ex.getMessage());
+                conexión = false;
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "O hay un error de carga de driver o no estás conectado a la red" + "\n" + ex.getMessage());
+                conexión = false;
             }
-
         }
-
+        if (conexión == true) {
+            System.out.println("ESTADO DE CONEXIÓN: conectado.");
+        } else {
+            System.out.println("ESTADO DE CONEXIÓN: desconectado.");
+        }
         return connection;
-
     }
 }
