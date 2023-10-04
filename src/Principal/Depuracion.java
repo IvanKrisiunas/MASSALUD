@@ -2,6 +2,7 @@ package Principal;
 
 import AccesoADatos.AfiliadoData;
 import AccesoADatos.EspecialidadData;
+import AccesoADatos.PrestadorData;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -24,6 +25,7 @@ public class Depuracion {
         Orden o = new Orden();
         AfiliadoData ad = new AfiliadoData();
         EspecialidadData ed = new EspecialidadData();
+        PrestadorData pd = new PrestadorData();
 
         //Afiliado
         if (opción == 2 || opción == 3 || opción == 4 || opción == 6 || opción == 7 || opción == 8) {
@@ -48,7 +50,7 @@ public class Depuracion {
         }
 
         //Especialidad
-        if (opción == 14 || opción == 15 || opción == 16 || opción == 10 || opción == 11 || opción == 12) {
+        if (opción == 14 || opción == 15 || opción == 16) {
 //            String tipo;
 //            System.out.println("Especialidad.");
 //            System.out.println("Esp.: ");
@@ -69,11 +71,11 @@ public class Depuracion {
 
         //Prestador
         if (opción == 10 || opción == 11 || opción == 12 || opción == 6 || opción == 7 || opción == 8) {
-            int DNI2;
-            String nombre2, apellido2;
+            int DNI2, telefono2;
+            String nombre2, apellido2, domicilio2;
             boolean estado2;
-            Especialidad especialidad;
-            System.out.println("Especialidad.");
+            int idEspecialidad;
+            System.out.println("Prestador.");
             System.out.println("Nom.: ");
             nombre2 = s1.nextLine();
             System.out.println("Ap.: ");
@@ -82,9 +84,14 @@ public class Depuracion {
             DNI2 = s.nextInt();
             System.out.println("Est.: ");
             estado2 = s.nextBoolean();
-            especialidad = e;
-            System.out.println(DNI2 + ", " + nombre2 + ", " + apellido2 + ", " + estado2 + ", " + especialidad + ".");
-            p = new Prestador(nombre2, apellido2,  DNI2, estado2, especialidad);
+            System.out.println("IdEspecialidad: ");
+            idEspecialidad = s.nextInt();
+            System.out.println("Telefono: ");
+            telefono2 = s.nextInt();
+            System.out.println("Direc: ");
+            domicilio2 = s2.nextLine();
+            System.out.println(DNI2 + ", " + nombre2 + ", " + apellido2 + ", " + estado2 + ", " + idEspecialidad + "," + telefono2 + "," + domicilio2 + ".");
+            p = new Prestador(nombre2, apellido2,  DNI2, estado2, idEspecialidad, telefono2, domicilio2);
         }
 
         //Orden
@@ -133,12 +140,20 @@ public class Depuracion {
             //Quitar órdenes
             case 9:
             //Listar prestadores
+                pd.listarPrestadores();
+                break;
             case 10:
             //Agregar prestadores
+                pd.añadirPrestador(p);
+                break;
             case 11:
             //Modificar prestadores
+                pd.modificarPrestador(p);
+                break;
             case 12:
             //Quitar prestadores
+                pd.eliminarPrestador(p.getDNI());
+                break;
             case 13:
             //Listar especialidades
                 ed.listarEspecialidades();

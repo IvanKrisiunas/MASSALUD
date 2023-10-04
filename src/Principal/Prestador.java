@@ -6,14 +6,34 @@ public class Prestador {
     private String apellido;
     private int DNI;
     private boolean estado;
-    private Especialidad especialidad;
+    private int idEspecialidad;
+    private int telefono;
+    private String domicilio;
 
-    public Prestador(String nombre, String apellido, int DNI, boolean estado, Especialidad especialidad) {
+    public Prestador(String nombre, String apellido, int DNI, boolean estado, int idEspecialidad, int telefono, String domicilio) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
         this.estado = estado;
-        this.especialidad = especialidad;
+        this.idEspecialidad = idEspecialidad;
+        this.telefono = telefono;
+        this.domicilio = domicilio;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
     }
 
     public Prestador() {
@@ -59,13 +79,18 @@ public class Prestador {
         this.estado = estado;
     }
 
-    public Especialidad getEspecialidad() {
-        return especialidad;
+    public int getIdEspecialidad() {
+        return idEspecialidad;
     }
 
-    public void setEspecialidad(Especialidad especialidad) {
-        this.especialidad = especialidad;
+    public void setIdEspecialidad(int idEspecialidad) {
+        this.idEspecialidad = idEspecialidad;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Prestador{" + "\n" + "idPrestador=" + idPrestador + "\n" + ", nombre=" + nombre + "\n" + ","
+                + " apellido=" + apellido + "\n" + ", DNI=" + DNI + "\n" + ", estado=" + estado + "\n" + ", idEspecialidad=" + idEspecialidad + "\n" + ", telefono=" + telefono + "\n" + ", domicilio=" + domicilio + '}' + "\n" ;
+    }
     
 }
