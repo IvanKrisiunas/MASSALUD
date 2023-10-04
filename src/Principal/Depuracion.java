@@ -1,6 +1,7 @@
 package Principal;
 
 import AccesoADatos.AfiliadoData;
+import AccesoADatos.EspecialidadData;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -22,9 +23,10 @@ public class Depuracion {
         Prestador p = new Prestador();
         Orden o = new Orden();
         AfiliadoData ad = new AfiliadoData();
+        EspecialidadData ed = new EspecialidadData();
 
         //Afiliado
-        if (opción == 2 && opción == 3 && opción == 4 && opción == 6 && opción == 7 && opción == 8) {
+        if (opción == 2 || opción == 3 || opción == 4 || opción == 6 || opción == 7 || opción == 8) {
             int DNI1, teléfono1;
             String nombre1, apellido1, dirección1;
             boolean estado1;
@@ -46,7 +48,14 @@ public class Depuracion {
         }
 
         //Especialidad
-        if (opción == 14 && opción == 15 && opción == 16 && opción == 10 && opción == 11 && opción == 12) {
+        if (opción == 14 || opción == 15 || opción == 16 || opción == 10 || opción == 11 || opción == 12) {
+//            String tipo;
+//            System.out.println("Especialidad.");
+//            System.out.println("Esp.: ");
+//            tipo = s2.nextLine();
+//            System.out.println(tipo + ".");
+//            e = new Especialidad(tipo);
+            
             int idEspecialidad;
             String especialidad;
             System.out.println("Especialidad.");
@@ -59,7 +68,7 @@ public class Depuracion {
         }
 
         //Prestador
-        if (opción == 10 && opción == 11 && opción == 12 && opción == 6 && opción == 7 && opción == 8) {
+        if (opción == 10 || opción == 11 || opción == 12 || opción == 6 || opción == 7 || opción == 8) {
             int DNI2;
             String nombre2, apellido2;
             boolean estado2;
@@ -79,7 +88,7 @@ public class Depuracion {
         }
 
         //Orden
-        if (opción == 6 && opción == 7 && opción == 8) {
+        if (opción == 6 || opción == 7 || opción == 8) {
             int idOrden;
             LocalDate fecha = null;
             double importe;
@@ -132,10 +141,16 @@ public class Depuracion {
             //Quitar prestadores
             case 13:
             //Listar especialidades
+                ed.listarEspecialidades();
+                break;
             case 14:
             //Agregar especialidades
+                ed.añadirEspecialidad(e);
+                break;
             case 15:
             //Modificar especialidades
+                ed.modificarEspecialidad(e);
+                break;
             case 16:
             //Quitar especialidades
         }

@@ -2,11 +2,15 @@ package Principal;
 
 public class Especialidad {
     private int idEspecialidad;
-    private String especialidad;
+    private String tipo;
 
-    public Especialidad(int idEspecialidad, String especialidad) {
+    public Especialidad(int idEspecialidad, String tipo) {
         this.idEspecialidad = idEspecialidad;
-        this.especialidad = especialidad;
+        this.tipo = tipo;
+    }
+
+    public Especialidad(String tipo) {
+        this.tipo = tipo;
     }
 
     public Especialidad() {
@@ -20,12 +24,17 @@ public class Especialidad {
         this.idEspecialidad = idEspecialidad;
     }
 
-    public String getEspecialidad() {
-        return especialidad;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Especialidad{" + "idEspecialidad= " + idEspecialidad + ", tipo= " + tipo + '}'+ "\n";
     }
     
     
