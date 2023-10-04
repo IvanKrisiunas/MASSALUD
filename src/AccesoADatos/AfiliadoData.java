@@ -10,8 +10,6 @@ import Principal.Afiliado;
 import Principal.Conexion;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AfiliadoData {
 
@@ -20,59 +18,7 @@ public class AfiliadoData {
     public AfiliadoData() {
         con = Conexion.getConexion();
     }
-
-    public void añadirAfiliado(Afiliado afiliado) {
-        String sql = "INSERT INTO afiliado(idAfiliado, nombre, apellido, DNI, domicilio, telefono, estado) "
-                + "VALUES ('', ?, ?, ?, ?, ?, ?)";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, afiliado.getNombre());
-            ps.setString(2, afiliado.getApellido());
-            ps.setInt(3, afiliado.getDNI());
-            ps.setString(4, afiliado.getDomicilio());
-            ps.setInt(5, afiliado.getTelefono());
-            ps.setBoolean(6, afiliado.isActivo());
-            ps.executeUpdate();
-            System.out.println("* * * Método ejecutado correctamente. * * *");
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
-            }
-
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
-        }
-    }
-
-    public void modificarAfiliado(Afiliado afiliado) {
-        String sql = "UPDATE afiliado SET nombre = ?,"
-                + " apellido = ?, DNI = ?, domicilio = ?, telefono = ?, estado = ? WHERE DNI = ?";
-        PreparedStatement ps = null;
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(7, afiliado.getDNI());
-            ps.setString(1, afiliado.getNombre());
-            ps.setString(2, afiliado.getApellido());
-            ps.setInt(3, afiliado.getDNI());
-            ps.setString(4, afiliado.getDomicilio());
-            ps.setInt(5, afiliado.getTelefono());
-            ps.setBoolean(6, afiliado.isActivo());
-            ps.executeUpdate();
-            int exito = ps.executeUpdate();
-            if (exito == 1) {
-                System.out.println("* * * Método ejecutado correctamente. * * *");
-                System.out.println(listarAfiliados());
-            } else {
-                System.out.println("* * * Método ejecutado incorrectamente. * * *");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
-        }
-
-    }
-
+    
     public List<Afiliado> listarAfiliados() {
         List<Afiliado> afiliados = new ArrayList();
         String sql = "SELECT * FROM afiliado WHERE estado = 1";
@@ -87,36 +33,20 @@ public class AfiliadoData {
                 afiliado.setDNI(rs.getInt("DNI"));
                 afiliado.setDomicilio(rs.getString("domicilio"));
                 afiliado.setTelefono(rs.getInt("telefono"));
-                afiliado.setActivo(rs.getBoolean("estado"));
+                afiliado.setEstado(rs.getBoolean("estado"));
                 afiliados.add(afiliado);
             }
             ps.close();
-            System.out.println("Eliminado: " + "\n" + listarAfiliadosEliminados());
+            System.out.println("Activo(s)" +"\n" + afiliados);
+            System.out.println("Inactivo(s): " + "\n" + listarAfiliadosEliminados());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
         }
         return afiliados;
 
     }
-
-    public void eliminarAfiliado(int dni) {
-        String sql = "UPDATE afiliado SET estado = 0 WHERE DNI = ? ";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, dni);
-            int fila = ps.executeUpdate();
-            if (fila == 1) {
-//                JOptionPane.showMessageDialog(null, "Se elimino el alumno.");
-                System.out.println("Se elimino el alumno");
-                System.out.println(listarAfiliadosEliminados());
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
-        }
-    }
-
-    public List<Afiliado> listarAfiliadosEliminados() {
+    
+        public List<Afiliado> listarAfiliadosEliminados() {
         List<Afiliado> afiliados = new ArrayList();
         String sql = "SELECT * FROM afiliado WHERE estado = 0";
         try {
@@ -130,7 +60,7 @@ public class AfiliadoData {
                 afiliado.setDNI(rs.getInt("DNI"));
                 afiliado.setDomicilio(rs.getString("domicilio"));
                 afiliado.setTelefono(rs.getInt("telefono"));
-                afiliado.setActivo(rs.getBoolean("estado"));
+                afiliado.setEstado(rs.getBoolean("estado"));
                 afiliados.add(afiliado);
             }
             ps.close();
@@ -139,5 +69,74 @@ public class AfiliadoData {
         }
         return afiliados;
 
+    }
+
+    public void añadirAfiliado(Afiliado afiliado) {
+        String sql = "INSERT INTO afiliado(idAfiliado, nombre, apellido, DNI, domicilio, telefono, estado) "
+                + "VALUES ('', ?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, afiliado.getNombre());
+            ps.setString(2, afiliado.getApellido());
+            ps.setInt(3, afiliado.getDNI());
+            ps.setString(4, afiliado.getDomicilio());
+            ps.setInt(5, afiliado.getTelefono());
+            ps.setBoolean(6, afiliado.isEstado());
+            ps.executeUpdate();
+            System.out.println("* * * Método ejecutado correctamente. * * *");
+            listarAfiliados();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+        }
+}
+
+    public void modificarAfiliado(Afiliado afiliado) {
+        String sql = "UPDATE afiliado SET nombre = ?,"
+                + " apellido = ?, DNI = ?, domicilio = ?, telefono = ?, estado = ? WHERE DNI = ?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(7, afiliado.getDNI());
+            ps.setString(1, afiliado.getNombre());
+            ps.setString(2, afiliado.getApellido());
+            ps.setInt(3, afiliado.getDNI());
+            ps.setString(4, afiliado.getDomicilio());
+            ps.setInt(5, afiliado.getTelefono());
+            ps.setBoolean(6, afiliado.isEstado());
+            ps.executeUpdate();
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                System.out.println("* * * Método ejecutado correctamente. * * *");
+                listarAfiliados();
+            } else {
+                System.out.println("* * * Método ejecutado incorrectamente. * * *");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+        }
+
+    }
+
+    public void eliminarAfiliado(int dni) {
+        String sql = "UPDATE afiliado SET estado = 0 WHERE DNI = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                System.out.println("Se eliminó el afiliado.");
+                System.out.println(listarAfiliadosEliminados());
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+        }
     }
 }

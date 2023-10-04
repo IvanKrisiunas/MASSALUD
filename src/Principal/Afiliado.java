@@ -5,6 +5,8 @@
  */
 package Principal;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Monica
@@ -14,23 +16,24 @@ public class Afiliado {
     private String nombre;
     private String apellido;
     private int DNI;
-    private boolean activo;
+    private boolean estado;
     private String domicilio;
     private int telefono;
 
   
 
-    public Afiliado(String nombre, String apellido, int DNI, boolean activo, String domicilio, int telefono) {
+    public Afiliado(String nombre, String apellido, int DNI, boolean estado, String domicilio, int telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
-        this.activo = activo;
+        this.estado = estado;
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
 
     public Afiliado() {
     }
+    
   public int getTelefono() {
         return telefono;
     }
@@ -78,18 +81,17 @@ public class Afiliado {
         this.DNI = DNI;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
-
+    
     @Override
     public String toString() {
-        return "Afiliado{" + "\n" + "idAfiliado=" + idAfiliado + "\n" +  ", nombre=" + nombre + "\n" + ", apellido=" + apellido + "\n" + 
-                ", DNI=" + DNI + "\n" + ", activo=" + activo + "\n" + ", domicilio=" + domicilio + "\n" + ", telefono=" + telefono + '}' +"\n" + "-------------------";
+        return idAfiliado + ": " + nombre  + " " + apellido + ", " + DNI + ", " + estado + ", " + domicilio + ", " + telefono + '.' +"\n";
     }
     
     

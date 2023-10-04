@@ -5,15 +5,14 @@ public class Prestador {
     private String nombre;
     private String apellido;
     private int DNI;
-    private boolean activo;
+    private boolean estado;
     private Especialidad especialidad;
 
-    public Prestador(int idPrestador, String nombre, String apellido, int DNI, boolean activo, Especialidad especialidad) {
-        this.idPrestador = idPrestador;
+    public Prestador(String nombre, String apellido, int DNI, boolean estado, Especialidad especialidad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.DNI = DNI;
-        this.activo = activo;
+        this.estado = estado;
         this.especialidad = especialidad;
     }
 
@@ -52,12 +51,12 @@ public class Prestador {
         this.DNI = DNI;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public Especialidad getEspecialidad() {

@@ -18,24 +18,18 @@ public class Conexion {
     }
 
     public static Connection getConexion() {
-        boolean conexión = true;
         if (connection == null) {
             try {
                 Class.forName("org.mariadb.jdbc.Driver");
                 connection = DriverManager.getConnection(URL + DB, USUARIO, PASSWORD);
-                conexión = true;
             } catch (ClassNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, "Error al conectarse a la base datos, comprueba tu conexión a la red: " + ex.getMessage());
-                conexión = false;
+                JOptionPane.showMessageDialog(null, "Error al conectarse a la base datos, comprueba tu conexión a la red." + "\n" + "(" + ex.getMessage() + ")");
+                System.exit(0);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "O hay un error de carga de driver o no estás conectado a la red" + "\n" + ex.getMessage());
-                conexión = false;
+                JOptionPane.showMessageDialog(null, "O hay un error de carga de driver o no estás conectado a la red" + "\n" + "(" + ex.getMessage() + ")");
+                System.exit(0);
             }
-        }
-        if (conexión == true) {
-            System.out.println("ESTADO DE CONEXIÓN: conectado.");
-        } else {
-            System.out.println("ESTADO DE CONEXIÓN: desconectado.");
+            System.out.println("Conexión realizada.");
         }
         return connection;
     }
