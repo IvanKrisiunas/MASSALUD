@@ -1,6 +1,7 @@
 package Principal;
 
 import AccesoADatos.AfiliadoData;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Depuracion {
@@ -28,17 +29,17 @@ public class Depuracion {
             String nombre1, apellido1, dirección1;
             boolean estado1;
             System.out.println("Afiliado.");
-            System.out.println("Ingrese DNI:");
+            System.out.println("DNI:");
             DNI1 = s.nextInt();
-            System.out.println("Ingrese tel.:");
+            System.out.println("Tel.:");
             teléfono1 = s1.nextInt();
-            System.out.println("Ingrese nom.:");
+            System.out.println("Nom.:");
             nombre1 = s2.nextLine();
-            System.out.println("Ingrese ap.:");
+            System.out.println("Ap.:");
             apellido1 = s2.nextLine();
-            System.out.println("Ingrese dir.:");
+            System.out.println("Dir.:");
             dirección1 = s2.nextLine();
-            System.out.println("Ingrese est.:");
+            System.out.println("Est.:");
             estado1 = s3.nextBoolean();
             System.out.println(DNI1 + ", " + teléfono1 + ", " + nombre1 + ", " + apellido1 + ", " + dirección1 + ", " + estado1 + ". ");
             a = new Afiliado(nombre1, apellido1, DNI1, estado1, dirección1, teléfono1);
@@ -49,7 +50,9 @@ public class Depuracion {
             int idEspecialidad;
             String especialidad;
             System.out.println("Especialidad.");
+            System.out.println("Id.: ");
             idEspecialidad = s.nextInt();
+            System.out.println("Esp.: ");
             especialidad = s2.nextLine();
             System.out.println(idEspecialidad + ", " + especialidad + ".");
             e = new Especialidad(idEspecialidad, especialidad);
@@ -57,13 +60,18 @@ public class Depuracion {
 
         //Prestador
         if (opción == 10 && opción == 11 && opción == 12 && opción == 6 && opción == 7 && opción == 8) {
-            int idPrestador, DNI2;
+            int DNI2;
             String nombre2, apellido2;
             boolean estado2;
             Especialidad especialidad;
+            System.out.println("Especialidad.");
+            System.out.println("Nom.: ");
             nombre2 = s1.nextLine();
+            System.out.println("Ap.: ");
             apellido2 = s1.nextLine();
+            System.out.println("DNI: ");
             DNI2 = s.nextInt();
+            System.out.println("Est.: ");
             estado2 = s.nextBoolean();
             especialidad = e;
             System.out.println(DNI2 + ", " + nombre2 + ", " + apellido2 + ", " + estado2 + ", " + especialidad + ".");
@@ -71,27 +79,26 @@ public class Depuracion {
         }
 
         //Orden
-//        int idOrden, LocalDate fecha, String formaDePago, double importe, Afiliado afiliado, Prestador prestador
         if (opción == 6 && opción == 7 && opción == 8) {
             int idOrden;
+            LocalDate fecha = null;
             double importe;
             String formaDePago;
             Afiliado afiliado;
             Prestador prestador;
-            System.out.println("Ingrese ID de Orden:");
+            System.out.println("Orden.");
+            System.out.println("ID: ");
             idOrden = s.nextInt();
-            System.out.println("Ingrese fecha:");
-            estado1 = s3.nextBoolean();
-            System.out.println("Ingrese imp.:");
-            teléfono1 = s1.nextInt();
-            System.out.println("Ingrese for.:");
-            nombre1 = s2.nextLine();
-            System.out.println("Ingrese afi.:");
-            apellido1 = s2.nextLine();
-            System.out.println("Ingrese pres.:");
-            dirección1 = s2.nextLine();
-            System.out.println(DNI1 + ", " + teléfono1 + ", " + nombre1 + ", " + apellido1 + ", " + dirección1 + ", " + estado1 + ". ");
-            a = new Afiliado(nombre1, apellido1, DNI1, estado1, dirección1, teléfono1);
+            System.out.println("Imp.: ");
+            importe = s1.nextDouble();
+            System.out.println("For.: ");
+            formaDePago = s2.nextLine();
+            System.out.println("Afi.: ");
+            afiliado = a;
+            System.out.println("Pres.: ");
+            prestador = p;
+            System.out.println(idOrden + ", "+ importe + ", " + formaDePago + ".");
+            o = new Orden(idOrden, fecha, formaDePago, importe, afiliado, prestador);
         }
 
         switch (opción) {
