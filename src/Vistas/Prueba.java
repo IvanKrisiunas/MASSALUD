@@ -123,7 +123,7 @@ Scanner s = new Scanner(System.in);
             System.out.println(idOrden + ", "+ fecha + ", " + importe + ", " + formaDePago
                     + ad.listarAfiliadoPorDNI(DNIAfiliado) + ", " + pd.listarPrestadorPorDNI(DNIPrestador) + ".");
             o = new Orden(idOrden, fecha, formaDePago, importe, DNIAfiliado, DNIPrestador);
-        
+        od.añadirOrden(o);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
