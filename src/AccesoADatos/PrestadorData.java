@@ -12,6 +12,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class PrestadorData {
+    
+    String prestadorNombre;
+    
      private Connection con = null;
 
     public PrestadorData() {
@@ -69,6 +72,22 @@ public class PrestadorData {
         }
         return prestadores;
 
+    }
+
+    public String listarPrestadorPorDNI(int DNIPrestador) {
+        String sql = "SELECT nombre FROM prestadpr WHERE dni = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            Prestador prestador = new Prestador();
+            ps.setInt(1, prestador.getDNI());
+            prestador.setNombre(rs.getString("nombre"));
+            ps.close();
+            prestadorNombre = prestador.getNombre();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return prestadorNombre;
     }
 
     public void añadirPrestador(Prestador prestador) {

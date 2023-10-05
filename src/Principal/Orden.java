@@ -1,6 +1,5 @@
 package Principal;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -12,16 +11,16 @@ public class Orden {
     private LocalDate fecha;
     private String formaDePago;
     private double importe;
-    private Afiliado afiliado;
-    private Prestador prestador;
+    private int DNIAfiliado;
+    private int DNIPrestador;
 
-    public Orden(int idOrden, LocalDate fecha, String formaDePago, double importe, Afiliado afiliado, Prestador prestador) {
+    public Orden(int idOrden, LocalDate fecha, String formaDePago, double importe, int DNIAfiliado, int DNIPrestador) {
         this.idOrden = idOrden;
         this.fecha = fecha;
         this.formaDePago = formaDePago;
         this.importe = importe;
-        this.afiliado = afiliado;
-        this.prestador = prestador;
+        this.DNIAfiliado = DNIAfiliado;
+        this.DNIPrestador = DNIPrestador;
     }
 
     public Orden() {
@@ -59,20 +58,20 @@ public class Orden {
         this.importe = importe;
     }
 
-    public Afiliado getAfiliado() {
-        return afiliado;
+    public int getIdAfiliado() {
+        return DNIAfiliado;
     }
 
-    public void setAfiliado(Afiliado afiliado) {
-        this.afiliado = afiliado;
+    public void setIdAfiliado(int DNIAfiliado) {
+        this.DNIAfiliado = DNIAfiliado;
     }
 
-    public Prestador getPrestador() {
-        return prestador;
+    public int getIdPrestador() {
+        return DNIPrestador;
     }
 
-    public void setPrestador(Prestador prestador) {
-        this.prestador = prestador;
+    public void setIdPrestador(int DNIPrestador) {
+        this.DNIPrestador = DNIPrestador;
     }
     
     public Date fechaLocal(){

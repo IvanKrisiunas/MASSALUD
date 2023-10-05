@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AfiliadoData {
+    
+    String afiliadoNombre;
 
     private Connection con = null;
 
@@ -69,6 +71,22 @@ public class AfiliadoData {
         }
         return afiliados;
 
+    }
+        
+   public String listarAfiliadoPorDNI(int DNIAfiliado) {
+        String sql = "SELECT nombre FROM afiliado WHERE dni = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            Afiliado afiliado = new Afiliado();
+            ps.setInt(1, afiliado.getDNI());
+            afiliado.setNombre(rs.getString("nombre"));
+            ps.close();
+            afiliadoNombre = afiliado.getNombre();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return afiliadoNombre;
     }
 
     public void añadirAfiliado(Afiliado afiliado) {

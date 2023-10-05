@@ -51,13 +51,6 @@ public class Depuracion {
 
         //Especialidad
         if (opción == 14 || opción == 15 || opción == 16) {
-//            String tipo;
-//            System.out.println("Especialidad.");
-//            System.out.println("Esp.: ");
-//            tipo = s2.nextLine();
-//            System.out.println(tipo + ".");
-//            e = new Especialidad(tipo);
-            
             int idEspecialidad;
             String especialidad;
             System.out.println("Especialidad.");
@@ -70,7 +63,7 @@ public class Depuracion {
         }
 
         //Prestador
-        if (opción == 10 || opción == 11 || opción == 12 || opción == 6 || opción == 7 || opción == 8) {
+        if (opción == 10 || opción == 11 || opción == 12) {
             int DNI2, telefono2;
             String nombre2, apellido2, domicilio2;
             boolean estado2;
@@ -96,12 +89,13 @@ public class Depuracion {
 
         //Orden
         if (opción == 6 || opción == 7 || opción == 8) {
+            //idOrden, LocalDate fecha, String formaDePago, double importe, int DNIAfiliado, int DNIPrestador
             int idOrden;
             LocalDate fecha = null;
             double importe;
             String formaDePago;
-            Afiliado afiliado;
-            Prestador prestador;
+            int DNIAfiliado;
+            int DNIPrestador;
             System.out.println("Orden.");
             System.out.println("ID: ");
             idOrden = s.nextInt();
@@ -110,11 +104,12 @@ public class Depuracion {
             System.out.println("For.: ");
             formaDePago = s2.nextLine();
             System.out.println("Afi.: ");
-            afiliado = a;
+            DNIAfiliado = s3.nextInt();
             System.out.println("Pres.: ");
-            prestador = p;
-            System.out.println(idOrden + ", "+ importe + ", " + formaDePago + ".");
-            o = new Orden(idOrden, fecha, formaDePago, importe, afiliado, prestador);
+            DNIPrestador = s3.nextInt();
+            System.out.println(idOrden + ", "+ fecha + ", " + importe + ", " + formaDePago
+                    + ad.listarAfiliadoPorDNI(DNIAfiliado) + ", " + pd.listarPrestadorPorDNI(DNIPrestador) + ".");
+            o = new Orden(idOrden, fecha, formaDePago, importe, DNIAfiliado, DNIPrestador);
         }
 
         switch (opción) {
@@ -139,31 +134,24 @@ public class Depuracion {
             case 8:
             //Quitar órdenes
             case 9:
-            //Listar prestadores
                 pd.listarPrestadores();
                 break;
             case 10:
-            //Agregar prestadores
                 pd.añadirPrestador(p);
                 break;
             case 11:
-            //Modificar prestadores
                 pd.modificarPrestador(p);
                 break;
             case 12:
-            //Quitar prestadores
                 pd.eliminarPrestador(p.getDNI());
                 break;
             case 13:
-            //Listar especialidades
                 ed.listarEspecialidades();
                 break;
             case 14:
-            //Agregar especialidades
                 ed.añadirEspecialidad(e);
                 break;
             case 15:
-            //Modificar especialidades
                 ed.modificarEspecialidad(e);
                 break;
             case 16:

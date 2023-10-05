@@ -5,8 +5,6 @@
  */
 package Principal;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Monica
