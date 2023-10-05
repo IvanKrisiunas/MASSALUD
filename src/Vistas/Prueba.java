@@ -5,12 +5,27 @@
  */
 package Vistas;
 
+import AccesoADatos.AfiliadoData;
+import AccesoADatos.OrdenData;
+import AccesoADatos.PrestadorData;
+import Principal.Orden;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Scanner;
+
 /**
  *
  * @author Monica
  */
 public class Prueba extends javax.swing.JFrame {
-
+Orden o = new Orden();
+OrdenData od = new OrdenData();
+AfiliadoData ad = new AfiliadoData();
+PrestadorData pd = new PrestadorData();
+Scanner s = new Scanner(System.in);
+        Scanner s1 = new Scanner(System.in);
+        Scanner s2 = new Scanner(System.in);
+        Scanner s3 = new Scanner(System.in);
     /**
      * Creates new form Prueba
      */
@@ -27,21 +42,94 @@ public class Prueba extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addComponent(jButton3)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(jButton1)
+                .addContainerGap(91, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(35, 35, 35)
+                .addComponent(jButton2)
+                .addGap(100, 100, 100))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+            LocalDate fecha = o.fechaLocalDate(jDateChooser1.getDate());
+            int idOrden;
+            double importe;
+            String formaDePago;
+            int DNIAfiliado;
+            int DNIPrestador;
+            System.out.println("Orden.");
+            System.out.println("ID: ");
+            idOrden = s.nextInt();
+            System.out.println("Imp.: ");
+            importe = s1.nextDouble();
+            System.out.println("For.: ");
+            formaDePago = s2.nextLine();
+            System.out.println("Afi.: ");
+            DNIAfiliado = s3.nextInt();
+            System.out.println("Pres.: ");
+            DNIPrestador = s3.nextInt();
+            System.out.println(idOrden + ", "+ fecha + ", " + importe + ", " + formaDePago
+                    + ad.listarAfiliadoPorDNI(DNIAfiliado) + ", " + pd.listarPrestadorPorDNI(DNIPrestador) + ".");
+            o = new Orden(idOrden, fecha, formaDePago, importe, DNIAfiliado, DNIPrestador);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +167,9 @@ public class Prueba extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     // End of variables declaration//GEN-END:variables
 }

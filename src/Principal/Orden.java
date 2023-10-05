@@ -13,7 +13,7 @@ public class Orden {
     private double importe;
     private int DNIAfiliado;
     private int DNIPrestador;
-
+    
     public Orden(int idOrden, LocalDate fecha, String formaDePago, double importe, int DNIAfiliado, int DNIPrestador) {
         this.idOrden = idOrden;
         this.fecha = fecha;
@@ -58,29 +58,36 @@ public class Orden {
         this.importe = importe;
     }
 
-    public int getIdAfiliado() {
+    public int getDNIafiliado() {
         return DNIAfiliado;
     }
 
-    public void setIdAfiliado(int DNIAfiliado) {
+    public void setDNIafiliado(int DNIAfiliado) {
         this.DNIAfiliado = DNIAfiliado;
     }
 
-    public int getIdPrestador() {
+    public int getDNIprestador() {
         return DNIPrestador;
     }
 
-    public void setIdPrestador(int DNIPrestador) {
+    public void setDNIprestador(int DNIPrestador) {
         this.DNIPrestador = DNIPrestador;
     }
     
-    public Date fechaLocal(){
+    public Date fechaLocal(LocalDate fecha){
         LocalDate localDate = fecha;
         ZoneId zoneId = ZoneId.systemDefault();
         ZonedDateTime zonedDateTime = localDate.atStartOfDay(zoneId);
         Instant instant = zonedDateTime.toInstant();
         Date date = Date.from(instant);
         return date;
+    }
+    
+    public LocalDate fechaLocalDate(Date fecha){
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        Instant instant = fecha.toInstant();
+        LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
+        return localDate;
     }
     
 }

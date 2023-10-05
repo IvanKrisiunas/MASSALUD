@@ -1,6 +1,7 @@
 package AccesoADatos;
 
 import Principal.Conexion;
+import Principal.Especialidad;
 import Principal.Prestador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,15 +13,16 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class PrestadorData {
-    
+
     String prestadorNombre;
-    
-     private Connection con = null;
+
+    private Connection con = null;
 
     public PrestadorData() {
         con = Conexion.getConexion();
     }
 //    (String nombre, String apellido, int DNI, boolean estado, Especialidad especialidad
+
     public List<Prestador> listarPrestadores() {
         List<Prestador> prestadores = new ArrayList();
         String sql = "SELECT * FROM prestador WHERE estado = 1";
@@ -40,7 +42,7 @@ public class PrestadorData {
                 prestadores.add(prestador);
             }
             ps.close();
-            System.out.println("Activo(s)" +"\n" + prestadores);
+            System.out.println("Activo(s)" + "\n" + prestadores);
             System.out.println("Inactivo(s): " + "\n" + listarPrestadoresEliminados());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
@@ -48,8 +50,8 @@ public class PrestadorData {
         return prestadores;
 
     }
-    
-        public List<Prestador> listarPrestadoresEliminados() {
+
+    public List<Prestador> listarPrestadoresEliminados() {
         List<Prestador> prestadores = new ArrayList();
         String sql = "SELECT * FROM prestador WHERE estado = 0";
         try {
@@ -90,6 +92,33 @@ public class PrestadorData {
         return prestadorNombre;
     }
 
+    public List<Prestador> listarPrestadoresPorEspecialidad(Especialidad especialidad) {
+        List<Prestador> prestadores = new ArrayList();
+        String sql = "SELECT * FROM prestador WHERE estado = 1 and idEspecialidad = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, especialidad.getIdEspecialidad());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Prestador prestador = new Prestador();
+                prestador.setIdPrestador(rs.getInt("idPrestador"));
+                prestador.setNombre(rs.getString("nombre"));
+                prestador.setApellido(rs.getString("apellido"));
+                prestador.setDNI(rs.getInt("DNI"));
+                prestador.setEstado(rs.getBoolean("estado"));
+                prestador.setIdEspecialidad(rs.getInt("idEspecialidad"));
+                prestador.setDomicilio(rs.getString("domicilio"));
+                prestador.setTelefono(rs.getInt("telefono"));
+                prestadores.add(prestador);
+                System.out.println("prestaodr:  -" + prestador);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return prestadores;
+    }
+
     public void añadirPrestador(Prestador prestador) {
         String sql = "INSERT INTO prestador(idPrestador, nombre, apellido, DNI, domicilio, telefono, idEspecialidad, estado) "
                 + "VALUES ('', ?, ?, ?, ?, ?, ?, ?)";
@@ -114,7 +143,7 @@ public class PrestadorData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
         }
-}
+    }
 
     public void modificarPrestador(Prestador prestador) {
         String sql = "UPDATE prestador SET nombre = ?,"

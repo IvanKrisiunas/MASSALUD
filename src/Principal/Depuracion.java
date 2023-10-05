@@ -2,9 +2,15 @@ package Principal;
 
 import AccesoADatos.AfiliadoData;
 import AccesoADatos.EspecialidadData;
+import AccesoADatos.OrdenData;
 import AccesoADatos.PrestadorData;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Depuracion {
 
@@ -26,6 +32,7 @@ public class Depuracion {
         AfiliadoData ad = new AfiliadoData();
         EspecialidadData ed = new EspecialidadData();
         PrestadorData pd = new PrestadorData();
+        OrdenData od = new OrdenData();
 
         //Afiliado
         if (opción == 2 || opción == 3 || opción == 4 || opción == 6 || opción == 7 || opción == 8) {
@@ -88,29 +95,8 @@ public class Depuracion {
         }
 
         //Orden
-        if (opción == 6 || opción == 7 || opción == 8) {
-            //idOrden, LocalDate fecha, String formaDePago, double importe, int DNIAfiliado, int DNIPrestador
-            int idOrden;
-            LocalDate fecha = null;
-            double importe;
-            String formaDePago;
-            int DNIAfiliado;
-            int DNIPrestador;
-            System.out.println("Orden.");
-            System.out.println("ID: ");
-            idOrden = s.nextInt();
-            System.out.println("Imp.: ");
-            importe = s1.nextDouble();
-            System.out.println("For.: ");
-            formaDePago = s2.nextLine();
-            System.out.println("Afi.: ");
-            DNIAfiliado = s3.nextInt();
-            System.out.println("Pres.: ");
-            DNIPrestador = s3.nextInt();
-            System.out.println(idOrden + ", "+ fecha + ", " + importe + ", " + formaDePago
-                    + ad.listarAfiliadoPorDNI(DNIAfiliado) + ", " + pd.listarPrestadorPorDNI(DNIPrestador) + ".");
-            o = new Orden(idOrden, fecha, formaDePago, importe, DNIAfiliado, DNIPrestador);
-        }
+        
+        
 
         switch (opción) {
             case 1:
@@ -126,13 +112,16 @@ public class Depuracion {
                 ad.eliminarAfiliado(a.getDNI());
                 break;
             case 5:
-            //Listar órdenes
+                od.listarOrdenes();
+                break;
             case 6:
-            //Agregar órdenes
+                od.añadirOrden(o);
+                break;
             case 7:
-            //Modificar órdenes
+                od.modificarOrden(o);
+                break;
             case 8:
-            //Quitar órdenes
+                od.eliminarOrden(DNIafiliado, fecha);
             case 9:
                 pd.listarPrestadores();
                 break;
