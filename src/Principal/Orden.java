@@ -89,5 +89,11 @@ public class Orden {
         LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
         return localDate;
     }
+
+    @Override
+    public String toString() {
+        return "Orden{" + "idOrden=" + idOrden + ", fecha=" + fecha + ", formaDePago=" + formaDePago + ", importe=" + importe + ", DNIAfiliado=" + DNIAfiliado + ", DNIPrestador=" + DNIPrestador + '}' +"\n";
+    }
     
+     
 }
