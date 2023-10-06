@@ -4,20 +4,15 @@ import AccesoADatos.AfiliadoData;
 import AccesoADatos.EspecialidadData;
 import AccesoADatos.OrdenData;
 import AccesoADatos.PrestadorData;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
+import Vistas.Prueba;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Depuracion {
 
     public static void main(String[] args) {
         int opción;
-        Conexion EXP = new Conexion();
-        Conexion.getConexion();
+        //Conexion EXP = new Conexion();
+        //Conexion.getConexion();
         textoMenú();
         Scanner s = new Scanner(System.in);
         Scanner s1 = new Scanner(System.in);
@@ -33,9 +28,10 @@ public class Depuracion {
         EspecialidadData ed = new EspecialidadData();
         PrestadorData pd = new PrestadorData();
         OrdenData od = new OrdenData();
+        Prueba pr = new Prueba();
 
         //Afiliado
-        if (opción == 2 || opción == 3 || opción == 4 || opción == 6 || opción == 7 || opción == 8) {
+        if (opción == 2 || opción == 3 || opción == 4) {
             int DNI1, teléfono1;
             String nombre1, apellido1, dirección1;
             boolean estado1;
@@ -57,7 +53,7 @@ public class Depuracion {
         }
 
         //Especialidad
-        if (opción == 14 || opción == 15 || opción == 16) {
+        if (opción == 11 || opción == 12) {
             int idEspecialidad;
             String especialidad;
             System.out.println("Especialidad.");
@@ -70,7 +66,7 @@ public class Depuracion {
         }
 
         //Prestador
-        if (opción == 10 || opción == 11 || opción == 12) {
+        if (opción == 7 || opción == 8 || opción == 9) {
             int DNI2, telefono2;
             String nombre2, apellido2, domicilio2;
             boolean estado2;
@@ -91,12 +87,8 @@ public class Depuracion {
             System.out.println("Direc: ");
             domicilio2 = s2.nextLine();
             System.out.println(DNI2 + ", " + nombre2 + ", " + apellido2 + ", " + estado2 + ", " + idEspecialidad + "," + telefono2 + "," + domicilio2 + ".");
-            p = new Prestador(nombre2, apellido2,  DNI2, estado2, idEspecialidad, telefono2, domicilio2);
+            p = new Prestador(nombre2, apellido2, DNI2, estado2, idEspecialidad, telefono2, domicilio2);
         }
-
-        //Orden
-        
-        
 
         switch (opción) {
             case 1:
@@ -112,38 +104,29 @@ public class Depuracion {
                 ad.eliminarAfiliado(a.getDNI());
                 break;
             case 5:
-                od.listarOrdenes();
+                pr.setVisible(true);
                 break;
             case 6:
-                od.añadirOrden(o);
-                break;
-            case 7:
-                od.modificarOrden(o);
-                break;
-            case 8:
-                od.eliminarOrden(DNIafiliado, fecha);
-            case 9:
                 pd.listarPrestadores();
                 break;
-            case 10:
+            case 7:
                 pd.añadirPrestador(p);
                 break;
-            case 11:
+            case 8:
                 pd.modificarPrestador(p);
                 break;
-            case 12:
+            case 9:
                 pd.eliminarPrestador(p.getDNI());
                 break;
-            case 13:
+            case 10:
                 ed.listarEspecialidades();
                 break;
-            case 14:
+            case 11:
                 ed.añadirEspecialidad(e);
                 break;
-            case 15:
+            case 12:
                 ed.modificarEspecialidad(e);
                 break;
-            case 16:
             //Quitar especialidades
         }
     }
@@ -156,20 +139,16 @@ public class Depuracion {
                 + "3 - Modificar afiliados" + "\n"
                 + "4 - Quitar afiliados" + "\n"
                 + "=== Órdenes ===" + "\n"
-                + "5 - Listar órdenes" + "\n"
-                + "6 - Agregar órdenes" + "\n"
-                + "7 - Modificar órdenes" + "\n"
-                + "8 - Quitar órdenes" + "\n"
+                + "5 - Iniciar ventana pruebas" + "\n"
                 + "=== Prestadores ===" + "\n"
-                + "9 - Listar prestadores" + "\n"
-                + "10 - Agregar prestadores" + "\n"
-                + "11 - Modificar prestadores" + "\n"
-                + "12 - Quitar prestadores" + "\n"
+                + "6 - Listar prestadores" + "\n"
+                + "7 - Agregar prestadores" + "\n"
+                + "8 - Modificar prestadores" + "\n"
+                + "9 - Quitar prestadores" + "\n"
                 + "=== Especialidades ===" + "\n"
-                + "13 - Listar especialidades" + "\n"
-                + "14 - Agregar especialidades" + "\n"
-                + "15 - Modificar especialidades" + "\n"
-                + "16 - Quitar especialiadades" + "\n"
+                + "10 - Listar especialidades" + "\n"
+                + "11 - Agregar especialidades" + "\n"
+                + "12 - Modificar especialidades" + "\n"
                 + "-- Ingrese un número --");
     }
 }
