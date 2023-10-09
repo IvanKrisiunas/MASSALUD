@@ -4,7 +4,6 @@ import AccesoADatos.AfiliadoData;
 import AccesoADatos.EspecialidadData;
 import AccesoADatos.OrdenData;
 import AccesoADatos.PrestadorData;
-import Vistas.Prueba;
 import java.util.Scanner;
 
 public class Depuracion {
@@ -28,7 +27,6 @@ public class Depuracion {
         EspecialidadData ed = new EspecialidadData();
         PrestadorData pd = new PrestadorData();
         OrdenData od = new OrdenData();
-        Prueba pr = new Prueba();
 
         //Afiliado
         if (opción == 2 || opción == 3 || opción == 4) {
@@ -104,27 +102,24 @@ public class Depuracion {
                 ad.eliminarAfiliado(a.getDNI());
                 break;
             case 5:
-                pr.setVisible(true);
-                break;
-            case 6:
                 pd.listarPrestadores();
                 break;
-            case 7:
+            case 6:
                 pd.añadirPrestador(p);
                 break;
-            case 8:
+            case 7:
                 pd.modificarPrestador(p);
                 break;
-            case 9:
+            case 8:
                 pd.eliminarPrestador(p.getDNI());
                 break;
-            case 10:
+            case 9:
                 ed.listarEspecialidades();
                 break;
-            case 11:
+            case 10:
                 ed.añadirEspecialidad(e);
                 break;
-            case 12:
+            case 11:
                 ed.modificarEspecialidad(e);
                 break;
             //Quitar especialidades
@@ -139,16 +134,15 @@ public class Depuracion {
                 + "3 - Modificar afiliados" + "\n"
                 + "4 - Quitar afiliados" + "\n"
                 + "=== Órdenes ===" + "\n"
-                + "5 - Iniciar ventana pruebas" + "\n"
                 + "=== Prestadores ===" + "\n"
-                + "6 - Listar prestadores" + "\n"
-                + "7 - Agregar prestadores" + "\n"
-                + "8 - Modificar prestadores" + "\n"
-                + "9 - Quitar prestadores" + "\n"
+                + "5 - Listar prestadores" + "\n"
+                + "6 - Agregar prestadores" + "\n"
+                + "7 - Modificar prestadores" + "\n"
+                + "8 - Quitar prestadores" + "\n"
                 + "=== Especialidades ===" + "\n"
-                + "10 - Listar especialidades" + "\n"
-                + "11 - Agregar especialidades" + "\n"
-                + "12 - Modificar especialidades" + "\n"
+                + "9 - Listar especialidades" + "\n"
+                + "10 - Agregar especialidades" + "\n"
+                + "11 - Modificar especialidades" + "\n"
                 + "-- Ingrese un número --");
     }
 }
