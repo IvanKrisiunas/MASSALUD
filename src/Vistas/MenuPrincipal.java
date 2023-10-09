@@ -15,13 +15,11 @@ import javax.swing.JPanel;
  * @author iarak
  */
 public class MenuPrincipal extends javax.swing.JFrame {
-    fondoPanel fondo = new fondoPanel ();
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
-        this.setContentPane(fondo);
     }
 
     /**
@@ -33,37 +31,49 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        btn1 = new javax.swing.JButton();
-        btn2 = new javax.swing.JButton();
-        btn3 = new javax.swing.JButton();
-        btn4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        JBafiliados = new javax.swing.JButton();
+        JBordenes = new javax.swing.JButton();
+        JBprestadores = new javax.swing.JButton();
+        JBespecialidades = new javax.swing.JButton();
+        JBayuda = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn1.setText("jButton3");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn2.setText("jButton3");
+        JBafiliados.setText("Afiliados");
+        JBafiliados.setToolTipText("Modifique, edite o liste los afiliados habilitados.");
+        jPanel1.add(JBafiliados, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 160, 30));
 
-        btn3.setText("jButton3");
-        btn3.addActionListener(new java.awt.event.ActionListener() {
+        JBordenes.setText("Ordenes");
+        JBordenes.setToolTipText("Cree y administre las ordenes.");
+        JBordenes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn3ActionPerformed(evt);
+                JBordenesActionPerformed(evt);
             }
         });
+        jPanel1.add(JBordenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 440, 150, -1));
 
-        btn4.setText("jButton3");
+        JBprestadores.setText("Prestadores");
+        JBprestadores.setToolTipText("Modifique, edite o liste los prestadores habilitados.");
+        jPanel1.add(JBprestadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 640, 160, -1));
 
-        jButton3.setText("jButton3");
+        JBespecialidades.setText("Especialidades");
+        JBespecialidades.setToolTipText("Administre,cree o liste las especialidades.");
+        jPanel1.add(JBespecialidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, 170, -1));
+
+        JBayuda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JBayuda.setText("Ayuda");
+        JBayuda.setToolTipText("Reciba ayuda sobre el programa.");
+        jPanel1.add(JBayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 70, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\massalud2.png")); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 720));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -77,43 +87,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(183, 183, 183)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(204, 204, 204))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(472, 472, 472)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(423, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn4)
-                    .addComponent(btn2))
-                .addGap(28, 28, 28)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn1)
-                    .addComponent(btn3))
-                .addGap(58, 58, 58))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+    private void JBordenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBordenesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn3ActionPerformed
+    }//GEN-LAST:event_JBordenesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,28 +137,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn1;
-    private javax.swing.JButton btn2;
-    private javax.swing.JButton btn3;
-    private javax.swing.JButton btn4;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton JBafiliados;
+    private javax.swing.JButton JBayuda;
+    private javax.swing.JButton JBespecialidades;
+    private javax.swing.JButton JBordenes;
+    private javax.swing.JButton JBprestadores;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     
-    class fondoPanel extends JPanel{
-        private Image imagen;
-        public void paint (Graphics g){
-            imagen = new ImageIcon(getClass().getResource("/imagenes/massalud2.png")).getImage();
-            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-            
-            setOpaque(false);
-            super.paint(g);
-        }
-    }
+  
     
 }
