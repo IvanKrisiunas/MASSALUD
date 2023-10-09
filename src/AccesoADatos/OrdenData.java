@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -162,4 +163,31 @@ public class OrdenData {
         return ordenes;
 
     }
+    
+     public List<Orden> ListaOrdenesPorFecha(LocalDate fecha) {
+        List<Orden> ordenes = new ArrayList();
+        java.sql.Date  fechasql = java.sql.Date.valueOf(fecha);
+        String sql = "SELECT idOrden, DNIafiliado, DNIprestador, fecha, formaDePago, importe FROM orden WHERE fecha = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDate(1, fechasql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Orden orden = new Orden();
+                orden.setIdOrden(rs.getInt("idOrden"));
+                orden.setFecha(rs.getDate("fecha").toLocalDate());
+                orden.setFormaDePago(rs.getString("formaDePago"));
+                orden.setImporte(rs.getDouble("importe"));
+                orden.setDNIafiliado(rs.getInt("DNIafiliado"));
+                orden.setDNIprestador(rs.getInt("DNIprestador"));
+                ordenes.add(orden);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla orden." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return ordenes;
+
+    }
+    
 }
