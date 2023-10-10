@@ -5,7 +5,6 @@
  */
 package Vistas;
 
-import imagenes.Afiliados;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -16,13 +15,15 @@ import javax.swing.JPanel;
  * @author iarak
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+
     Afiliados af = new Afiliados();
+
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
-        
+
     }
 
     /**
@@ -34,20 +35,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JPescritorio = new javax.swing.JPanel();
+        jPanel = new javax.swing.JPanel();
         JBafiliados = new javax.swing.JButton();
         JBordenes = new javax.swing.JButton();
         JBprestadores = new javax.swing.JButton();
         JBespecialidades = new javax.swing.JButton();
         JBayuda = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        JDescritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JPescritorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JBafiliados.setText("Afiliados");
         JBafiliados.setToolTipText("Modifique, edite o liste los afiliados habilitados.");
@@ -56,7 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JBafiliadosActionPerformed(evt);
             }
         });
-        JPescritorio.add(JBafiliados, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 160, 30));
+        jPanel.add(JBafiliados, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 160, 30));
 
         JBordenes.setText("Ordenes");
         JBordenes.setToolTipText("Cree y administre las ordenes.");
@@ -65,25 +67,43 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JBordenesActionPerformed(evt);
             }
         });
-        JPescritorio.add(JBordenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 440, 150, -1));
+        jPanel.add(JBordenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 440, 150, -1));
 
         JBprestadores.setText("Prestadores");
         JBprestadores.setToolTipText("Modifique, edite o liste los prestadores habilitados.");
-        JPescritorio.add(JBprestadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 640, 160, -1));
+        jPanel.add(JBprestadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 640, 160, -1));
 
         JBespecialidades.setText("Especialidades");
         JBespecialidades.setToolTipText("Administre,cree o liste las especialidades.");
-        JPescritorio.add(JBespecialidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, 170, -1));
+        jPanel.add(JBespecialidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, 170, -1));
 
         JBayuda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         JBayuda.setText("Ayuda");
         JBayuda.setToolTipText("Reciba ayuda sobre el programa.");
-        JPescritorio.add(JBayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 70, 20));
+        jPanel.add(JBayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 70, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\massalud2.png")); // NOI18N
-        JPescritorio.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 720));
+        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 720));
+
+        javax.swing.GroupLayout JDescritorioLayout = new javax.swing.GroupLayout(JDescritorio);
+        JDescritorio.setLayout(JDescritorioLayout);
+        JDescritorioLayout.setHorizontalGroup(
+            JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1020, Short.MAX_VALUE)
+        );
+        JDescritorioLayout.setVerticalGroup(
+            JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
+
+        jPanel.add(JDescritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 720));
 
         jMenu1.setText("File");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -95,11 +115,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPescritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPescritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
         );
 
         pack();
@@ -111,16 +133,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void JBafiliadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBafiliadosActionPerformed
         // TODO add your handling code here:
-        
-//         if (af.isVisible() == false) {
-//            JPescritorio.repaint();
-//            JPescritorio.add(af);
-//            af.setVisible(true);
-//            af.toFront();
-//            af.setBounds(110, 10, 598, 487);
-//        }
+        if (af.isVisible() == false) {
+            JDescritorio.repaint();
+            JDescritorio.add(af);
+            af.setVisible(true);
+            af.toFront();
+           
+        }
         
     }//GEN-LAST:event_JBafiliadosActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,14 +189,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton JBespecialidades;
     private javax.swing.JButton JBordenes;
     private javax.swing.JButton JBprestadores;
-    private javax.swing.JPanel JPescritorio;
+    private javax.swing.JDesktopPane JDescritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel;
     // End of variables declaration//GEN-END:variables
 
-    
-  
-    
 }
