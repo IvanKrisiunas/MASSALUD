@@ -7,8 +7,10 @@ package Vistas;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -23,6 +25,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        
 
     }
 
@@ -35,19 +38,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JDescritorio = new javax.swing.JDesktopPane();
         jPanel = new javax.swing.JPanel();
         JBafiliados = new javax.swing.JButton();
         JBordenes = new javax.swing.JButton();
         JBprestadores = new javax.swing.JButton();
         JBespecialidades = new javax.swing.JButton();
         JBayuda = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        JDescritorio = new javax.swing.JDesktopPane();
+        ImagenFondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        JDescritorio.setPreferredSize(new java.awt.Dimension(1025, 739));
 
         jPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -82,21 +87,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JBayuda.setToolTipText("Reciba ayuda sobre el programa.");
         jPanel.add(JBayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 70, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\massalud2.png")); // NOI18N
-        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 720));
+        ImagenFondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\massalud2.png")); // NOI18N
+        jPanel.add(ImagenFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 730));
+
+        JDescritorio.setLayer(jPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout JDescritorioLayout = new javax.swing.GroupLayout(JDescritorio);
         JDescritorio.setLayout(JDescritorioLayout);
         JDescritorioLayout.setHorizontalGroup(
             JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
+            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGroup(JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE))
         );
         JDescritorioLayout.setVerticalGroup(
             JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 739, Short.MAX_VALUE)
+            .addGroup(JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE))
         );
-
-        jPanel.add(JDescritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 720));
 
         jMenu1.setText("File");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -116,12 +125,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(JDescritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(JDescritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,7 +143,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void JBordenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBordenesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JBordenesActionPerformed
-
+   
     private void JBafiliadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBafiliadosActionPerformed
         // TODO add your handling code here:
         if (af.isVisible() == false) {
@@ -138,9 +151,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JDescritorio.add(af);
             af.setVisible(true);
             af.toFront();
-           
+            af.setResizable(false);
+            //remove the listeners from UI which make the frame move
+            BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) af.getUI());
+            for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+            }
         }
-        
+
     }//GEN-LAST:event_JBafiliadosActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
@@ -184,13 +202,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ImagenFondo;
     private javax.swing.JButton JBafiliados;
     private javax.swing.JButton JBayuda;
     private javax.swing.JButton JBespecialidades;
     private javax.swing.JButton JBordenes;
     private javax.swing.JButton JBprestadores;
     private javax.swing.JDesktopPane JDescritorio;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
