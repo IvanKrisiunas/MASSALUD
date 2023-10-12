@@ -1,5 +1,4 @@
 package AccesoADatos;
-
 import Principal.Conexion;
 import Principal.Especialidad;
 import Principal.Prestador;
@@ -76,20 +75,31 @@ public class PrestadorData {
 
     }
 
-    public String listarPrestadorPorDNI(int DNIPrestador) {
-        String sql = "SELECT nombre FROM prestadpr WHERE dni = ?";
+    public Prestador listarPrestadorPorDNI(int DNIPrestador) {
+        String sql = "SELECT nombre, apellido, DNI, domicilio, telefono, estado, idEspecialidad FROM prestador WHERE dni = ?";
+        Prestador prestador = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, DNIPrestador);
             ResultSet rs = ps.executeQuery();
-            Prestador prestador = new Prestador();
-            ps.setInt(1, prestador.getDNI());
-            prestador.setNombre(rs.getString("nombre"));
+            if (rs.next()) {
+                prestador = new Prestador();
+                prestador.setNombre(rs.getString("nombre"));
+                prestador.setApellido(rs.getString("apellido"));
+                prestador.setDNI(rs.getInt("DNI"));
+                prestador.setDomicilio(rs.getString("domicilio"));
+                prestador.setTelefono(rs.getInt("telefono"));
+                prestador.setEstado(rs.getBoolean("estado"));
+                prestador.setIdEspecialidad(rs.getInt("idEspecialidad"));
+            } else {
+                
+            }
             ps.close();
-            prestadorNombre = prestador.getNombre();
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
         }
-        return prestadorNombre;
+        return prestador;
     }
 
     public List<Prestador> listarPrestadoresPorEspecialidad(Especialidad especialidad) {

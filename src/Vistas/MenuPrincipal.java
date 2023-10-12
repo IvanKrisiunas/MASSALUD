@@ -19,6 +19,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 public class MenuPrincipal extends javax.swing.JFrame {
 
     Afiliados af = new Afiliados();
+    Prestadores pr = new Prestadores();
 
     /**
      * Creates new form MenuPrincipal
@@ -76,6 +77,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         JBprestadores.setText("Prestadores");
         JBprestadores.setToolTipText("Modifique, edite o liste los prestadores habilitados.");
+        JBprestadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBprestadoresActionPerformed(evt);
+            }
+        });
         jPanel.add(JBprestadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 640, 160, -1));
 
         JBespecialidades.setText("Especialidades");
@@ -165,6 +171,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void JBprestadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBprestadoresActionPerformed
+        // TODO add your handling code here:
+        if (pr.isVisible() == false) {
+            JDescritorio.repaint();
+            JDescritorio.add(pr);
+            pr.setVisible(true);
+            pr.toFront();
+            pr.setResizable(false);
+            //remove the listeners from UI which make the frame move
+            BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) pr.getUI());
+            for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+            }
+        }
+    }//GEN-LAST:event_JBprestadoresActionPerformed
 
     /**
      * @param args the command line arguments

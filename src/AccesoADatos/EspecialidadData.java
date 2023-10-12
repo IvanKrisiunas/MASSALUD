@@ -19,6 +19,28 @@ public class EspecialidadData {
         con = Conexion.getConexion();
     }
 
+    public int especialidadPorId(String nombre) {
+        int idEspecialidad = 0;
+        String sql = "SELECT idEspecialidad FROM especialidad WHERE tipo = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Especialidad especialidad = new Especialidad();
+                especialidad.setTipo(rs.getString("tipo"));
+                System.out.println(especialidad.getTipo());
+                idEspecialidad = rs.getInt("idEspecialidad");
+                System.out.println("asd");
+            }
+            ps.close();
+            System.out.println("dsa");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return idEspecialidad;
+    }
+
     public List<Especialidad> listarEspecialidades() {
         List<Especialidad> especialidades = new ArrayList();
         String sql = "SELECT * FROM especialidad";
@@ -82,13 +104,13 @@ public class EspecialidadData {
 
     }
 
-    public Especialidad especialidadPorNombre(String tipo) {
+    public Especialidad especialidadPorNombre(int idEspecialidad) {
 
-        String sql = "SELECT * FROM especialidad WHERE tipo = ?";
+        String sql = "SELECT * FROM especialidad WHERE idEspecialidad = ?";
         Especialidad especialidad = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, tipo);
+            ps.setInt(1, idEspecialidad);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 especialidad = new Especialidad();

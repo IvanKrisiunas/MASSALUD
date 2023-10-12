@@ -89,7 +89,7 @@ public class Afiliado {
     
     @Override
     public String toString() {
-        return idAfiliado + ": " + nombre  + " " + apellido + ", " + DNI + ", " + estado + ", " + domicilio + ", " + telefono + '.' +"\n";
+        return  nombre  + " " + apellido + ", " + DNI + ", " + estado + ", " + domicilio + ", " + telefono + '.' +"\n";
     }
     
     

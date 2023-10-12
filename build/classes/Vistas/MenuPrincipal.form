@@ -126,6 +126,9 @@
                 <Property name="text" type="java.lang.String" value="Prestadores"/>
                 <Property name="toolTipText" type="java.lang.String" value="Modifique, edite o liste los prestadores habilitados."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBprestadoresActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="180" y="640" width="160" height="-1"/>

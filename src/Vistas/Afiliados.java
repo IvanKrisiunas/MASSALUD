@@ -14,6 +14,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JBrellenarCampos.setEnabled(false);
         JBmodificarAfiliado.setEnabled(false);
         JBagregarAfiliado.setEnabled(true);
+        cargarCombo();
     }
 
     @SuppressWarnings("unchecked")
@@ -47,6 +48,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JLtelefono = new javax.swing.JLabel();
         JLtextoAdv = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        JCBafiliados = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -96,7 +98,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
                 JTdniKeyReleased(evt);
             }
         });
-        JPescritorio.add(JTdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 280, 330, -1));
+        JPescritorio.add(JTdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 280, 330, 40));
         JPescritorio.add(JTdomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 340, 330, -1));
         JPescritorio.add(JTtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, 330, -1));
 
@@ -163,6 +165,14 @@ public class Afiliados extends javax.swing.JInternalFrame {
         });
         JPescritorio.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, -1, -1));
 
+        JCBafiliados.setBackground(new java.awt.Color(0, 153, 0));
+        JCBafiliados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBafiliadosActionPerformed(evt);
+            }
+        });
+        JPescritorio.add(JCBafiliados, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 590, 240, -1));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Afiliados");
@@ -192,7 +202,6 @@ public class Afiliados extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Afiliado afiliado = new Afiliado(JTnombre.getText(), JTapellido.getText(), Integer.parseInt(JTdni.getText()), JRBactivo.isEnabled(), JTdomicilio.getText(), Integer.parseInt(JTtelefono.getText()));
         ad.modificarAfiliado(afiliado);
-        
 
         afiliado = ad.listarAfiliadoPorDNI(Integer.parseInt(JTdni.getText()));
         JLnombre.setText(afiliado.getNombre());
@@ -208,7 +217,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JTtelefono.setText("");
         JRBactivo.setSelected(false);
         JBmodificarAfiliado.setEnabled(false);
-        
+
     }//GEN-LAST:event_JBmodificarAfiliadoActionPerformed
 
     private void JBagregarAfiliadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagregarAfiliadoActionPerformed
@@ -232,7 +241,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
 
     private void JBrellenarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBrellenarCamposActionPerformed
         // TODO add your handling code here
-        Afiliado afiliado = ad.listarAfiliadoPorDNI(Integer.parseInt(JTdni.getText()));
+        Afiliado afiliado = ad.listarAfiliadoPorDNI(Integer.parseInt(JLdni.getText()));
         JTnombre.setText(afiliado.getNombre());
         JTapellido.setText(afiliado.getApellido());
         JTdni.setText(String.valueOf(afiliado.getDNI()));
@@ -283,9 +292,26 @@ public class Afiliados extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         setVisible(false);
         dispose();
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void JCBafiliadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBafiliadosActionPerformed
+        // TODO add your handling code here:
+        
+        Afiliado afiliado = (Afiliado) JCBafiliados.getSelectedItem();
+        JLnombre.setText(afiliado.getNombre());
+        JLapellido.setText(afiliado.getApellido());
+        JLdni.setText(String.valueOf(afiliado.getDNI()));
+        JLdomicilio.setText(afiliado.getDomicilio());
+        JLtelefono.setText(String.valueOf(afiliado.getTelefono()));
+        JLtextoAdv.setVisible(false);
+        JBrellenarCampos.setEnabled(true);
+    }//GEN-LAST:event_JCBafiliadosActionPerformed
+
+    private void cargarCombo() {
+        for (Afiliado afiliado : ad.listarAfiliados()) {
+            JCBafiliados.addItem(afiliado);
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -294,6 +320,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
     private javax.swing.JButton JBlimpiar;
     private javax.swing.JButton JBmodificarAfiliado;
     private javax.swing.JButton JBrellenarCampos;
+    private javax.swing.JComboBox<Afiliado> JCBafiliados;
     private javax.swing.JLabel JLapellido;
     private javax.swing.JLabel JLdni;
     private javax.swing.JLabel JLdomicilio;

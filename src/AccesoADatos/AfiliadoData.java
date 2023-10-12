@@ -23,13 +23,12 @@ public class AfiliadoData {
 
     public List<Afiliado> listarAfiliados() {
         List<Afiliado> afiliados = new ArrayList();
-        String sql = "SELECT * FROM afiliado WHERE estado = 1";
+        String sql = "SELECT  nombre, apellido, DNI, domicilio, telefono, estado FROM `afiliado` WHERE estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Afiliado afiliado = new Afiliado();
-                afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
                 afiliado.setNombre(rs.getString("nombre"));
                 afiliado.setApellido(rs.getString("apellido"));
                 afiliado.setDNI(rs.getInt("DNI"));
@@ -50,13 +49,12 @@ public class AfiliadoData {
 
     public List<Afiliado> listarAfiliadosEliminados() {
         List<Afiliado> afiliados = new ArrayList();
-        String sql = "SELECT * FROM afiliado WHERE estado = 0";
+        String sql = "SELECT  nombre, apellido, DNI, domicilio, telefono, estado FROM `afiliado` WHERE estado = 0";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Afiliado afiliado = new Afiliado();
-                afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
                 afiliado.setNombre(rs.getString("nombre"));
                 afiliado.setApellido(rs.getString("apellido"));
                 afiliado.setDNI(rs.getInt("DNI"));

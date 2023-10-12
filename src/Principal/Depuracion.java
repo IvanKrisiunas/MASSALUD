@@ -64,11 +64,12 @@ public class Depuracion {
         }
 
         //Prestador
-        if (opción == 7 || opción == 8 || opción == 9) {
+        if (opción == 7 || opción == 6 || opción == 10) {
             int DNI2, telefono2;
             String nombre2, apellido2, domicilio2;
             boolean estado2;
-            int idEspecialidad;
+            String especialidadNombre;
+            int idEspecialidad=0;
             System.out.println("Prestador.");
             System.out.println("Nom.: ");
             nombre2 = s1.nextLine();
@@ -78,13 +79,14 @@ public class Depuracion {
             DNI2 = s.nextInt();
             System.out.println("Est.: ");
             estado2 = s.nextBoolean();
-            System.out.println("IdEspecialidad: ");
-            idEspecialidad = s.nextInt();
+            System.out.println("nombre de especialidad: ");
+            especialidadNombre = s3.nextLine();
+            idEspecialidad = ed.especialidadPorId(especialidadNombre);
             System.out.println("Telefono: ");
             telefono2 = s.nextInt();
             System.out.println("Direc: ");
             domicilio2 = s2.nextLine();
-            System.out.println(DNI2 + ", " + nombre2 + ", " + apellido2 + ", " + estado2 + ", " + idEspecialidad + "," + telefono2 + "," + domicilio2 + ".");
+            System.out.println(DNI2 + ", " + nombre2 + ", " + apellido2 + ", " + estado2 + ", " + especialidadNombre + "," + telefono2 + "," + domicilio2 + ".");
             p = new Prestador(nombre2, apellido2, DNI2, estado2, idEspecialidad, telefono2, domicilio2);
         }
 
