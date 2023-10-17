@@ -51,7 +51,7 @@ public class Depuracion {
         }
 
         //Especialidad
-        if (opción == 11 || opción == 12) {
+        if (opción == 10 || opción == 11 || opción == 12) {
             int idEspecialidad;
             String especialidad;
             System.out.println("Especialidad.");
@@ -64,7 +64,7 @@ public class Depuracion {
         }
 
         //Prestador
-        if (opción == 7 || opción == 6 || opción == 10) {
+        if (opción == 7 || opción == 6 ) {
             int DNI2, telefono2;
             String nombre2, apellido2, domicilio2;
             boolean estado2;
@@ -124,6 +124,9 @@ public class Depuracion {
             case 11:
                 ed.modificarEspecialidad(e);
                 break;
+            case 12:
+                ed.eliminarEspecialidad(e.getIdEspecialidad());
+                break;
             //Quitar especialidades
         }
     }
@@ -145,6 +148,7 @@ public class Depuracion {
                 + "9 - Listar especialidades" + "\n"
                 + "10 - Agregar especialidades" + "\n"
                 + "11 - Modificar especialidades" + "\n"
+                + "12 - Eliminar especialidades" + "\n"
                 + "-- Ingrese un número --");
     }
 }

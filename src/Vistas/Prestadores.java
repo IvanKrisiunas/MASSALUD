@@ -9,6 +9,7 @@ import AccesoADatos.EspecialidadData;
 import AccesoADatos.PrestadorData;
 import Principal.Especialidad;
 import Principal.Prestador;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
     public Prestadores() {
         initComponents();
         cargarCombo();
+        cargarComboPrestador();
     }
 
     /**
@@ -102,6 +104,17 @@ public class Prestadores extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, -1, -1));
         jPanel1.add(JTnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 240, 160, -1));
         jPanel1.add(JTapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 280, 160, -1));
+
+        JTdni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTdniActionPerformed(evt);
+            }
+        });
+        JTdni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JTdniKeyReleased(evt);
+            }
+        });
         jPanel1.add(JTdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 320, 160, -1));
         jPanel1.add(JTdomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 360, 160, -1));
         jPanel1.add(JTtelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 440, 160, -1));
@@ -118,6 +131,11 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
         JBmodificarPrestador.setBackground(new java.awt.Color(0, 153, 0));
         JBmodificarPrestador.setText("Modificar Prestador");
+        JBmodificarPrestador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBmodificarPrestadorActionPerformed(evt);
+            }
+        });
         jPanel1.add(JBmodificarPrestador, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, 70));
 
         jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\ayuda.png")); // NOI18N
@@ -235,6 +253,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
     private void JBagregarPrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagregarPrestadorActionPerformed
         // TODO add your handling code here:
+        
         Especialidad especialidad = (Especialidad) JCBespecialidad.getSelectedItem();
         Prestador prestador = new Prestador(JTnombre.getText(), JTapellido.getText(),Integer.parseInt(JTdni.getText()),JRBactivo.isEnabled(),ed.especialidadPorId(especialidad.getTipo()), Integer.parseInt(JTtelefono.getText()), JTdomicilio.getText());
         pd.añadirPrestador(prestador);
@@ -242,12 +261,76 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
     private void JCBespecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBespecialidadActionPerformed
         // TODO add your handling code here:
+
+        
         
     }//GEN-LAST:event_JCBespecialidadActionPerformed
+
+    private void JTdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTdniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTdniActionPerformed
+
+    private void JTdniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdniKeyReleased
+        // TODO add your handling code here:
+         if (JTdni.getText().isEmpty()) {
+            JLnombre.setText("Nombre");
+            JLapellido.setText("Apellido");
+            JLdni.setText("Dni");
+            JLdomicilio.setText("Domicilio");
+            JLtelefono.setText("Telefono");
+            JLespecialidad.setText("Especialidad");
+            JLtextoAdv.setVisible(false);
+            JBrellenarCampos.setEnabled(false);
+        } else {
+            try {
+                if (!JTdni.getText().isEmpty()) {
+                    Prestador prestador = pd.listarPrestadorPorDNI(Integer.parseInt(JTdni.getText()));
+                    JLnombre.setText(prestador.getNombre());
+                    JLapellido.setText(prestador.getApellido());
+                    JLdni.setText(String.valueOf(prestador.getDNI()));
+                    JLdomicilio.setText(prestador.getDomicilio());
+                    JLtelefono.setText(String.valueOf(prestador.getTelefono()));
+                    JLespecialidad.setText(ed.IdANombre(prestador.getIdEspecialidad()));
+                    JLtextoAdv.setVisible(false);
+                    JBrellenarCampos.setEnabled(true);
+                }
+            } catch (NullPointerException ex) {
+                JLtextoAdv.setVisible(true);
+                JBrellenarCampos.setEnabled(false);
+
+            } catch (NumberFormatException ez) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un numero de documento.");
+                JLdni.setText("");
+                JBrellenarCampos.setEnabled(false);
+
+            }
+        }
+
+    }//GEN-LAST:event_JTdniKeyReleased
+
+    private void JBmodificarPrestadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBmodificarPrestadorActionPerformed
+        // TODO add your handling code here:
+         Especialidad especialidad = (Especialidad) JCBespecialidad.getSelectedItem();
+        Prestador prestador = new Prestador(JTnombre.getText(), JTapellido.getText(),Integer.parseInt(JTdni.getText()),JRBactivo.isEnabled(),ed.especialidadPorId(especialidad.getTipo()), Integer.parseInt(JTtelefono.getText()), JTdomicilio.getText());
+        pd.modificarPrestador(prestador);
+        JLnombre.setText(prestador.getNombre());
+        JLapellido.setText(prestador.getApellido());
+        JLdni.setText(String.valueOf(prestador.getDNI()));
+        JLdomicilio.setText(prestador.getDomicilio());
+        JLtelefono.setText(String.valueOf(prestador.getTelefono()));
+        JLtextoAdv.setVisible(false);
+        JBrellenarCampos.setEnabled(true);
+    }//GEN-LAST:event_JBmodificarPrestadorActionPerformed
     
     private void cargarCombo (){
         for (Especialidad especialidad : ed.listarEspecialidades()) {
             JCBespecialidad.addItem(especialidad);
+        }
+    }
+    
+    private void cargarComboPrestador(){
+        for(Prestador prestador : pd.listarPrestadores()){
+            JCBprestadores.addItem(prestador);
         }
     }
 

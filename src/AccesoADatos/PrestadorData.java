@@ -16,7 +16,7 @@ public class PrestadorData {
     String prestadorNombre;
 
     private Connection con = null;
-
+    
     public PrestadorData() {
         con = Conexion.getConexion();
     }
@@ -36,6 +36,7 @@ public class PrestadorData {
                 prestador.setDNI(rs.getInt("DNI"));
                 prestador.setEstado(rs.getBoolean("estado"));
                 prestador.setIdEspecialidad(rs.getInt("idEspecialidad"));
+                
                 prestador.setDomicilio(rs.getString("domicilio"));
                 prestador.setTelefono(rs.getInt("telefono"));
                 prestadores.add(prestador);

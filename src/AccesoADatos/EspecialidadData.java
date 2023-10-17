@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class EspecialidadData {
@@ -19,22 +21,21 @@ public class EspecialidadData {
         con = Conexion.getConexion();
     }
 
-    public int especialidadPorId(String nombre) {
+    public int especialidadPorId(String tipo) {
         int idEspecialidad = 0;
-        String sql = "SELECT idEspecialidad FROM especialidad WHERE tipo = ?";
+        String sql = "SELECT idEspecialidad, tipo FROM especialidad WHERE tipo LIKE ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, nombre);
+            ps.setString(1, tipo);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Especialidad especialidad = new Especialidad();
                 especialidad.setTipo(rs.getString("tipo"));
                 System.out.println(especialidad.getTipo());
                 idEspecialidad = rs.getInt("idEspecialidad");
-                System.out.println("asd");
             }
             ps.close();
-            System.out.println("dsa");
+            System.out.println(idEspecialidad);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
         }
@@ -43,13 +44,13 @@ public class EspecialidadData {
 
     public List<Especialidad> listarEspecialidades() {
         List<Especialidad> especialidades = new ArrayList();
-        String sql = "SELECT * FROM especialidad";
+        String sql = "SELECT tipo FROM especialidad";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Especialidad especialidad = new Especialidad();
-                especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
+//                especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
                 especialidad.setTipo(rs.getString("tipo"));
                 especialidades.add(especialidad);
             }
@@ -81,7 +82,7 @@ public class EspecialidadData {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
         }
     }
-
+    
     public void modificarEspecialidad(Especialidad especialidad) {
         String sql = "UPDATE especialidad SET tipo = ? WHERE idEspecialidad = ?";
         PreparedStatement ps;
@@ -126,5 +127,40 @@ public class EspecialidadData {
         }
         return especialidad;
 
+    }
+
+    public String IdANombre(int idEspecialidad) {
+        String tipo = "";
+        String sql = "SELECT tipo FROM especialidad WHERE idEspecialidad = ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idEspecialidad);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                tipo = rs.getString("tipo");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro la especialidad");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return tipo;
+
+    }
+    
+    public void eliminarEspecialidad(int idEspecialidad){
+        String sql = "DELETE FROM `especialidad` WHERE ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idEspecialidad);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        
     }
 }
