@@ -103,12 +103,12 @@ public class PrestadorData {
         return prestador;
     }
 
-    public List<Prestador> listarPrestadoresPorEspecialidad(Especialidad especialidad) {
+    public List<Prestador> listarPrestadoresPorEspecialidad(int idEspecialidad) {
         List<Prestador> prestadores = new ArrayList();
         String sql = "SELECT * FROM prestador WHERE estado = 1 and idEspecialidad = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, especialidad.getIdEspecialidad());
+            ps.setInt(1, idEspecialidad);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Prestador prestador = new Prestador();

@@ -20,7 +20,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     Afiliados af = new Afiliados();
     Prestadores pr = new Prestadores();
-
+    Especialidades es = new Especialidades();
     /**
      * Creates new form MenuPrincipal
      */
@@ -86,6 +86,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         JBespecialidades.setText("Especialidades");
         JBespecialidades.setToolTipText("Administre,cree o liste las especialidades.");
+        JBespecialidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBespecialidadesActionPerformed(evt);
+            }
+        });
         jPanel.add(JBespecialidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, 170, -1));
 
         JBayuda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -187,6 +192,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_JBprestadoresActionPerformed
+
+    private void JBespecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBespecialidadesActionPerformed
+        // TODO add your handling code here:
+        if (es.isVisible() == false) {
+            JDescritorio.repaint();
+            JDescritorio.add(es);
+            es.setVisible(true);
+            es.toFront();
+            es.setResizable(false);
+            //remove the listeners from UI which make the frame move
+            BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) pr.getUI());
+            for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+            }
+        }
+    }//GEN-LAST:event_JBespecialidadesActionPerformed
 
     /**
      * @param args the command line arguments

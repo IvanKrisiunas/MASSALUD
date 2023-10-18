@@ -150,17 +150,4 @@ public class EspecialidadData {
         return tipo;
 
     }
-    
-    public void eliminarEspecialidad(int idEspecialidad){
-        String sql = "DELETE FROM `especialidad` WHERE ?";
-        
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idEspecialidad);
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
-        }
-        
-    }
 }

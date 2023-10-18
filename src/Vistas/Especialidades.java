@@ -5,17 +5,33 @@
  */
 package Vistas;
 
+import AccesoADatos.EspecialidadData;
+import AccesoADatos.PrestadorData;
+import Principal.Especialidad;
+import Principal.Prestador;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author iarak
  */
 public class Especialidades extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelotablaEspecialidad = new DefaultTableModel();
+    private DefaultTableModel modelotablaPrestador = new DefaultTableModel();
+    private String valorNombre;
+    private int seleccionarFila;
+
     /**
      * Creates new form Especialidades
      */
     public Especialidades() {
         initComponents();
+        armarCabeceraEspecialidad();
+        armarCabeceraPrestadores();
+        cargarTablaEspecialidades();
+        cargarTablaPrestadores();
     }
 
     /**
@@ -27,21 +43,140 @@ public class Especialidades extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JTespecialidades = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JTprestadores = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        JTespecialidades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        JTespecialidades.setCellSelectionEnabled(true);
+        JTespecialidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTespecialidadesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(JTespecialidades);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 70, 440, 380));
+
+        JTprestadores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(JTprestadores);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, 380));
+
+        jButton1.setText("Añadir");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, -1, -1));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 270, -1));
+
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\ayuda.png")); // NOI18N
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 140, 120));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setText("Especialidades");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 230, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\massalud.png")); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 680));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JTespecialidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTespecialidadesMouseClicked
+        // TODO add your handling code here:
+        seleccionarFila = JTespecialidades.rowAtPoint(evt.getPoint());
+        valorNombre = JTespecialidades.getValueAt(seleccionarFila, 0).toString();
+        
+    }//GEN-LAST:event_JTespecialidadesMouseClicked
+   
+    private void armarCabeceraEspecialidad() {
+        modelotablaEspecialidad.addColumn("Nombre De La Especialidad"); //Materia
+        JTespecialidades.setModel(modelotablaEspecialidad);
+    }
+
+    private void armarCabeceraPrestadores() {
+        modelotablaPrestador.addColumn("Prestadores por Especialidad"); //Materia
+        JTprestadores.setModel(modelotablaPrestador);
+    }
+
+    private void cargarTablaEspecialidades() {
+        borrarFilasEspecialidades();
+        EspecialidadData ed = new EspecialidadData();
+
+        List<Especialidad> listarEspecialidades = ed.listarEspecialidades();
+        for (Especialidad esp : listarEspecialidades) {
+            System.out.println(esp);
+            modelotablaEspecialidad.addRow(new Object[]{esp.getTipo()});
+        }
+    }
+
+    private void cargarTablaPrestadores() {
+        borrarFilasPrestadores();
+        PrestadorData pd = new PrestadorData();
+        EspecialidadData ed = new EspecialidadData();
+        
+        int valorId = ed.especialidadPorId(valorNombre);
+        
+        List<Prestador> listarPrestadoresPorEspecialidad = pd.listarPrestadoresPorEspecialidad(valorId);
+        
+    }
+
+    private void borrarFilasEspecialidades() {
+        ((DefaultTableModel) JTespecialidades.getModel()).setRowCount(0);
+    }
+
+    private void borrarFilasPrestadores() {
+        ((DefaultTableModel) JTprestadores.getModel()).setRowCount(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTespecialidades;
+    private javax.swing.JTable JTprestadores;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
