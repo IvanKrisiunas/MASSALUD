@@ -35,7 +35,7 @@ public class EspecialidadData {
                 idEspecialidad = rs.getInt("idEspecialidad");
             }
             ps.close();
-            System.out.println(idEspecialidad);
+            System.out.println("Id: " + idEspecialidad);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
         }
@@ -63,19 +63,19 @@ public class EspecialidadData {
 
     }
 
-    public void añadirEspecialidad(Especialidad especialidad) {
+    public void añadirEspecialidad(String tipo) {
         String sql = "INSERT INTO especialidad(idEspecialidad, tipo) "
                 + "VALUES ('', ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, especialidad.getTipo());
+            ps.setString(1, tipo);
             ps.executeUpdate();
             System.out.println("* * * Método ejecutado correctamente. * * *");
             listarEspecialidades();
             ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
-            }
+//            if (rs.next()) {
+//                especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
+//            }
 
             ps.close();
         } catch (SQLException ex) {
@@ -83,13 +83,13 @@ public class EspecialidadData {
         }
     }
     
-    public void modificarEspecialidad(Especialidad especialidad) {
+    public void modificarEspecialidad(int idEspecialidad, String tipo) {
         String sql = "UPDATE especialidad SET tipo = ? WHERE idEspecialidad = ?";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, especialidad.getTipo());
-            ps.setInt(2, especialidad.getIdEspecialidad());
+            ps.setString(1, tipo);
+            ps.setInt(2, idEspecialidad);
             ps.executeUpdate();
             int exito = ps.executeUpdate();
             if (exito == 1) {

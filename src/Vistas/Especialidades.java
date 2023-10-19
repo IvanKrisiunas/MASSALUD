@@ -22,7 +22,8 @@ public class Especialidades extends javax.swing.JInternalFrame {
     private DefaultTableModel modelotablaPrestador = new DefaultTableModel();
     private String valorNombre;
     private int seleccionarFila;
-
+    private int idEsp;
+    EspecialidadData ed = new EspecialidadData();
     /**
      * Creates new form Especialidades
      */
@@ -32,6 +33,7 @@ public class Especialidades extends javax.swing.JInternalFrame {
         armarCabeceraPrestadores();
         cargarTablaEspecialidades();
         cargarTablaPrestadores();
+        
     }
 
     /**
@@ -48,8 +50,12 @@ public class Especialidades extends javax.swing.JInternalFrame {
         JTespecialidades = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTprestadores = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        JBguardarCambios = new javax.swing.JButton();
+        JBañadir = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        JTFañadirEspecialidad = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -75,7 +81,7 @@ public class Especialidades extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(JTespecialidades);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 70, 440, 380));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 110, 440, 340));
 
         JTprestadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,14 +96,36 @@ public class Especialidades extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(JTprestadores);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, 380));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, -1, 340));
 
-        jButton1.setText("Añadir");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 480, -1, -1));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 270, -1));
+        JBguardarCambios.setText("Guardar cambios");
+        JBguardarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBguardarCambiosActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JBguardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, -1, -1));
+
+        JBañadir.setText("Añadir");
+        JBañadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBañadirActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JBañadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 480, -1, -1));
+
+        jLabel5.setText("Prestadores por especialidad");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, -1, -1));
+
+        jLabel4.setText("Especialidades");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, -1));
+
+        jLabel3.setText("Agregar especialidad:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, -1, -1));
+        jPanel2.add(JTFañadirEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 270, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\ayuda.png")); // NOI18N
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 140, 120));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 140, 120));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel2.setText("Especialidades");
@@ -124,16 +152,35 @@ public class Especialidades extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         seleccionarFila = JTespecialidades.rowAtPoint(evt.getPoint());
         valorNombre = JTespecialidades.getValueAt(seleccionarFila, 0).toString();
-        
+        idEsp = ed.especialidadPorId(valorNombre);        
     }//GEN-LAST:event_JTespecialidadesMouseClicked
+
+    
+    private void JBañadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBañadirActionPerformed
+        // TODO add your handling code here:
+        ed.añadirEspecialidad(JTFañadirEspecialidad.getText());
+        JTFañadirEspecialidad.setText("");
+        cargarTablaEspecialidades();
+    }//GEN-LAST:event_JBañadirActionPerformed
+
+    private void JBguardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarCambiosActionPerformed
+        // TODO add your handling code here:
+         EspecialidadData ed = new EspecialidadData();
+         valorNombre = (String) JTespecialidades.getValueAt(seleccionarFila, 0);
+        JTespecialidades.setValueAt(valorNombre , seleccionarFila, 0);
+        ed.modificarEspecialidad(idEsp, valorNombre);
+        cargarTablaEspecialidades();
+    }//GEN-LAST:event_JBguardarCambiosActionPerformed
    
     private void armarCabeceraEspecialidad() {
-        modelotablaEspecialidad.addColumn("Nombre De La Especialidad"); //Materia
+        modelotablaEspecialidad.addColumn("Nombre De La Especialidad");
         JTespecialidades.setModel(modelotablaEspecialidad);
     }
 
     private void armarCabeceraPrestadores() {
-        modelotablaPrestador.addColumn("Prestadores por Especialidad"); //Materia
+        modelotablaPrestador.addColumn("Nombre");
+        modelotablaPrestador.addColumn("Apellido");
+        modelotablaPrestador.addColumn("DNI");
         JTprestadores.setModel(modelotablaPrestador);
     }
 
@@ -143,7 +190,6 @@ public class Especialidades extends javax.swing.JInternalFrame {
 
         List<Especialidad> listarEspecialidades = ed.listarEspecialidades();
         for (Especialidad esp : listarEspecialidades) {
-            System.out.println(esp);
             modelotablaEspecialidad.addRow(new Object[]{esp.getTipo()});
         }
     }
@@ -156,7 +202,10 @@ public class Especialidades extends javax.swing.JInternalFrame {
         int valorId = ed.especialidadPorId(valorNombre);
         
         List<Prestador> listarPrestadoresPorEspecialidad = pd.listarPrestadoresPorEspecialidad(valorId);
-        
+        for(Prestador pres : listarPrestadoresPorEspecialidad){
+            System.out.println(pres);
+            modelotablaPrestador.addRow(new Object[]{pres.getNombre(), pres.getApellido(), pres.getDNI()});
+        }
     }
 
     private void borrarFilasEspecialidades() {
@@ -168,15 +217,19 @@ public class Especialidades extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBañadir;
+    private javax.swing.JButton JBguardarCambios;
+    private javax.swing.JTextField JTFañadirEspecialidad;
     private javax.swing.JTable JTespecialidades;
     private javax.swing.JTable JTprestadores;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

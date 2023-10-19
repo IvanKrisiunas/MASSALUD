@@ -10,6 +10,8 @@ public class Depuracion {
 
     public static void main(String[] args) {
         int opción;
+        int idEspecialidad = 0;
+            String especialidad = null;
         //Conexion EXP = new Conexion();
         //Conexion.getConexion();
         textoMenú();
@@ -52,8 +54,7 @@ public class Depuracion {
 
         //Especialidad
         if (opción == 10 || opción == 11 || opción == 12) {
-            int idEspecialidad;
-            String especialidad;
+            
             System.out.println("Especialidad.");
             System.out.println("Id.: ");
             idEspecialidad = s.nextInt();
@@ -122,7 +123,7 @@ public class Depuracion {
                 ed.añadirEspecialidad(e);
                 break;
             case 11:
-                ed.modificarEspecialidad(e);
+                ed.modificarEspecialidad(idEspecialidad, especialidad);
                 break;
             case 12:
                 ed.eliminarEspecialidad(e.getIdEspecialidad());
