@@ -5,12 +5,14 @@
  */
 package Vistas;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author iarak
  */
 public class Ordenes extends javax.swing.JInternalFrame {
-
+private DefaultTableModel modelotabla = new DefaultTableModel();
     /**
      * Creates new form Ordenes
      */
@@ -27,21 +29,141 @@ public class Ordenes extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1009, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
-        );
+        JCBprestadores = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        JBeliminar = new javax.swing.JButton();
+        JBmodificar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        JCBformaPago = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        JTimporte = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        JDCfecha = new com.toedter.calendar.JDateChooser();
+        JCBafiliados = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JTordenes = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        JCBprestadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JCBprestadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBprestadoresActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JCBprestadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 330, -1));
+
+        jLabel4.setText("Afiliado");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+
+        jLabel5.setText("Fecha de orden");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+
+        jButton1.setText("Agregar Orden");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, -1, -1));
+
+        JBeliminar.setText("Eliminar Orden");
+        getContentPane().add(JBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 630, -1, -1));
+
+        JBmodificar.setText("Modificar Orden");
+        getContentPane().add(JBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 570, -1, -1));
+
+        jLabel7.setText("Forma de Pago");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 150, 30));
+
+        JCBformaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(JCBformaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 330, -1));
+
+        jLabel6.setText("Importe");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
+
+        JTimporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTimporteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JTimporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 330, -1));
+
+        jLabel2.setText("Prestador");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        getContentPane().add(JDCfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 330, 30));
+
+        JCBafiliados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(JCBafiliados, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 330, -1));
+
+        JTordenes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(JTordenes);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, -1, 480));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel3.setText("Órdenes");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 140, 50));
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 264, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\massalud.png")); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void JCBprestadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBprestadoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCBprestadoresActionPerformed
+
+    private void JTimporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTimporteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTimporteActionPerformed
+
+    private void armarCabecera() {
+        modelotabla.addColumn("Fecha");
+        modelotabla.addColumn("Forma de Pago");
+        modelotabla.addColumn("Importe");
+        modelotabla.addColumn("Nombre Prestador");
+        modelotabla.addColumn("Apellido Prestador");
+        modelotabla.addColumn("Importe");
+        modelotabla.addColumn("Importe");
+        modelotabla.addColumn("Importe");
+        modelotabla.addColumn("Importe");
+        modelotabla.addColumn("Importe");
+        JTordenes.setModel(modelotabla);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBeliminar;
+    private javax.swing.JButton JBmodificar;
+    private javax.swing.JComboBox<String> JCBafiliados;
+    private javax.swing.JComboBox<String> JCBformaPago;
+    private javax.swing.JComboBox<String> JCBprestadores;
+    private com.toedter.calendar.JDateChooser JDCfecha;
+    private javax.swing.JTextField JTimporte;
+    private javax.swing.JTable JTordenes;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
