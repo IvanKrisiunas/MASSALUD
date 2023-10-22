@@ -2,18 +2,16 @@ package Principal;
 
 import AccesoADatos.AfiliadoData;
 import AccesoADatos.EspecialidadData;
-import AccesoADatos.OrdenData;
 import AccesoADatos.PrestadorData;
 import java.util.Scanner;
 
 public class Depuracion {
 
-    public static void main(String[] args) {
+    public static void depuracion(String[] args) {
         int opción;
         int idEspecialidad = 0;
-            String especialidad = null;
-        //Conexion EXP = new Conexion();
-        //Conexion.getConexion();
+        String especialidad = null;
+
         textoMenú();
         Scanner s = new Scanner(System.in);
         Scanner s1 = new Scanner(System.in);
@@ -24,11 +22,9 @@ public class Depuracion {
         Afiliado a = new Afiliado();
         Especialidad e = new Especialidad();
         Prestador p = new Prestador();
-        Orden o = new Orden();
         AfiliadoData ad = new AfiliadoData();
         EspecialidadData ed = new EspecialidadData();
         PrestadorData pd = new PrestadorData();
-        OrdenData od = new OrdenData();
 
         //Afiliado
         if (opción == 2 || opción == 3 || opción == 4) {
@@ -54,7 +50,7 @@ public class Depuracion {
 
         //Especialidad
         if (opción == 10 || opción == 11 || opción == 12) {
-            
+
             System.out.println("Especialidad.");
             System.out.println("Id.: ");
             idEspecialidad = s.nextInt();
@@ -65,12 +61,11 @@ public class Depuracion {
         }
 
         //Prestador
-        if (opción == 7 || opción == 6 ) {
+        if (opción == 7 || opción == 6) {
             int DNI2, telefono2;
             String nombre2, apellido2, domicilio2;
             boolean estado2;
             String especialidadNombre;
-            int idEspecialidad=0;
             System.out.println("Prestador.");
             System.out.println("Nom.: ");
             nombre2 = s1.nextLine();
@@ -120,13 +115,13 @@ public class Depuracion {
                 ed.listarEspecialidades();
                 break;
             case 10:
-                ed.añadirEspecialidad(e);
+                //ed.añadirEspecialidad(e);
                 break;
             case 11:
                 ed.modificarEspecialidad(idEspecialidad, especialidad);
                 break;
             case 12:
-                ed.eliminarEspecialidad(e.getIdEspecialidad());
+                //ed.eliminarEspecialidad(e.getIdEspecialidad());
                 break;
             //Quitar especialidades
         }
@@ -139,7 +134,6 @@ public class Depuracion {
                 + "2 - Agregar afiliados" + "\n"
                 + "3 - Modificar afiliados" + "\n"
                 + "4 - Quitar afiliados" + "\n"
-                + "=== Órdenes ===" + "\n"
                 + "=== Prestadores ===" + "\n"
                 + "5 - Listar prestadores" + "\n"
                 + "6 - Agregar prestadores" + "\n"

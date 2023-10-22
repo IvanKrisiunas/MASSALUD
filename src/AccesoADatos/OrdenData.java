@@ -38,7 +38,7 @@ public class OrdenData {
                 ordenes.add(orden);
             }
             ps.close();
-            System.out.println("Activo(s)" + "\n" + ordenes);
+            System.out.println("Orden(es) activa(s)" + "\n" + ordenes);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla orden." + "\n" + "(" + ex.getMessage() + ")");
         }

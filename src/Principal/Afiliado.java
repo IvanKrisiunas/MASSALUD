@@ -18,8 +18,6 @@ public class Afiliado {
     private String domicilio;
     private int telefono;
 
-  
-
     public Afiliado(String nombre, String apellido, int DNI, boolean estado, String domicilio, int telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -28,7 +26,7 @@ public class Afiliado {
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
-
+    
     public Afiliado() {
     }
     
@@ -89,8 +87,11 @@ public class Afiliado {
     
     @Override
     public String toString() {
-        return  nombre  + " " + apellido + ", " + DNI + ", " + estado + ", " + domicilio + ", " + telefono + '.' +"\n";
+        if (nombre == null) {
+            return "";
+        } else {
+            return nombre + " " + apellido + ", " + DNI + '.' + "\n";
+        }
     }
-    
     
 }

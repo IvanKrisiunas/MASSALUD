@@ -31,11 +31,9 @@ public class EspecialidadData {
             if (rs.next()) {
                 Especialidad especialidad = new Especialidad();
                 especialidad.setTipo(rs.getString("tipo"));
-                System.out.println(especialidad.getTipo());
                 idEspecialidad = rs.getInt("idEspecialidad");
             }
             ps.close();
-            System.out.println("Id: " + idEspecialidad);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
         }
@@ -50,12 +48,11 @@ public class EspecialidadData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Especialidad especialidad = new Especialidad();
-//                especialidad.setIdEspecialidad(rs.getInt("idEspecialidad"));
                 especialidad.setTipo(rs.getString("tipo"));
                 especialidades.add(especialidad);
             }
             ps.close();
-            System.out.println("Activo(s)" + "\n" + especialidades);
+            System.out.println("Especialidad(es)" + "\n" + especialidades);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
         }

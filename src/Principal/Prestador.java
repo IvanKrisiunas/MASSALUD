@@ -89,6 +89,10 @@ public class Prestador {
 
     @Override
     public String toString() {
-        return nombre + " " + apellido + ", " + DNI;
+        if (nombre == null) {
+            return "";
+        } else {
+            return nombre + " " + apellido + ", " + DNI + ".";
+        }
     }
 }

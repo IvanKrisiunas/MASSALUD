@@ -5,11 +5,8 @@
  */
 package Vistas;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import Principal.Depuracion;
 import java.awt.event.MouseListener;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -18,16 +15,16 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    Afiliados af = new Afiliados();
-    Prestadores pr = new Prestadores();
-    Especialidades es = new Especialidades();
+    Depuracion d = new Depuracion();
+    Afiliados a = new Afiliados();
+    Prestadores p = new Prestadores();
+    Especialidades e = new Especialidades();
     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
         initComponents();
-        
-
+        BtnDep.setVisible(true);
     }
 
     /**
@@ -41,22 +38,68 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         JDescritorio = new javax.swing.JDesktopPane();
         jPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        BtnDep = new javax.swing.JButton();
         JBafiliados = new javax.swing.JButton();
         JBordenes = new javax.swing.JButton();
         JBprestadores = new javax.swing.JButton();
         JBespecialidades = new javax.swing.JButton();
         JBayuda = new javax.swing.JButton();
         ImagenFondo = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(new java.awt.Dimension(1025, 753));
 
-        JDescritorio.setPreferredSize(new java.awt.Dimension(1025, 739));
+        JDescritorio.setPreferredSize(new java.awt.Dimension(1025, 732));
 
-        jPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel.setLayout(null);
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ordenGrande.png"))); // NOI18N
+        jPanel.add(jLabel2);
+        jLabel2.setBounds(670, 500, 160, 130);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/afilaidoGrande.png"))); // NOI18N
+        jPanel.add(jLabel1);
+        jLabel1.setBounds(180, 300, 160, 130);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prestadorGrande.png"))); // NOI18N
+        jPanel.add(jLabel3);
+        jLabel3.setBounds(180, 500, 160, 130);
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/especialidadGrande.png"))); // NOI18N
+        jPanel.add(jLabel4);
+        jLabel4.setBounds(670, 300, 160, 130);
+
+        BtnDep.setBackground(new java.awt.Color(158, 158, 198));
+        BtnDep.setForeground(new java.awt.Color(158, 158, 198));
+        BtnDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/depuracion.png"))); // NOI18N
+        BtnDep.setToolTipText("");
+        BtnDep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        BtnDep.setBorderPainted(false);
+        BtnDep.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BtnDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDepActionPerformed(evt);
+            }
+        });
+        jPanel.add(BtnDep);
+        BtnDep.setBounds(898, 10, 100, 60);
+
+        JBafiliados.setBackground(new java.awt.Color(71, 71, 71));
+        JBafiliados.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        JBafiliados.setForeground(new java.awt.Color(255, 255, 255));
         JBafiliados.setText("Afiliados");
         JBafiliados.setToolTipText("Modifique, edite o liste los afiliados habilitados.");
         JBafiliados.addActionListener(new java.awt.event.ActionListener() {
@@ -64,8 +107,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JBafiliadosActionPerformed(evt);
             }
         });
-        jPanel.add(JBafiliados, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, 160, 30));
+        jPanel.add(JBafiliados);
+        JBafiliados.setBounds(180, 440, 160, 40);
 
+        JBordenes.setBackground(new java.awt.Color(71, 71, 71));
+        JBordenes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        JBordenes.setForeground(new java.awt.Color(255, 255, 255));
         JBordenes.setText("Ordenes");
         JBordenes.setToolTipText("Cree y administre las ordenes.");
         JBordenes.addActionListener(new java.awt.event.ActionListener() {
@@ -73,8 +120,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JBordenesActionPerformed(evt);
             }
         });
-        jPanel.add(JBordenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 440, 150, -1));
+        jPanel.add(JBordenes);
+        JBordenes.setBounds(670, 440, 160, 40);
 
+        JBprestadores.setBackground(new java.awt.Color(71, 71, 71));
+        JBprestadores.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        JBprestadores.setForeground(new java.awt.Color(255, 255, 255));
         JBprestadores.setText("Prestadores");
         JBprestadores.setToolTipText("Modifique, edite o liste los prestadores habilitados.");
         JBprestadores.addActionListener(new java.awt.event.ActionListener() {
@@ -82,8 +133,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JBprestadoresActionPerformed(evt);
             }
         });
-        jPanel.add(JBprestadores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 640, 160, -1));
+        jPanel.add(JBprestadores);
+        JBprestadores.setBounds(180, 640, 160, 40);
 
+        JBespecialidades.setBackground(new java.awt.Color(71, 71, 71));
+        JBespecialidades.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        JBespecialidades.setForeground(new java.awt.Color(255, 255, 255));
         JBespecialidades.setText("Especialidades");
         JBespecialidades.setToolTipText("Administre,cree o liste las especialidades.");
         JBespecialidades.addActionListener(new java.awt.event.ActionListener() {
@@ -91,15 +146,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JBespecialidadesActionPerformed(evt);
             }
         });
-        jPanel.add(JBespecialidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, 170, -1));
+        jPanel.add(JBespecialidades);
+        JBespecialidades.setBounds(670, 640, 160, 40);
 
-        JBayuda.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        JBayuda.setBackground(new java.awt.Color(71, 71, 71));
+        JBayuda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JBayuda.setForeground(new java.awt.Color(255, 255, 255));
         JBayuda.setText("Ayuda");
         JBayuda.setToolTipText("Reciba ayuda sobre el programa.");
-        jPanel.add(JBayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 70, 20));
+        jPanel.add(JBayuda);
+        JBayuda.setBounds(474, 500, 80, 30);
 
-        ImagenFondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\iarak\\OneDrive\\Imágenes\\massalud2.png")); // NOI18N
-        jPanel.add(ImagenFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 730));
+        ImagenFondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\GitHub\\MASSALUD\\src\\imagenes\\massalud2.png")); // NOI18N
+        jPanel.add(ImagenFondo);
+        ImagenFondo.setBounds(0, 0, 1030, 730);
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/afilaidoGrande.png"))); // NOI18N
+        jPanel.add(jLabel5);
+        jLabel5.setBounds(180, 510, 160, 130);
 
         JDescritorio.setLayer(jPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -107,23 +172,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JDescritorio.setLayout(JDescritorioLayout);
         JDescritorioLayout.setHorizontalGroup(
             JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGap(0, 1025, Short.MAX_VALUE)
             .addGroup(JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE))
         );
         JDescritorioLayout.setVerticalGroup(
             JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 739, Short.MAX_VALUE)
+            .addGap(0, 732, Short.MAX_VALUE)
             .addGroup(JDescritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
-            }
-        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -157,57 +217,105 @@ public class MenuPrincipal extends javax.swing.JFrame {
    
     private void JBafiliadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBafiliadosActionPerformed
         // TODO add your handling code here:
-        if (af.isVisible() == false) {
-            JDescritorio.repaint();
-            JDescritorio.add(af);
-            af.setVisible(true);
-            af.toFront();
-            af.setResizable(false);
-            //remove the listeners from UI which make the frame move
-            BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) af.getUI());
-            for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
-                basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+        try {
+            if (a.isVisible() == false) {
+                JDescritorio.repaint();
+                JDescritorio.add(a);
+                a.setVisible(true);
+                a.toFront();
+                a.setResizable(false);
+                a.setBounds(0, -35, 1025, 769);
+                //remove the listeners from UI which make the frame move
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) a.getUI());
+                for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                    basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+                }
+            }
+        } catch (IllegalArgumentException ez) {
+            if (a.isVisible() == false) {
+                JDescritorio.repaint();
+                JDescritorio.add(a);
+                a.setVisible(true);
+                a.toFront();
+                a.setResizable(false);
+                a.setBounds(0, -35, 1025, 769);
+                //remove the listeners from UI which make the frame move
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) a.getUI());
+                for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                    basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+                }
             }
         }
-
     }//GEN-LAST:event_JBafiliadosActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void JBprestadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBprestadoresActionPerformed
         // TODO add your handling code here:
-        if (pr.isVisible() == false) {
-            JDescritorio.repaint();
-            JDescritorio.add(pr);
-            pr.setVisible(true);
-            pr.toFront();
-            pr.setResizable(false);
-            //remove the listeners from UI which make the frame move
-            BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) pr.getUI());
-            for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
-                basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+        try {
+            if (p.isVisible() == false) {
+                JDescritorio.repaint();
+                JDescritorio.add(p);
+                p.setVisible(true);
+                p.toFront();
+                p.setResizable(false);
+                p.setBounds(0, -35, 1025, 769);
+                //remove the listeners from UI which make the frame move
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) p.getUI());
+                for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                    basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+                }
+            }
+        } catch (IllegalArgumentException ez) {
+            if (p.isVisible() == false) {
+                JDescritorio.repaint();
+                JDescritorio.add(p);
+                p.setVisible(true);
+                p.toFront();
+                p.setResizable(false);
+                p.setBounds(0, -35, 1025, 769);
+                //remove the listeners from UI which make the frame move
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) p.getUI());
+                for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                    basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+                }
             }
         }
     }//GEN-LAST:event_JBprestadoresActionPerformed
 
     private void JBespecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBespecialidadesActionPerformed
         // TODO add your handling code here:
-        if (es.isVisible() == false) {
-            JDescritorio.repaint();
-            JDescritorio.add(es);
-            es.setVisible(true);
-            es.toFront();
-            es.setResizable(false);
-            //remove the listeners from UI which make the frame move
-            BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) pr.getUI());
-            for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
-                basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+        try {
+            if (e.isVisible() == false) {
+                JDescritorio.repaint();
+                JDescritorio.add(e);
+                e.setVisible(true);
+                e.toFront();
+                e.setResizable(false);
+                //remove the listeners from UI which make the frame move
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) p.getUI());
+                for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                    basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+                }
+            }
+        } catch (IllegalArgumentException ez) {
+            if (e.isVisible() == false) {
+                JDescritorio.repaint();
+                JDescritorio.add(e);
+                e.setVisible(true);
+                e.toFront();
+                e.setResizable(false);
+                //remove the listeners from UI which make the frame move
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) p.getUI());
+                for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                    basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+                }
             }
         }
     }//GEN-LAST:event_JBespecialidadesActionPerformed
+
+    private void BtnDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDepActionPerformed
+        // TODO add your handling code here:
+        Depuracion.depuracion(null);
+    }//GEN-LAST:event_BtnDepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +353,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnDep;
     private javax.swing.JLabel ImagenFondo;
     private javax.swing.JButton JBafiliados;
     private javax.swing.JButton JBayuda;
@@ -252,6 +361,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton JBordenes;
     private javax.swing.JButton JBprestadores;
     private javax.swing.JDesktopPane JDescritorio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

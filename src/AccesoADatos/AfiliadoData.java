@@ -8,6 +8,8 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import Principal.Afiliado;
 import Principal.Conexion;
+import java.awt.Component;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,13 +40,12 @@ public class AfiliadoData {
                 afiliados.add(afiliado);
             }
             ps.close();
-            System.out.println("Activo(s)" + "\n" + afiliados);
-            System.out.println("Inactivo(s): " + "\n" + listarAfiliadosEliminados());
+            System.out.println("Afiliado(s) activo(s)" + "\n" + afiliados);
+            System.out.println("Afiliado(s) inactivo(s): " + "\n" + listarAfiliadosEliminados());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
         }
         return afiliados;
-
     }
 
     public List<Afiliado> listarAfiliadosEliminados() {
@@ -68,7 +69,6 @@ public class AfiliadoData {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
         }
         return afiliados;
-
     }
 
     public Afiliado listarAfiliadoPorDNI(int DNIAfiliado) {
@@ -87,10 +87,8 @@ public class AfiliadoData {
                 afiliado.setTelefono(rs.getInt("telefono"));
                 afiliado.setEstado(rs.getBoolean("estado"));
             } else {
-                
             }
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
         }
@@ -98,27 +96,32 @@ public class AfiliadoData {
     }
 
     public void añadirAfiliado(Afiliado afiliado) {
-        String sql = "INSERT INTO afiliado(idAfiliado, nombre, apellido, DNI, domicilio, telefono, estado) "
-                + "VALUES ('', ?, ?, ?, ?, ?, ?)";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, afiliado.getNombre());
-            ps.setString(2, afiliado.getApellido());
-            ps.setInt(3, afiliado.getDNI());
-            ps.setString(4, afiliado.getDomicilio());
-            ps.setInt(5, afiliado.getTelefono());
-            ps.setBoolean(6, afiliado.isEstado());
-            ps.executeUpdate();
-            System.out.println("* * * Método ejecutado correctamente. * * *");
-            listarAfiliados();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
-            }
+        int respuesta = JOptionPane.showConfirmDialog(null,"¿Desea agregar un nuevo afiliado?", "Afiliados", JOptionPane.YES_NO_OPTION);
+        if (respuesta == 0) {
+            String sql = "INSERT INTO afiliado(idAfiliado, nombre, apellido, DNI, domicilio, telefono, estado) "
+                    + "VALUES ('', ?, ?, ?, ?, ?, ?)";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, afiliado.getNombre());
+                ps.setString(2, afiliado.getApellido());
+                ps.setInt(3, afiliado.getDNI());
+                ps.setString(4, afiliado.getDomicilio());
+                ps.setInt(5, afiliado.getTelefono());
+                ps.setBoolean(6, afiliado.isEstado());
+                ps.executeUpdate();
+                System.out.println("* * * Método ejecutado correctamente. * * *");
+                listarAfiliados();
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    afiliado.setIdAfiliado(rs.getInt("idAfiliado"));
+                }
 
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+            }
+        } else {
+                System.out.println("* * * Método cancelado correctamente. * * *");
         }
     }
 

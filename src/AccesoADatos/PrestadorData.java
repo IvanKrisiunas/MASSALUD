@@ -42,8 +42,8 @@ public class PrestadorData {
                 prestadores.add(prestador);
             }
             ps.close();
-            System.out.println("Activo(s)" + "\n" + prestadores);
-            System.out.println("Inactivo(s): " + "\n" + listarPrestadoresEliminados());
+            System.out.println("Prestador(es) activo(s)" + "\n" + prestadores);
+            System.out.println("Prestador(es) inactivo(s): " + "\n" + listarPrestadoresEliminados());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
         }
@@ -121,7 +121,6 @@ public class PrestadorData {
                 prestador.setDomicilio(rs.getString("domicilio"));
                 prestador.setTelefono(rs.getInt("telefono"));
                 prestadores.add(prestador);
-                System.out.println("prestaodr:  -" + prestador);
             }
             ps.close();
         } catch (SQLException ex) {

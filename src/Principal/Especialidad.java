@@ -1,6 +1,7 @@
 package Principal;
 
 public class Especialidad {
+
     private int idEspecialidad;
     private String tipo;
 
@@ -34,8 +35,10 @@ public class Especialidad {
 
     @Override
     public String toString() {
-        return  tipo ;
+        if (tipo == null) {
+            return "";
+        } else {
+            return tipo;
+        }
     }
-    
-    
 }
