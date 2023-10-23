@@ -47,7 +47,7 @@ public class OrdenData {
     }
 
     public void añadirOrden(Orden orden) {
-        String sql = "INSERT INTO orden(DNIafiliado, DNIprestador, fecha, formaDePago, importe`)"
+        String sql = "INSERT INTO orden(DNIafiliado, DNIprestador, fecha, formaDePago, importe)"
                 + "VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -96,15 +96,20 @@ public class OrdenData {
 
     }
 
-    public void eliminarOrden(int DNIafiliado, Date fecha) {
-        String sql = "DELETE FROM orden WHERE DNIafiliado = ? AND fecha = '?'";
+    public void eliminarOrden(int DNIafiliado, LocalDate fecha1, int DNIprestador) {
+        java.sql.Date  fecha = java.sql.Date.valueOf(fecha1);
+        String sql = "DELETE FROM orden WHERE DNIafiliado = ? AND fecha = ? AND DNIprestador = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, DNIafiliado);
             ps.setDate(2, fecha);
+            ps.setInt(3, DNIprestador);
             int fila = ps.executeUpdate();
             if (fila == 1) {
                 System.out.println("Se eliminó la orden.");
+                listarOrdenes();
+            }else{
+            System.out.println("no se ejecuto correctamente");
             }
             ps.close();
         } catch (SQLException ex) {

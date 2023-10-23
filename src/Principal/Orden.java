@@ -7,13 +7,21 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class Orden {
+
     private int idOrden;
     private LocalDate fecha;
     private String formaDePago;
     private double importe;
     private int DNIAfiliado;
     private int DNIPrestador;
-    
+
+    public Orden(LocalDate fecha, String formaDePago, double importe, int DNIAfiliado, int DNIPrestador) {
+        this.fecha = fecha;
+        this.formaDePago = formaDePago;
+        this.importe = importe;
+        this.DNIAfiliado = DNIAfiliado;
+        this.DNIPrestador = DNIPrestador;
+    }
     public Orden(int idOrden, LocalDate fecha, String formaDePago, double importe, int DNIAfiliado, int DNIPrestador) {
         this.idOrden = idOrden;
         this.fecha = fecha;
@@ -73,8 +81,8 @@ public class Orden {
     public void setDNIprestador(int DNIPrestador) {
         this.DNIPrestador = DNIPrestador;
     }
-    
-    public Date fechaLocal(LocalDate fecha){
+
+    public Date fechaLocal(LocalDate fecha) {
         LocalDate localDate = fecha;
         ZoneId zoneId = ZoneId.systemDefault();
         ZonedDateTime zonedDateTime = localDate.atStartOfDay(zoneId);
@@ -82,8 +90,8 @@ public class Orden {
         Date date = Date.from(instant);
         return date;
     }
-    
-    public LocalDate fechaLocalDate(Date fecha){
+
+    public LocalDate fechaLocalDate(Date fecha) {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         Instant instant = fecha.toInstant();
         LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
@@ -92,8 +100,7 @@ public class Orden {
 
     @Override
     public String toString() {
-        return "Orden{" + "idOrden=" + idOrden + ", fecha=" + fecha + ", formaDePago=" + formaDePago + ", importe=" + importe + ", DNIAfiliado=" + DNIAfiliado + ", DNIPrestador=" + DNIPrestador + '}' +"\n";
+        return "Orden: fecha= " + fecha + ", formaDePago=" + formaDePago + ", importe=" + importe + ", DNIAfiliado=" + DNIAfiliado + ", DNIPrestador=" + DNIPrestador + '}' + "\n";
     }
-    
-     
+
 }

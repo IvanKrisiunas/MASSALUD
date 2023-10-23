@@ -71,7 +71,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JPescritorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JBmp.setBackground(new java.awt.Color(0, 153, 0));
-        JBmp.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\GitHub\\MASSALUD\\src\\imagenes\\editar.png")); // NOI18N
+        JBmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         JBmp.setToolTipText("Editar el afiliado actual.");
         JBmp.setMaximumSize(new java.awt.Dimension(110, 90));
         JBmp.setMinimumSize(new java.awt.Dimension(110, 90));
@@ -141,12 +141,12 @@ public class Prestadores extends javax.swing.JInternalFrame {
             .addGroup(IDLayout.createSequentialGroup()
                 .addGap(157, 157, 157)
                 .addComponent(JLdni, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         IDLayout.setVerticalGroup(
             IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IDLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JLnombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLapellido)
@@ -170,7 +170,6 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
         textf.setOpaque(false);
 
-        JCBespecialidad.setBackground(new java.awt.Color(255, 255, 255));
         JCBespecialidad.setForeground(new java.awt.Color(255, 255, 255));
         JCBespecialidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +219,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         jLabel3.setText("Apellido:");
 
         JBlimpiar.setBackground(new java.awt.Color(0, 153, 0));
-        JBlimpiar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\GitHub\\MASSALUD\\src\\imagenes\\limpiarCampos.png")); // NOI18N
+        JBlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiarCampos.png"))); // NOI18N
         JBlimpiar.setToolTipText("Limpiar los campos.");
         JBlimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,10 +244,6 @@ public class Prestadores extends javax.swing.JInternalFrame {
                         .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JTdomicilio, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(JTdni)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, textfLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(textfLayout.createSequentialGroup()
                         .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
@@ -258,15 +253,19 @@ public class Prestadores extends javax.swing.JInternalFrame {
                         .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(textfLayout.createSequentialGroup()
                                 .addComponent(JRBactivo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
                                 .addComponent(JBlimpiar)
                                 .addGap(23, 23, 23))
                             .addComponent(JCBespecialidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JTel)))
                     .addGroup(textfLayout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(35, 35, 35)
-                        .addComponent(JTnombre)))
+                        .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel3))
+                        .addGap(33, 33, 33)
+                        .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JTapellido)
+                            .addComponent(JTnombre))))
                 .addContainerGap())
         );
         textfLayout.setVerticalGroup(
@@ -328,7 +327,6 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JPescritorio.add(JCBp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, 370, 70));
 
         textop.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        textop.setForeground(new java.awt.Color(0, 0, 0));
         textop.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textop.setText("Prestadores");
         JPescritorio.add(textop, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 240, 70));

@@ -5,6 +5,16 @@
  */
 package Vistas;
 
+import AccesoADatos.AfiliadoData;
+import AccesoADatos.OrdenData;
+import AccesoADatos.PrestadorData;
+import Principal.Afiliado;
+import Principal.Orden;
+import Principal.Prestador;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,12 +22,26 @@ import javax.swing.table.DefaultTableModel;
  * @author iarak
  */
 public class Ordenes extends javax.swing.JInternalFrame {
-private DefaultTableModel modelotabla = new DefaultTableModel();
+
+    private DefaultTableModel modelotabla = new DefaultTableModel();
+    AfiliadoData ad = new AfiliadoData();
+    PrestadorData pd = new PrestadorData();
+    OrdenData od = new OrdenData();
+    private int seleccionarFila;
+    private int valorDNIa;
+    private int valorDNIp;
+    private LocalDate valorFecha;
+    Orden orden = new Orden();
+
     /**
      * Creates new form Ordenes
      */
     public Ordenes() {
         initComponents();
+        cargarComboAfiliado();
+        cargarComboPrestador();
+        armarCabecera();
+        cargarTabla();
     }
 
     /**
@@ -32,7 +56,7 @@ private DefaultTableModel modelotabla = new DefaultTableModel();
         JCBprestadores = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        JBagregarOrden = new javax.swing.JButton();
         JBeliminar = new javax.swing.JButton();
         JBmodificar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -50,7 +74,6 @@ private DefaultTableModel modelotabla = new DefaultTableModel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        JCBprestadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JCBprestadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCBprestadoresActionPerformed(evt);
@@ -64,10 +87,20 @@ private DefaultTableModel modelotabla = new DefaultTableModel();
         jLabel5.setText("Fecha de orden");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
 
-        jButton1.setText("Agregar Orden");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, -1, -1));
+        JBagregarOrden.setText("Agregar Orden");
+        JBagregarOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBagregarOrdenActionPerformed(evt);
+            }
+        });
+        getContentPane().add(JBagregarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, -1, -1));
 
         JBeliminar.setText("Eliminar Orden");
+        JBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBeliminarActionPerformed(evt);
+            }
+        });
         getContentPane().add(JBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 630, -1, -1));
 
         JBmodificar.setText("Modificar Orden");
@@ -76,7 +109,12 @@ private DefaultTableModel modelotabla = new DefaultTableModel();
         jLabel7.setText("Forma de Pago");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 150, 30));
 
-        JCBformaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JCBformaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Efectivo", "Transferencia", "Tarjeta" }));
+        JCBformaPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBformaPagoActionPerformed(evt);
+            }
+        });
         getContentPane().add(JCBformaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 330, -1));
 
         jLabel6.setText("Importe");
@@ -93,7 +131,6 @@ private DefaultTableModel modelotabla = new DefaultTableModel();
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
         getContentPane().add(JDCfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 330, 30));
 
-        JCBafiliados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(JCBafiliados, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 330, -1));
 
         JTordenes.setModel(new javax.swing.table.DefaultTableModel(
@@ -107,6 +144,11 @@ private DefaultTableModel modelotabla = new DefaultTableModel();
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        JTordenes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTordenesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTordenes);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, -1, 480));
@@ -132,30 +174,92 @@ private DefaultTableModel modelotabla = new DefaultTableModel();
         // TODO add your handling code here:
     }//GEN-LAST:event_JTimporteActionPerformed
 
+    private void JBagregarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagregarOrdenActionPerformed
+        // TODO add your handling code here:
+        LocalDate fecha = null;
+        if (JDCfecha.getDate() != null) {
+            fecha = JDCfecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+        Afiliado afiliado = (Afiliado) JCBafiliados.getSelectedItem();
+        Prestador prestador = (Prestador) JCBprestadores.getSelectedItem();
+
+        Orden orden = new Orden(fecha, (String) JCBformaPago.getSelectedItem(), Double.parseDouble(JTimporte.getText()), afiliado.getDNI(), prestador.getDNI());
+        od.añadirOrden(orden);
+    }//GEN-LAST:event_JBagregarOrdenActionPerformed
+
+    private void JBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarActionPerformed
+        // TODO add your handling code here:
+        od.eliminarOrden(valorDNIa, valorFecha, valorDNIp);
+    }//GEN-LAST:event_JBeliminarActionPerformed
+
+    private void JTordenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTordenesMouseClicked
+        // TODO add your handling code here:
+        seleccionarFila = JTordenes.rowAtPoint(evt.getPoint());
+        valorDNIa = (int) JTordenes.getValueAt(seleccionarFila, 3);
+        valorDNIp = (int) JTordenes.getValueAt(seleccionarFila, 4);
+        valorFecha = (LocalDate) JTordenes.getValueAt(seleccionarFila, 0);
+        System.out.println(valorDNIa +" "+ valorDNIp +" "+ valorFecha);
+        
+        
+    }//GEN-LAST:event_JTordenesMouseClicked
+
+    private void JCBformaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBformaPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCBformaPagoActionPerformed
+
     private void armarCabecera() {
         modelotabla.addColumn("Fecha");
-        modelotabla.addColumn("Forma de Pago");
+        modelotabla.addColumn("Pago");
         modelotabla.addColumn("Importe");
-        modelotabla.addColumn("Nombre Prestador");
-        modelotabla.addColumn("Apellido Prestador");
-        modelotabla.addColumn("Importe");
-        modelotabla.addColumn("Importe");
-        modelotabla.addColumn("Importe");
-        modelotabla.addColumn("Importe");
-        modelotabla.addColumn("Importe");
+        modelotabla.addColumn("DNI afiliado");
+        modelotabla.addColumn("DNI prestador");
         JTordenes.setModel(modelotabla);
     }
 
+    private void cargarComboAfiliado() {
+        JCBafiliados.removeAllItems();
+        Afiliado a = new Afiliado();
+        JCBafiliados.addItem(a);
+        for (Afiliado afiliado : ad.listarAfiliados()) {
+            JCBafiliados.addItem(afiliado);
+        }
+    }
+
+    private void cargarComboPrestador() {
+        JCBprestadores.removeAllItems();
+        Prestador p = new Prestador();
+        JCBprestadores.addItem(p);
+        for (Prestador prestador : pd.listarPrestadores()) {
+            JCBprestadores.addItem(prestador);
+        }
+    }
+
+    private void borrarFilas() {
+        ((DefaultTableModel) JTordenes.getModel()).setRowCount(0);
+
+    }
+
+    private void cargarTabla() {
+        borrarFilas();
+
+        List<Orden> listarEspecialidades = od.listarOrdenes();
+        for (Orden ord : listarEspecialidades) {
+            modelotabla.addRow(new Object[]{ord.getFecha(),ord.getFormaDePago(),ord.getImporte(),ord.getDNIafiliado(), ord.getDNIprestador()});
+        }
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBagregarOrden;
     private javax.swing.JButton JBeliminar;
     private javax.swing.JButton JBmodificar;
-    private javax.swing.JComboBox<String> JCBafiliados;
+    private javax.swing.JComboBox<Afiliado> JCBafiliados;
     private javax.swing.JComboBox<String> JCBformaPago;
-    private javax.swing.JComboBox<String> JCBprestadores;
+    private javax.swing.JComboBox<Prestador> JCBprestadores;
     private com.toedter.calendar.JDateChooser JDCfecha;
     private javax.swing.JTextField JTimporte;
     private javax.swing.JTable JTordenes;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

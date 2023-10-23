@@ -19,6 +19,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     Afiliados a = new Afiliados();
     Prestadores p = new Prestadores();
     Especialidades e = new Especialidades();
+    Ordenes o = new Ordenes();
     /**
      * Creates new form MenuPrincipal
      */
@@ -108,7 +109,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBafiliados);
-        JBafiliados.setBounds(180, 440, 160, 40);
+        JBafiliados.setBounds(180, 440, 160, 33);
 
         JBordenes.setBackground(new java.awt.Color(71, 71, 71));
         JBordenes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -121,7 +122,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBordenes);
-        JBordenes.setBounds(670, 440, 160, 40);
+        JBordenes.setBounds(670, 440, 160, 33);
 
         JBprestadores.setBackground(new java.awt.Color(71, 71, 71));
         JBprestadores.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -134,7 +135,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBprestadores);
-        JBprestadores.setBounds(180, 640, 160, 40);
+        JBprestadores.setBounds(180, 640, 160, 33);
 
         JBespecialidades.setBackground(new java.awt.Color(71, 71, 71));
         JBespecialidades.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -147,7 +148,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBespecialidades);
-        JBespecialidades.setBounds(670, 640, 160, 40);
+        JBespecialidades.setBounds(670, 640, 160, 33);
 
         JBayuda.setBackground(new java.awt.Color(71, 71, 71));
         JBayuda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -157,7 +158,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel.add(JBayuda);
         JBayuda.setBounds(474, 500, 80, 30);
 
-        ImagenFondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\GitHub\\MASSALUD\\src\\imagenes\\massalud2.png")); // NOI18N
+        ImagenFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/massalud2.png"))); // NOI18N
         jPanel.add(ImagenFondo);
         ImagenFondo.setBounds(0, 0, 1030, 730);
 
@@ -213,6 +214,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void JBordenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBordenesActionPerformed
         // TODO add your handling code here:
+        try {
+            if (o.isVisible() == false) {
+                JDescritorio.repaint();
+                JDescritorio.add(o);
+                o.setVisible(true);
+                o.toFront();
+                o.setResizable(false);
+                //remove the listeners from UI which make the frame move
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) o.getUI());
+                for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                    basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+                }
+            }
+        } catch (IllegalArgumentException ez) {
+            if (o.isVisible() == false) {
+                JDescritorio.repaint();
+                JDescritorio.add(o);
+                o.setVisible(true);
+                o.toFront();
+                o.setResizable(false);
+                //remove the listeners from UI which make the frame move
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) o.getUI());
+                for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
+                    basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
+                }
+            }
+        }
     }//GEN-LAST:event_JBordenesActionPerformed
    
     private void JBafiliadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBafiliadosActionPerformed
@@ -291,7 +319,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 e.toFront();
                 e.setResizable(false);
                 //remove the listeners from UI which make the frame move
-                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) p.getUI());
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) e.getUI());
                 for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
                     basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
                 }
@@ -304,7 +332,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 e.toFront();
                 e.setResizable(false);
                 //remove the listeners from UI which make the frame move
-                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) p.getUI());
+                BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) e.getUI());
                 for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
                     basicInternalFrameUI.getNorthPane().removeMouseListener(listener);
                 }

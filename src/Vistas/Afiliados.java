@@ -63,7 +63,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JPescritorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JBma.setBackground(new java.awt.Color(0, 153, 0));
-        JBma.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\GitHub\\MASSALUD\\src\\imagenes\\editar.png")); // NOI18N
+        JBma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         JBma.setToolTipText("Editar el afiliado actual.");
         JBma.setMaximumSize(new java.awt.Dimension(110, 90));
         JBma.setMinimumSize(new java.awt.Dimension(110, 90));
@@ -133,12 +133,12 @@ public class Afiliados extends javax.swing.JInternalFrame {
             .addGroup(IDLayout.createSequentialGroup()
                 .addGap(157, 157, 157)
                 .addComponent(JLdni, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         IDLayout.setVerticalGroup(
             IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IDLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JLnombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLapellido)
@@ -204,7 +204,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
         jLabel3.setText("Apellido:");
 
         JBlimpiar.setBackground(new java.awt.Color(0, 153, 0));
-        JBlimpiar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\Documents\\GitHub\\MASSALUD\\src\\imagenes\\limpiarCampos.png")); // NOI18N
+        JBlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiarCampos.png"))); // NOI18N
         JBlimpiar.setToolTipText("Limpiar los campos.");
         JBlimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +224,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
                 .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(textfLayout.createSequentialGroup()
                         .addComponent(JRBactivo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
                         .addComponent(JBlimpiar)
                         .addGap(29, 29, 29))
                     .addGroup(textfLayout.createSequentialGroup()
@@ -242,16 +242,16 @@ public class Afiliados extends javax.swing.JInternalFrame {
                     .addGap(0, 0, 0)
                     .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(textfLayout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                            .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel14)
+                            .addGap(35, 35, 35)
+                            .addComponent(JTnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
                         .addGroup(textfLayout.createSequentialGroup()
                             .addComponent(jLabel18)
                             .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(textfLayout.createSequentialGroup()
-                            .addComponent(jLabel14)
-                            .addGap(35, 35, 35)
-                            .addComponent(JTnombre)))
+                            .addComponent(jLabel3)
+                            .addGap(33, 33, 33)
+                            .addComponent(JTapellido)))
                     .addContainerGap()))
         );
         textfLayout.setVerticalGroup(
@@ -265,7 +265,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
                 .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JTdomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(JTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -288,7 +288,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
                         .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(216, 216, 216)
                     .addComponent(jLabel18)
-                    .addGap(0, 26, Short.MAX_VALUE)))
+                    .addGap(0, 20, Short.MAX_VALUE)))
         );
 
         JPescritorio.add(textf, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 460, 350));
@@ -315,7 +315,6 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JPescritorio.add(JCBa, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 520, 370, 70));
 
         textop.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        textop.setForeground(new java.awt.Color(0, 0, 0));
         textop.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textop.setText("Afiliados");
         JPescritorio.add(textop, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 240, 70));
