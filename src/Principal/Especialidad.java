@@ -9,7 +9,7 @@ public class Especialidad {
         this.idEspecialidad = idEspecialidad;
         this.tipo = tipo;
     }
-
+    
     public Especialidad(String tipo) {
         this.tipo = tipo;
     }

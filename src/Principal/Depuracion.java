@@ -77,7 +77,7 @@ public class Depuracion {
             estado2 = s.nextBoolean();
             System.out.println("nombre de especialidad: ");
             especialidadNombre = s3.nextLine();
-            idEspecialidad = ed.especialidadPorId(especialidadNombre);
+            idEspecialidad = ed.NombreAID(especialidadNombre);
             System.out.println("Telefono: ");
             telefono2 = s.nextInt();
             System.out.println("Direc: ");

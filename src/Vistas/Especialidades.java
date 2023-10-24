@@ -152,7 +152,7 @@ public class Especialidades extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         seleccionarFila = JTespecialidades.rowAtPoint(evt.getPoint());
         valorNombre = JTespecialidades.getValueAt(seleccionarFila, 0).toString();
-        idEsp = ed.especialidadPorId(valorNombre);        
+        idEsp = ed.NombreAID(valorNombre);        
     }//GEN-LAST:event_JTespecialidadesMouseClicked
 
     
@@ -199,7 +199,7 @@ public class Especialidades extends javax.swing.JInternalFrame {
         PrestadorData pd = new PrestadorData();
         EspecialidadData ed = new EspecialidadData();
         
-        int valorId = ed.especialidadPorId(valorNombre);
+        int valorId = ed.NombreAID(valorNombre);
         
         List<Prestador> listarPrestadoresPorEspecialidad = pd.listarPrestadoresPorEspecialidad(valorId);
         for(Prestador pres : listarPrestadoresPorEspecialidad){

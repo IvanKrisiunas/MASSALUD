@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class EspecialidadData {
@@ -19,25 +17,6 @@ public class EspecialidadData {
 
     public EspecialidadData() {
         con = Conexion.getConexion();
-    }
-
-    public int especialidadPorId(String tipo) {
-        int idEspecialidad = 0;
-        String sql = "SELECT idEspecialidad, tipo FROM especialidad WHERE tipo LIKE ?";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, tipo);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                Especialidad especialidad = new Especialidad();
-                especialidad.setTipo(rs.getString("tipo"));
-                idEspecialidad = rs.getInt("idEspecialidad");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
-        }
-        return idEspecialidad;
     }
 
     public List<Especialidad> listarEspecialidades() {
@@ -145,6 +124,24 @@ public class EspecialidadData {
             JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
         }
         return tipo;
-
+    }
+    
+    public int NombreAID(String tipo) {
+        int idEspecialidad = 0;
+        String sql = "SELECT idEspecialidad, tipo FROM especialidad WHERE tipo LIKE ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, tipo);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Especialidad especialidad = new Especialidad();
+                especialidad.setTipo(rs.getString("tipo"));
+                idEspecialidad = rs.getInt("idEspecialidad");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return idEspecialidad;
     }
 }

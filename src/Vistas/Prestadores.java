@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 public class Prestadores extends javax.swing.JInternalFrame {
 
     Especialidad e = new Especialidad();
+    Especialidad ev = new Especialidad();
     PrestadorData pd = new PrestadorData();
     EspecialidadData ed = new EspecialidadData();
 
@@ -39,9 +40,10 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JLtelefono = new javax.swing.JLabel();
         JLdni = new javax.swing.JLabel();
         JLtextoAdv = new javax.swing.JLabel();
+        jle = new javax.swing.JLabel();
         IDicon = new javax.swing.JLabel();
         textf = new javax.swing.JPanel();
-        JCBespecialidad = new javax.swing.JComboBox<>();
+        JCBe = new javax.swing.JComboBox<>();
         JTnombre = new javax.swing.JTextField();
         JTdni = new javax.swing.JTextField();
         JTdomicilio = new javax.swing.JTextField();
@@ -54,7 +56,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        JBlimpiar = new javax.swing.JButton();
+        JBlc = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         salir = new javax.swing.JButton();
         JCBp = new javax.swing.JComboBox<>();
@@ -123,6 +125,10 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JLtextoAdv.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLtextoAdv.setText("Crear un nuevo prestador.");
 
+        jle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jle.setText("Especialidad");
+
         javax.swing.GroupLayout IDLayout = new javax.swing.GroupLayout(ID);
         ID.setLayout(IDLayout);
         IDLayout.setHorizontalGroup(
@@ -130,32 +136,41 @@ public class Prestadores extends javax.swing.JInternalFrame {
             .addGroup(IDLayout.createSequentialGroup()
                 .addComponent(JLtextoAdv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IDLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JLnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JLapellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JLdomicilio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JLtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(104, 104, 104))
             .addGroup(IDLayout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(JLdni, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(jle, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(IDLayout.createSequentialGroup()
+                        .addComponent(JLdni, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(11, Short.MAX_VALUE))
+                    .addGroup(IDLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JLnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JLapellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JLdomicilio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JLtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(104, 104, 104))))
         );
         IDLayout.setVerticalGroup(
             IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IDLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(JLnombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLapellido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLdomicilio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JLtelefono)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JLdni)
+                .addGroup(IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(IDLayout.createSequentialGroup()
+                        .addComponent(JLtelefono)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JLdni))
+                    .addGroup(IDLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jle, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLtextoAdv)
                 .addGap(12, 12, 12))
@@ -170,10 +185,10 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
         textf.setOpaque(false);
 
-        JCBespecialidad.setForeground(new java.awt.Color(255, 255, 255));
-        JCBespecialidad.addActionListener(new java.awt.event.ActionListener() {
+        JCBe.setForeground(new java.awt.Color(255, 255, 255));
+        JCBe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JCBespecialidadActionPerformed(evt);
+                JCBeActionPerformed(evt);
             }
         });
 
@@ -218,12 +233,12 @@ public class Prestadores extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Apellido:");
 
-        JBlimpiar.setBackground(new java.awt.Color(0, 153, 0));
-        JBlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiarCampos.png"))); // NOI18N
-        JBlimpiar.setToolTipText("Limpiar los campos.");
-        JBlimpiar.addActionListener(new java.awt.event.ActionListener() {
+        JBlc.setBackground(new java.awt.Color(0, 153, 0));
+        JBlc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiarCampos.png"))); // NOI18N
+        JBlc.setToolTipText("Limpiar los campos.");
+        JBlc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBlimpiarActionPerformed(evt);
+                JBlcActionPerformed(evt);
             }
         });
 
@@ -253,10 +268,10 @@ public class Prestadores extends javax.swing.JInternalFrame {
                         .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(textfLayout.createSequentialGroup()
                                 .addComponent(JRBactivo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
-                                .addComponent(JBlimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                                .addComponent(JBlc)
                                 .addGap(23, 23, 23))
-                            .addComponent(JCBespecialidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JCBe, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JTel)))
                     .addGroup(textfLayout.createSequentialGroup()
                         .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +303,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
                     .addComponent(jLabel16))
                 .addGap(28, 28, 28)
                 .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JCBespecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JCBe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
                 .addGap(26, 26, 26)
                 .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,8 +314,8 @@ public class Prestadores extends javax.swing.JInternalFrame {
                     .addGroup(textfLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(JRBactivo)
                         .addComponent(jLabel18))
-                    .addComponent(JBlimpiar))
-                .addContainerGap())
+                    .addComponent(JBlc))
+                .addGap(73, 73, 73))
         );
 
         JPescritorio.add(textf, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 460, 430));
@@ -350,7 +365,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
     private void JBmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBmpActionPerformed
         // TODO add your handling code here:
-        Prestador prestador = new Prestador(JTnombre.getText(), JTapellido.getText(),Integer.parseInt(JTdni.getText()),JRBactivo.isEnabled(),ed.especialidadPorId(e.getTipo()), Integer.parseInt(JTel.getText()), JTdomicilio.getText());
+        Prestador prestador = new Prestador(JTnombre.getText(), JTapellido.getText(),Integer.parseInt(JTdni.getText()),JRBactivo.isSelected(),ed.NombreAID((String) JCBe.getSelectedItem()), Integer.parseInt(JTel.getText()), JTdomicilio.getText());
         pd.modificarPrestador(prestador);
         prestador = pd.listarPrestadorPorDNI(Integer.parseInt(JTdni.getText()));
         JLnombre.setText(prestador.getNombre());
@@ -358,6 +373,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JLdni.setText(String.valueOf(prestador.getDNI()));
         JLdomicilio.setText(prestador.getDomicilio());
         JLtelefono.setText(String.valueOf(prestador.getTelefono()));
+        jle.setText(ed.IdANombre(prestador.getIdEspecialidad()));
         JLtextoAdv.setText("Prestador editado con éxito.");
         JTnombre.setText(prestador.getNombre());
         JTdomicilio.setText(prestador.getDomicilio());
@@ -370,7 +386,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
     private void JBapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBapActionPerformed
         // TODO add your handling code here:
         try {
-        Prestador prestador = new Prestador(JTnombre.getText(), JTapellido.getText(),Integer.parseInt(JTdni.getText()),JRBactivo.isEnabled(),ed.especialidadPorId(e.getTipo()), Integer.parseInt(JTel.getText()), JTdomicilio.getText());
+        Prestador prestador = new Prestador(JTnombre.getText(), JTapellido.getText(),Integer.parseInt(JTdni.getText()),JRBactivo.isEnabled(),ed.NombreAID(e.getTipo()), Integer.parseInt(JTel.getText()), JTdomicilio.getText());
         pd.añadirPrestador(prestador);
         cargarCombo();
         } catch (java.lang.NumberFormatException ex) {
@@ -378,7 +394,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
             }
     }//GEN-LAST:event_JBapActionPerformed
 
-    private void JBlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlimpiarActionPerformed
+    private void JBlcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlcActionPerformed
         // TODO add your handling code here:
         JTdni.setBackground(Color.white);
         if (JCBp.getSelectedIndex() == 0) {
@@ -387,6 +403,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
             JTdomicilio.setText("");
             JTapellido.setText("");
             JTel.setText("");
+            JCBe.setSelectedItem("");
             JRBactivo.setSelected(false);
             JBmp.setEnabled(false);
             JBap.setEnabled(true);
@@ -395,11 +412,12 @@ public class Prestadores extends javax.swing.JInternalFrame {
             JTdomicilio.setText("");
             JTapellido.setText("");
             JTel.setText("");
+            JCBe.setSelectedItem("");
             JRBactivo.setSelected(false);
             JBmp.setEnabled(true);
             JBap.setEnabled(false);
         }
-    }//GEN-LAST:event_JBlimpiarActionPerformed
+    }//GEN-LAST:event_JBlcActionPerformed
 
     private void JTdniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdniKeyReleased
         // TODO add your handling code here:
@@ -441,11 +459,13 @@ public class Prestadores extends javax.swing.JInternalFrame {
             JLdni.setText("DNI");
             JLdomicilio.setText("Domicilio");
             JLtelefono.setText("Teléfono");
+            jle.setText("Especialidad");
             JLtextoAdv.setText("Crear un nuevo prestador.");
+            JCBe.setSelectedItem("");
             JBmp.setEnabled(false);
             JBap.setEnabled(true);
             JTdni.setEditable(true);
-            JBlimpiarActionPerformed(evt);
+            JBlcActionPerformed(evt);
         } else {
             Prestador prestador = (Prestador) JCBp.getSelectedItem();
             JLnombre.setText(prestador.getNombre());
@@ -453,6 +473,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
             JLdni.setText(String.valueOf(prestador.getDNI()));
             JLdomicilio.setText(prestador.getDomicilio());
             JLtelefono.setText(String.valueOf(prestador.getTelefono()));
+            jle.setText(ed.IdANombre(prestador.getIdEspecialidad()));
             JLtextoAdv.setText("Persona existente.");
             JTdni.setEditable(false);
             rellenarCampos();
@@ -473,18 +494,20 @@ public class Prestadores extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JTelKeyReleased
 
-    private void JCBespecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBespecialidadActionPerformed
+    private void JCBeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBeActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_JCBespecialidadActionPerformed
+    }//GEN-LAST:event_JCBeActionPerformed
 
     private void rellenarCampos() {
         Prestador prestador = pd.listarPrestadorPorDNI(Integer.parseInt(JLdni.getText()));
+        Especialidad espe = new Especialidad(prestador.getIdEspecialidad(), ed.IdANombre(prestador.getIdEspecialidad()));
         JTnombre.setText(prestador.getNombre());
         JTapellido.setText(prestador.getApellido());
         JTdni.setText(String.valueOf(prestador.getDNI()));
         JTdomicilio.setText(prestador.getDomicilio());
         JTel.setText(String.valueOf(prestador.getTelefono()));
+        JCBe.setSelectedItem(espe.getTipo());
         JRBactivo.setSelected(prestador.isEstado());
         JBmp.setEnabled(true);
         JBap.setEnabled(false);
@@ -501,8 +524,10 @@ public class Prestadores extends javax.swing.JInternalFrame {
     }
     
     private void cargarComboE() {
+        JCBe.removeAllItems();   
+        JCBe.addItem("");
         for (Especialidad especialidad : ed.listarEspecialidades()) {
-            JCBespecialidad.addItem(especialidad);
+            JCBe.addItem(especialidad.getTipo());
         }
     }
 
@@ -512,9 +537,9 @@ public class Prestadores extends javax.swing.JInternalFrame {
     private javax.swing.JLabel IDicon;
     private javax.swing.JButton JBap;
     private javax.swing.JButton JBayuda;
-    private javax.swing.JButton JBlimpiar;
+    private javax.swing.JButton JBlc;
     private javax.swing.JButton JBmp;
-    private javax.swing.JComboBox<Especialidad> JCBespecialidad;
+    private javax.swing.JComboBox<String> JCBe;
     private javax.swing.JComboBox<Prestador> JCBp;
     private javax.swing.JLabel JLapellido;
     private javax.swing.JLabel JLdni;
@@ -538,6 +563,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private com.toedter.components.JSpinField jSpinField1;
+    private javax.swing.JLabel jle;
     private javax.swing.JLabel ldni;
     private javax.swing.JButton salir;
     private javax.swing.JPanel textf;
