@@ -576,7 +576,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
     private void JTnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTnombreKeyReleased
         if(JTnombre.getText().isEmpty()){
-        
+         }else{
         if (!Character.isLetter(evt.getKeyChar())){
             JTnombre.setText("");
         }}
@@ -584,6 +584,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
     private void JTapellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTapellidoKeyReleased
                 if(JTapellido.getText().isEmpty()){
+                }else{
         
         if (!Character.isLetter(evt.getKeyChar())){
             JTapellido.setText("");
@@ -597,7 +598,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
     private void JTdomicilioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdomicilioKeyReleased
          if(JTdomicilio.getText().isEmpty()){
-        
+         }else{
         if (!Character.isLetter(evt.getKeyChar())){
             JTdomicilio.setText("");
        }
