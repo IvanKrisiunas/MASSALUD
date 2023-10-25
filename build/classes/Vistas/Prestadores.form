@@ -208,20 +208,15 @@
                       <Component id="jle" min="-2" pref="118" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="JLdni" min="-2" pref="293" max="-2" attributes="0"/>
-                              <EmptySpace pref="11" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="JLnombre" max="32767" attributes="0"/>
-                                  <Component id="JLapellido" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="JLdomicilio" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="JLtelefono" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="JLdni" alignment="0" min="-2" pref="293" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="JLnombre" max="32767" attributes="0"/>
+                              <Component id="JLapellido" alignment="0" max="32767" attributes="0"/>
+                              <Component id="JLdomicilio" alignment="0" max="32767" attributes="0"/>
+                              <Component id="JLtelefono" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -449,6 +444,9 @@
                   <StringArray count="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JCBeKeyReleased"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -457,6 +455,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Nombre del afiliado."/>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTnombreKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="JTdni">
               <Properties>
@@ -470,6 +471,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Domicilio en nombre y numeraci&#xf3;n del afiliado."/>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTdomicilioKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="JTel">
               <Properties>
@@ -491,6 +495,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Apellido del afialido."/>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTapellidoKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>

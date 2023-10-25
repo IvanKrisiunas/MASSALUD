@@ -164,16 +164,13 @@ public class Prestadores extends javax.swing.JInternalFrame {
                 .addComponent(jle, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(IDLayout.createSequentialGroup()
-                        .addComponent(JLdni, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(11, Short.MAX_VALUE))
-                    .addGroup(IDLayout.createSequentialGroup()
-                        .addGroup(IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JLnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JLapellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JLdomicilio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JLtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(104, 104, 104))))
+                    .addComponent(JLdni, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(JLnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JLapellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JLdomicilio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JLtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         IDLayout.setVerticalGroup(
             IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,8 +205,18 @@ public class Prestadores extends javax.swing.JInternalFrame {
         textf.setOpaque(false);
 
         JCBe.setForeground(new java.awt.Color(255, 255, 255));
+        JCBe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JCBeKeyReleased(evt);
+            }
+        });
 
         JTnombre.setToolTipText("Nombre del afiliado.");
+        JTnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JTnombreKeyReleased(evt);
+            }
+        });
 
         JTdni.setToolTipText("DNI numérico y único del afiliado.");
         JTdni.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -219,6 +226,11 @@ public class Prestadores extends javax.swing.JInternalFrame {
         });
 
         JTdomicilio.setToolTipText("Domicilio en nombre y numeración del afiliado.");
+        JTdomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JTdomicilioKeyReleased(evt);
+            }
+        });
 
         JTel.setToolTipText("Teléfono completo del afiliado.");
         JTel.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -231,6 +243,11 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JRBactivo.setToolTipText("Estado de actividad del afiliado.");
 
         JTapellido.setToolTipText("Apellido del afialido.");
+        JTapellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JTapellidoKeyReleased(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel14.setText("Nombre:");
@@ -557,6 +574,36 @@ public class Prestadores extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ctbsKeyReleased
 
+    private void JTnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTnombreKeyReleased
+        if(JTnombre.getText().isEmpty()){
+        
+        if (!Character.isLetter(evt.getKeyChar())){
+            JTnombre.setText("");
+        }}
+    }//GEN-LAST:event_JTnombreKeyReleased
+
+    private void JTapellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTapellidoKeyReleased
+                if(JTapellido.getText().isEmpty()){
+        
+        if (!Character.isLetter(evt.getKeyChar())){
+            JTapellido.setText("");
+       }
+    }     
+    }//GEN-LAST:event_JTapellidoKeyReleased
+
+    private void JCBeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCBeKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCBeKeyReleased
+
+    private void JTdomicilioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdomicilioKeyReleased
+         if(JTdomicilio.getText().isEmpty()){
+        
+        if (!Character.isLetter(evt.getKeyChar())){
+            JTdomicilio.setText("");
+       }
+    }     
+    }//GEN-LAST:event_JTdomicilioKeyReleased
+    
     private void rellenarCampos() {
         Prestador prestador = pd.listarPrestadorPorDNI(Integer.parseInt(JLdni.getText()));
         Especialidad espe = new Especialidad(prestador.getIdEspecialidad(), ed.IdANombre(prestador.getIdEspecialidad()));

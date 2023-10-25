@@ -425,6 +425,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Nombre del afiliado."/>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTnombreKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="JTdni">
               <Properties>
@@ -438,6 +441,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Domicilio en nombre y numeraci&#xf3;n del afiliado."/>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTdomicilioKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="JTel">
               <Properties>
@@ -459,6 +465,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Apellido del afialido."/>
               </Properties>
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTapellidoKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>

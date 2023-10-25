@@ -181,6 +181,11 @@ public class Afiliados extends javax.swing.JInternalFrame {
         textf.setOpaque(false);
 
         JTnombre.setToolTipText("Nombre del afiliado.");
+        JTnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JTnombreKeyReleased(evt);
+            }
+        });
 
         JTdni.setToolTipText("DNI numérico y único del afiliado.");
         JTdni.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -190,6 +195,11 @@ public class Afiliados extends javax.swing.JInternalFrame {
         });
 
         JTdomicilio.setToolTipText("Domicilio en nombre y numeración del afiliado.");
+        JTdomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JTdomicilioKeyReleased(evt);
+            }
+        });
 
         JTel.setToolTipText("Teléfono completo del afiliado.");
         JTel.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -202,6 +212,11 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JRBactivo.setToolTipText("Estado de actividad del afiliado.");
 
         JTapellido.setToolTipText("Apellido del afialido.");
+        JTapellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JTapellidoKeyReleased(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel14.setText("Nombre:");
@@ -506,6 +521,32 @@ public class Afiliados extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "La búsqueda no ha encontrado nada.");
         }
     }//GEN-LAST:event_btnbsActionPerformed
+
+    private void JTnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTnombreKeyReleased
+       if(JTnombre.getText().isEmpty()){
+        
+        if (!Character.isLetter(evt.getKeyChar())){
+            JTnombre.setText("");
+       }}
+    }//GEN-LAST:event_JTnombreKeyReleased
+
+    private void JTapellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTapellidoKeyReleased
+          if(JTapellido.getText().isEmpty()){
+        
+        if (!Character.isLetter(evt.getKeyChar())){
+            JTapellido.setText("");
+       }
+    }     
+    }//GEN-LAST:event_JTapellidoKeyReleased
+
+    private void JTdomicilioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdomicilioKeyReleased
+        if(JTdomicilio.getText().isEmpty()){
+        
+        if (!Character.isLetter(evt.getKeyChar())){
+            JTdomicilio.setText("");
+       }
+    }     
+    }//GEN-LAST:event_JTdomicilioKeyReleased
 
     private void rellenarCampos() {
         Afiliado afiliado = ad.listarAfiliadoPorDNI(Integer.parseInt(JLdni.getText()));
