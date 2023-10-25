@@ -155,8 +155,8 @@ public class PrestadorData {
     }
 
     public void añadirPrestador(Prestador prestador) {
-        String sql = "INSERT INTO prestador(idPrestador, nombre, apellido, DNI, domicilio, telefono, idEspecialidad, estado) "
-                + "VALUES ('', ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO prestador( nombre, apellido, DNI, domicilio, telefono, idEspecialidad, estado) "
+                + "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, prestador.getNombre());
@@ -170,9 +170,7 @@ public class PrestadorData {
             System.out.println("* * * Método ejecutado correctamente. * * *");
             listarPrestadores();
             ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                prestador.setIdPrestador(rs.getInt("idPrestador"));
-            }
+           
 
             ps.close();
         } catch (SQLException ex) {

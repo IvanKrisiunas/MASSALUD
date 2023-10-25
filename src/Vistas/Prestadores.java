@@ -423,7 +423,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
     private void JBapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBapActionPerformed
         // TODO add your handling code here:
         try {
-        Prestador prestador = new Prestador(JTnombre.getText(), JTapellido.getText(),Integer.parseInt(JTdni.getText()),JRBactivo.isEnabled(),ed.NombreAID(e.getTipo()), Integer.parseInt(JTel.getText()), JTdomicilio.getText());
+        Prestador prestador = new Prestador(JTnombre.getText(), JTapellido.getText(),Integer.parseInt(JTdni.getText()),JRBactivo.isEnabled(),ed.NombreAID((String) JCBe.getSelectedItem()), Integer.parseInt(JTel.getText()), JTdomicilio.getText());
         pd.añadirPrestador(prestador);
         cargarCombo();
         Jltx.setText("Acción realizada con éxito.");
@@ -599,7 +599,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
     private void JTdomicilioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdomicilioKeyReleased
          if(JTdomicilio.getText().isEmpty()){
          }else{
-        if (!Character.isLetter(evt.getKeyChar())){
+        if (!Character.isLetter(evt.getKeyChar())&&!Character.isDigit(evt.getKeyChar())&&!Character.isSpaceChar(evt.getKeyChar())){
             JTdomicilio.setText("");
        }
     }     

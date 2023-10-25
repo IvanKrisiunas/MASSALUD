@@ -46,6 +46,27 @@ public class OrdenData {
 
     }
 
+    public int listarOrdenesPorId(Orden orden) {
+        String sql = "SELECT idOrden from orden WHERE ( fecha, DNIAfiliado, DNIPrestador) "
+                + "= (?,?,?);";
+        int idOrden=0;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(2, orden.getDNIafiliado());
+            ps.setInt(3, orden.getDNIprestador());
+            ps.setDate(1, Date.valueOf(orden.getFecha()));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                idOrden = rs.getInt("idOrden");
+            }
+            ps.close();
+            System.out.println("Orden(es) activa(s)" + "\n" + orden.getIdOrden());
+        } catch (SQLException ex) {
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return idOrden;
+    }
+
     public void añadirOrden(Orden orden) {
         String sql = "INSERT INTO orden(DNIafiliado, DNIprestador, fecha, formaDePago, importe)"
                 + "VALUES (?, ?, ?, ?, ?)";
@@ -97,7 +118,7 @@ public class OrdenData {
     }
 
     public void eliminarOrden(int DNIafiliado, LocalDate fecha1, int DNIprestador) {
-        java.sql.Date  fecha = java.sql.Date.valueOf(fecha1);
+        java.sql.Date fecha = java.sql.Date.valueOf(fecha1);
         String sql = "DELETE FROM orden WHERE DNIafiliado = ? AND fecha = ? AND DNIprestador = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -108,8 +129,8 @@ public class OrdenData {
             if (fila == 1) {
                 System.out.println("Se eliminó la orden.");
                 listarOrdenes();
-            }else{
-            System.out.println("no se ejecuto correctamente");
+            } else {
+                System.out.println("no se ejecuto correctamente");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -168,10 +189,10 @@ public class OrdenData {
         return ordenes;
 
     }
-    
-     public List<Orden> ListaOrdenesPorFecha(LocalDate fecha) {
+
+    public List<Orden> ListaOrdenesPorFecha(LocalDate fecha) {
         List<Orden> ordenes = new ArrayList();
-        java.sql.Date  fechasql = java.sql.Date.valueOf(fecha);
+        java.sql.Date fechasql = java.sql.Date.valueOf(fecha);
         String sql = "SELECT idOrden, DNIafiliado, DNIprestador, fecha, formaDePago, importe FROM orden WHERE fecha = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -194,5 +215,5 @@ public class OrdenData {
         return ordenes;
 
     }
-    
+
 }

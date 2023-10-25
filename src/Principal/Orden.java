@@ -15,6 +15,12 @@ public class Orden {
     private int DNIAfiliado;
     private int DNIPrestador;
 
+    public Orden(LocalDate fecha, int DNIAfiliado, int DNIPrestador) {
+        this.fecha = fecha;
+        this.DNIAfiliado = DNIAfiliado;
+        this.DNIPrestador = DNIPrestador;
+    }
+    
     public Orden(LocalDate fecha, String formaDePago, double importe, int DNIAfiliado, int DNIPrestador) {
         this.fecha = fecha;
         this.formaDePago = formaDePago;
