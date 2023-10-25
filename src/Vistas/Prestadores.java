@@ -16,7 +16,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
     public Prestadores() {
         initComponents();
-        JLtextoAdv.setText("Crear un nuevo prestador.");
+        Jltx.setText("Crear un nuevo prestador.");
         JBmp.setEnabled(false);
         JBap.setEnabled(true);
         cargarCombo();
@@ -30,6 +30,9 @@ public class Prestadores extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jSpinField1 = new com.toedter.components.JSpinField();
         JPescritorio = new javax.swing.JPanel();
+        jcbbs = new javax.swing.JComboBox<>();
+        ctbs = new javax.swing.JTextField();
+        btnbs = new javax.swing.JButton();
         JBmp = new javax.swing.JButton();
         JBap = new javax.swing.JButton();
         JBayuda = new javax.swing.JButton();
@@ -39,7 +42,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JLdomicilio = new javax.swing.JLabel();
         JLtelefono = new javax.swing.JLabel();
         JLdni = new javax.swing.JLabel();
-        JLtextoAdv = new javax.swing.JLabel();
+        Jltx = new javax.swing.JLabel();
         jle = new javax.swing.JLabel();
         IDicon = new javax.swing.JLabel();
         textf = new javax.swing.JPanel();
@@ -71,6 +74,26 @@ public class Prestadores extends javax.swing.JInternalFrame {
         setRequestFocusEnabled(false);
 
         JPescritorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jcbbs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre y apellido", "DNI" }));
+        JPescritorio.add(jcbbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+
+        ctbs.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        ctbs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ctbsKeyReleased(evt);
+            }
+        });
+        JPescritorio.add(ctbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 210, -1));
+
+        btnbs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda.png"))); // NOI18N
+        btnbs.setToolTipText("Búsqueda de personas.");
+        btnbs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbsActionPerformed(evt);
+            }
+        });
+        JPescritorio.add(btnbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
 
         JBmp.setBackground(new java.awt.Color(0, 153, 0));
         JBmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
@@ -121,9 +144,9 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JLdni.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         JLdni.setText("DNI");
 
-        JLtextoAdv.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
-        JLtextoAdv.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JLtextoAdv.setText("Crear un nuevo prestador.");
+        Jltx.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
+        Jltx.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Jltx.setText("Crear un nuevo prestador.");
 
         jle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -134,7 +157,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         IDLayout.setHorizontalGroup(
             IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IDLayout.createSequentialGroup()
-                .addComponent(JLtextoAdv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Jltx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(IDLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
@@ -145,7 +168,6 @@ public class Prestadores extends javax.swing.JInternalFrame {
                         .addComponent(JLdni, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(11, Short.MAX_VALUE))
                     .addGroup(IDLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(JLnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JLapellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,7 +194,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
                         .addGap(19, 19, 19)
                         .addComponent(jle, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JLtextoAdv)
+                .addComponent(Jltx)
                 .addGap(12, 12, 12))
         );
 
@@ -186,11 +208,6 @@ public class Prestadores extends javax.swing.JInternalFrame {
         textf.setOpaque(false);
 
         JCBe.setForeground(new java.awt.Color(255, 255, 255));
-        JCBe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JCBeActionPerformed(evt);
-            }
-        });
 
         JTnombre.setToolTipText("Nombre del afiliado.");
 
@@ -374,13 +391,16 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JLdomicilio.setText(prestador.getDomicilio());
         JLtelefono.setText(String.valueOf(prestador.getTelefono()));
         jle.setText(ed.IdANombre(prestador.getIdEspecialidad()));
-        JLtextoAdv.setText("Prestador editado con éxito.");
+        Jltx.setText("Prestador editado con éxito.");
         JTnombre.setText(prestador.getNombre());
         JTdomicilio.setText(prestador.getDomicilio());
         JTapellido.setText(prestador.getApellido());
         JTel.setText(String.valueOf(prestador.getTelefono()));
         JRBactivo.setSelected(prestador.isEstado());
         JBmp.setEnabled(true);
+        cargarCombo();
+        JCBp.getModel().setSelectedItem(prestador);
+        Jltx.setText("Acción realizada con éxito.");
     }//GEN-LAST:event_JBmpActionPerformed
 
     private void JBapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBapActionPerformed
@@ -389,6 +409,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         Prestador prestador = new Prestador(JTnombre.getText(), JTapellido.getText(),Integer.parseInt(JTdni.getText()),JRBactivo.isEnabled(),ed.NombreAID(e.getTipo()), Integer.parseInt(JTel.getText()), JTdomicilio.getText());
         pd.añadirPrestador(prestador);
         cargarCombo();
+        Jltx.setText("Acción realizada con éxito.");
         } catch (java.lang.NumberFormatException ex) {
         JOptionPane.showMessageDialog(this, "La información ingresada no es correcta.");
             }
@@ -427,14 +448,14 @@ public class Prestadores extends javax.swing.JInternalFrame {
             try {
                 Prestador prestador = pd.listarPrestadorPorDNI(Integer.parseInt(JTdni.getText()));
                 if (prestador == null) {
-                    JLtextoAdv.setText("Crear un nuevo prestador.");
+                    Jltx.setText("Crear un nuevo prestador.");
                     JBmp.setEnabled(false);
                     JTdni.setBackground(Color.white);
                 } else {
                     JTdni.setBackground(Color.red);
                 }
             } catch (NullPointerException ex) {
-                JLtextoAdv.setText("Crear un nuevo prestador.");
+                Jltx.setText("Crear un nuevo prestador.");
                 JBmp.setEnabled(false);
                 JTdni.setBackground(Color.white);
 
@@ -442,7 +463,6 @@ public class Prestadores extends javax.swing.JInternalFrame {
                 JTdni.setBackground(Color.red);
             }
         }
-
     }//GEN-LAST:event_JTdniKeyReleased
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
@@ -460,7 +480,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
             JLdomicilio.setText("Domicilio");
             JLtelefono.setText("Teléfono");
             jle.setText("Especialidad");
-            JLtextoAdv.setText("Crear un nuevo prestador.");
+            Jltx.setText("Crear un nuevo prestador.");
             JCBe.setSelectedItem("");
             JBmp.setEnabled(false);
             JBap.setEnabled(true);
@@ -474,7 +494,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
             JLdomicilio.setText(prestador.getDomicilio());
             JLtelefono.setText(String.valueOf(prestador.getTelefono()));
             jle.setText(ed.IdANombre(prestador.getIdEspecialidad()));
-            JLtextoAdv.setText("Persona existente.");
+            Jltx.setText("Persona existente.");
             JTdni.setEditable(false);
             rellenarCampos();
         }
@@ -482,22 +502,60 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
     private void JTelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTelKeyReleased
         // TODO add your handling code here:
-        if (JTel.getText().isEmpty()) {
+          if ("".equals(JTel.getText())) {
             JTel.setBackground(Color.white);
         } else {
             try {
-            } catch (NullPointerException ex) {
+                int i;
                 JTel.setBackground(Color.white);
-            } catch (NumberFormatException ez) {
+                i = Integer.parseInt(JTel.getText());
+            } catch (java.lang.RuntimeException ex) {
                 JTel.setBackground(Color.red);
             }
         }
     }//GEN-LAST:event_JTelKeyReleased
 
-    private void JCBeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBeActionPerformed
+    private void btnbsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbsActionPerformed
         // TODO add your handling code here:
+        try {
+            if (jcbbs.getSelectedIndex() == 0) {
+                String bs = ctbs.getText();
+                String[] partes = bs.split(" ");
+                String nombre = partes[0];
+                String apellido = partes[1];
+                Prestador p = pd.listarPrestadorPorNombreApellido(nombre, apellido);
+                System.out.println(p);
+                JCBp.getModel().setSelectedItem(p);
+                ctbs.setText("");
+                rellenarCampos();
+            } else if (jcbbs.getSelectedIndex() == 1) {
+                Prestador p = pd.listarPrestadorPorDNI(Integer.parseInt(ctbs.getText()));
+                System.out.println(p);
+                JCBp.getModel().setSelectedItem(p);
+                ctbs.setText("");
+                rellenarCampos();
+            } 
+        } catch (java.lang.ArrayIndexOutOfBoundsException | java.lang.NullPointerException ez) {
+        JOptionPane.showMessageDialog(this, "La búsqueda no ha encontrado nada.");
+        }
+    }//GEN-LAST:event_btnbsActionPerformed
 
-    }//GEN-LAST:event_JCBeActionPerformed
+    private void ctbsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ctbsKeyReleased
+        // TODO add your handling code here:
+        if ("".equals(ctbs.getText())) {
+            ctbs.setBackground(Color.white);
+        } else {
+            if (jcbbs.getSelectedIndex() == 1) {
+                try {
+                    int i;
+                    ctbs.setBackground(Color.white);
+                    i = Integer.parseInt(ctbs.getText());
+                } catch (java.lang.RuntimeException ex) {
+                    ctbs.setBackground(Color.red);
+                }
+            }
+        }
+    }//GEN-LAST:event_ctbsKeyReleased
 
     private void rellenarCampos() {
         Prestador prestador = pd.listarPrestadorPorDNI(Integer.parseInt(JLdni.getText()));
@@ -517,7 +575,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JCBp.removeAllItems();
         Prestador p = new Prestador();
         JCBp.addItem(p);
-        JLtextoAdv.setText("Crear un nuevo prestador.");
+        Jltx.setText("Crear un nuevo prestador.");
         for (Prestador prestador : pd.listarPrestadores()) {
             JCBp.addItem(prestador);
         }
@@ -546,7 +604,6 @@ public class Prestadores extends javax.swing.JInternalFrame {
     private javax.swing.JLabel JLdomicilio;
     private javax.swing.JLabel JLnombre;
     private javax.swing.JLabel JLtelefono;
-    private javax.swing.JLabel JLtextoAdv;
     private javax.swing.JPanel JPescritorio;
     private javax.swing.JRadioButton JRBactivo;
     private javax.swing.JTextField JTapellido;
@@ -554,7 +611,10 @@ public class Prestadores extends javax.swing.JInternalFrame {
     private javax.swing.JTextField JTdomicilio;
     private javax.swing.JTextField JTel;
     private javax.swing.JTextField JTnombre;
+    private javax.swing.JLabel Jltx;
     private javax.swing.JLabel bg;
+    private javax.swing.JButton btnbs;
+    private javax.swing.JTextField ctbs;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -563,6 +623,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private com.toedter.components.JSpinField jSpinField1;
+    private javax.swing.JComboBox<String> jcbbs;
     private javax.swing.JLabel jle;
     private javax.swing.JLabel ldni;
     private javax.swing.JButton salir;

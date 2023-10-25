@@ -45,7 +45,7 @@ public class PrestadorData {
             System.out.println("Prestador(es) activo(s)" + "\n" + prestadores);
             System.out.println("Prestador(es) inactivo(s): " + "\n" + listarPrestadoresEliminados());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return prestadores;
 
@@ -70,7 +70,7 @@ public class PrestadorData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return prestadores;
 
@@ -98,7 +98,32 @@ public class PrestadorData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return prestador;
+    }
+    
+        public Prestador listarPrestadorPorNombreApellido(String Nombre, String Apellido) {
+        String sql = "SELECT nombre, apellido, DNI, domicilio, telefono, estado, idEspecialidad FROM prestador WHERE nombre = ? AND apellido = ?";
+        Prestador prestador = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, Nombre);
+            ps.setString(2, Apellido);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                prestador = new Prestador();
+                prestador.setNombre(rs.getString("nombre"));
+                prestador.setApellido(rs.getString("apellido"));
+                prestador.setDNI(rs.getInt("DNI"));
+                prestador.setDomicilio(rs.getString("domicilio"));
+                prestador.setTelefono(rs.getInt("telefono"));
+                prestador.setEstado(rs.getBoolean("estado"));
+                prestador.setIdEspecialidad(rs.getInt("idEspecialidad"));
+            }
+            ps.close();
+        } catch (SQLException ex) { 
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return prestador;
     }
@@ -124,7 +149,7 @@ public class PrestadorData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return prestadores;
     }
@@ -151,7 +176,7 @@ public class PrestadorData {
 
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
     }
 
@@ -179,7 +204,7 @@ public class PrestadorData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
 
     }
@@ -196,7 +221,7 @@ public class PrestadorData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla prestador." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
     }
 }

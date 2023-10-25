@@ -8,8 +8,6 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import Principal.Afiliado;
 import Principal.Conexion;
-import java.awt.Component;
-import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class AfiliadoData {
             System.out.println("Afiliado(s) activo(s)" + "\n" + afiliados);
             System.out.println("Afiliado(s) inactivo(s): " + "\n" + listarAfiliadosEliminados());
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return afiliados;
     }
@@ -66,7 +64,7 @@ public class AfiliadoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return afiliados;
     }
@@ -90,7 +88,32 @@ public class AfiliadoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return afiliado;
+    }
+    
+    public Afiliado listarAfiliadoPorNombreApellido(String Nombre, String Apellido) {
+        String sql = "SELECT * FROM afiliado WHERE nombre = ? AND apellido = ?";
+        Afiliado afiliado = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, Nombre);
+            ps.setString(2, Apellido);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                afiliado = new Afiliado();
+                afiliado.setNombre(rs.getString("nombre"));
+                afiliado.setApellido(rs.getString("apellido"));
+                afiliado.setDNI(rs.getInt("DNI"));
+                afiliado.setDomicilio(rs.getString("domicilio"));
+                afiliado.setTelefono(rs.getInt("telefono"));
+                afiliado.setEstado(rs.getBoolean("estado"));
+            } else {
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return afiliado;
     }
@@ -118,7 +141,7 @@ public class AfiliadoData {
 
                 ps.close();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+                System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
             }
         } else {
                 System.out.println("* * * Método cancelado correctamente. * * *");
@@ -147,7 +170,7 @@ public class AfiliadoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
 
     }
@@ -164,7 +187,7 @@ public class AfiliadoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla afiliado." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
     }
 }

@@ -33,10 +33,9 @@ public class EspecialidadData {
             ps.close();
             System.out.println("Especialidad(es)" + "\n" + especialidades);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return especialidades;
-
     }
 
     public void añadirEspecialidad(String tipo) {
@@ -55,7 +54,7 @@ public class EspecialidadData {
 
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
     }
     
@@ -76,7 +75,7 @@ public class EspecialidadData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
 
     }
@@ -99,7 +98,7 @@ public class EspecialidadData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return especialidad;
 
@@ -121,7 +120,7 @@ public class EspecialidadData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return tipo;
     }
@@ -140,7 +139,7 @@ public class EspecialidadData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Un error SQL ha ocurrido en la tabla especialidad." + "\n" + "(" + ex.getMessage() + ")");
+            System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return idEspecialidad;
     }

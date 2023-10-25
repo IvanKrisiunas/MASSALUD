@@ -3,21 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/AccesoADatos/AfiliadoData.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/AccesoADatos/EspecialidadData.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Vistas/Prestadores.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Vistas/Afiliados.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Vistas/MenuPrincipal.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Vistas/Ordenes.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Principal/Conexion.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/AccesoADatos/PrestadorData.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Principal/Especialidad.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Principal/Orden.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Principal/Prestador.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Principal/Depuracion.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Vistas/Especialidades.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/AccesoADatos/OrdenData.java</file>
-            <file>file:/C:/Users/iarak/OneDrive/Documentos/NetBeansProjects/TrabajoGrupal/MASSALUD/src/Principal/Afiliado.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/MASSALUD/src/Vistas/MenuPrincipal.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/MASSALUD/src/Principal/Prestador.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/MASSALUD/src/AccesoADatos/EspecialidadData.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/MASSALUD/src/Principal/Especialidad.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/MASSALUD/src/AccesoADatos/PrestadorData.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/MASSALUD/src/Vistas/Prestadores.java</file>
         </group>
     </open-files>
 </project-private>

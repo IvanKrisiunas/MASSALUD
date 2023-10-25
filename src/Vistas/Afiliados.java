@@ -11,7 +11,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
 
     public Afiliados() {
         initComponents();
-        jli.setText("Crear un nuevo afiliado.");
+        Jltx.setText("Crear un nuevo afiliado.");
         JBma.setEnabled(false);
         JBaa.setEnabled(true);
         cargarCombo();
@@ -23,6 +23,9 @@ public class Afiliados extends javax.swing.JInternalFrame {
 
         jLabel8 = new javax.swing.JLabel();
         JPescritorio = new javax.swing.JPanel();
+        jcbbs = new javax.swing.JComboBox<>();
+        btnbs = new javax.swing.JButton();
+        ctbs = new javax.swing.JTextField();
         JBma = new javax.swing.JButton();
         JBaa = new javax.swing.JButton();
         JBayuda = new javax.swing.JButton();
@@ -32,7 +35,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JLdomicilio = new javax.swing.JLabel();
         JLtelefono = new javax.swing.JLabel();
         JLdni = new javax.swing.JLabel();
-        jli = new javax.swing.JLabel();
+        Jltx = new javax.swing.JLabel();
         IDicon = new javax.swing.JLabel();
         textf = new javax.swing.JPanel();
         JTnombre = new javax.swing.JTextField();
@@ -61,6 +64,21 @@ public class Afiliados extends javax.swing.JInternalFrame {
         setRequestFocusEnabled(false);
 
         JPescritorio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jcbbs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre y apellido", "DNI" }));
+        JPescritorio.add(jcbbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+
+        btnbs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda.png"))); // NOI18N
+        btnbs.setToolTipText("Búsqueda de personas.");
+        btnbs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbsActionPerformed(evt);
+            }
+        });
+        JPescritorio.add(btnbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
+
+        ctbs.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        JPescritorio.add(ctbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 210, -1));
 
         JBma.setBackground(new java.awt.Color(0, 153, 0));
         JBma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
@@ -111,16 +129,16 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JLdni.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         JLdni.setText("DNI");
 
-        jli.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
-        jli.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jli.setText("Crear un nuevo afiliado.");
+        Jltx.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
+        Jltx.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Jltx.setText("Crear un nuevo afiliado.");
 
         javax.swing.GroupLayout IDLayout = new javax.swing.GroupLayout(ID);
         ID.setLayout(IDLayout);
         IDLayout.setHorizontalGroup(
             IDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IDLayout.createSequentialGroup()
-                .addComponent(jli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Jltx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IDLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -149,7 +167,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLdni)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jli)
+                .addComponent(Jltx)
                 .addGap(12, 12, 12))
         );
 
@@ -346,7 +364,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JLdni.setText(String.valueOf(afiliado.getDNI()));
         JLdomicilio.setText(afiliado.getDomicilio());
         JLtelefono.setText(String.valueOf(afiliado.getTelefono()));
-        jli.setText("Afiliado editado con éxito.");
+        Jltx.setText("Afiliado editado con éxito.");
         JTnombre.setText(afiliado.getNombre());
         JTdomicilio.setText(afiliado.getDomicilio());
         JTapellido.setText(afiliado.getApellido());
@@ -354,6 +372,8 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JRBactivo.setSelected(afiliado.isEstado());
         JBma.setEnabled(true);
         cargarCombo();
+        JCBa.getModel().setSelectedItem(afiliado);
+        Jltx.setText("Acción realizada con éxito.");
     }//GEN-LAST:event_JBmaActionPerformed
 
     private void JBaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBaaActionPerformed
@@ -362,6 +382,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
             Afiliado afiliado = new Afiliado(JTnombre.getText(), JTapellido.getText(), Integer.parseInt(JTdni.getText()), JRBactivo.isEnabled(), JTdomicilio.getText(), Integer.parseInt(JTel.getText()));
             ad.añadirAfiliado(afiliado);
             cargarCombo();
+            Jltx.setText("Acción realizada con éxito.");
         } catch (java.lang.NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "La información ingresada no es correcta.");
         }
@@ -399,14 +420,14 @@ public class Afiliados extends javax.swing.JInternalFrame {
             try {
                 Afiliado afiliado = ad.listarAfiliadoPorDNI(Integer.parseInt(JTdni.getText()));
                 if (afiliado == null) {
-                    jli.setText("Crear un nuevo afiliado.");
+                    Jltx.setText("Crear un nuevo afiliado.");
                     JBma.setEnabled(false);
                     JTdni.setBackground(Color.white);
                 } else {
                     JTdni.setBackground(Color.red);
                 }
             } catch (NullPointerException ex) {
-                jli.setText("Crear un nuevo afiliado.");
+                Jltx.setText("Crear un nuevo afiliado.");
                 JBma.setEnabled(false);
                 JTdni.setBackground(Color.white);
             } catch (NumberFormatException ez) {
@@ -429,7 +450,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
             JLdni.setText("DNI");
             JLdomicilio.setText("Domicilio");
             JLtelefono.setText("Teléfono");
-            jli.setText("Crear un nuevo afiliado.");
+            Jltx.setText("Crear un nuevo afiliado.");
             JBma.setEnabled(false);
             JBaa.setEnabled(true);
             JTdni.setEditable(true);
@@ -441,7 +462,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
             JLdni.setText(String.valueOf(afiliado.getDNI()));
             JLdomicilio.setText(afiliado.getDomicilio());
             JLtelefono.setText(String.valueOf(afiliado.getTelefono()));
-            jli.setText("Persona existente.");
+            Jltx.setText("Persona existente.");
             JTdni.setEditable(false);
             rellenarCampos();
         }
@@ -461,6 +482,31 @@ public class Afiliados extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JTelKeyReleased
 
+    private void btnbsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbsActionPerformed
+        // TODO add your handling code here:
+        try {
+            if (jcbbs.getSelectedIndex() == 0) {
+                String bs = ctbs.getText();
+                String[] partes = bs.split(" ");
+                String nombre = partes[0];
+                String apellido = partes[1];
+                Afiliado a = ad.listarAfiliadoPorNombreApellido(nombre, apellido);
+                System.out.println(a);
+                JCBa.getModel().setSelectedItem(a);
+                ctbs.setText("");
+                rellenarCampos();
+            } else if (jcbbs.getSelectedIndex() == 1) {
+                Afiliado a = ad.listarAfiliadoPorDNI(Integer.parseInt(ctbs.getText()));
+                System.out.println(a);
+                JCBa.getModel().setSelectedItem(a);
+                ctbs.setText("");
+                rellenarCampos();
+            }
+        } catch (java.lang.ArrayIndexOutOfBoundsException | java.lang.NullPointerException ez) {
+            JOptionPane.showMessageDialog(this, "La búsqueda no ha encontrado nada.");
+        }
+    }//GEN-LAST:event_btnbsActionPerformed
+
     private void rellenarCampos() {
         Afiliado afiliado = ad.listarAfiliadoPorDNI(Integer.parseInt(JLdni.getText()));
         JTnombre.setText(afiliado.getNombre());
@@ -477,7 +523,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JCBa.removeAllItems();
         Afiliado a = new Afiliado();
         JCBa.addItem(a);
-        jli.setText("Crear un nuevo afiliado.");
+        Jltx.setText("Crear un nuevo afiliado.");
         for (Afiliado afiliado : ad.listarAfiliados()) {
             JCBa.addItem(afiliado);
         }
@@ -504,7 +550,10 @@ public class Afiliados extends javax.swing.JInternalFrame {
     private javax.swing.JTextField JTdomicilio;
     private javax.swing.JTextField JTel;
     private javax.swing.JTextField JTnombre;
+    private javax.swing.JLabel Jltx;
     private javax.swing.JLabel bg;
+    private javax.swing.JButton btnbs;
+    private javax.swing.JTextField ctbs;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -512,7 +561,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jli;
+    private javax.swing.JComboBox<String> jcbbs;
     private javax.swing.JButton salir;
     private javax.swing.JPanel textf;
     private javax.swing.JLabel textop;
