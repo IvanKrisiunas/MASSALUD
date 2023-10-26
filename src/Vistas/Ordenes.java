@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,9 +33,10 @@ public class Ordenes extends javax.swing.JInternalFrame {
     private int seleccionarFila;
     private int valorDNIa;
     private int valorDNIp;
+    private boolean interruptor;
     private LocalDate valorFecha;
     Orden orden = new Orden();
-
+    
     public Ordenes() {
         initComponents();
         cargarComboAfiliado();
@@ -121,6 +123,11 @@ public class Ordenes extends javax.swing.JInternalFrame {
         JBmodificar.setBackground(new java.awt.Color(0, 153, 0));
         JBmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
         JBmodificar.setToolTipText("Editar orden.");
+        JBmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBmodificarActionPerformed(evt);
+            }
+        });
         getContentPane().add(JBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, 120, 90));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -250,6 +257,7 @@ public class Ordenes extends javax.swing.JInternalFrame {
 
     private void JBagregarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagregarOrdenActionPerformed
         // TODO add your handling code here:
+        try{
         LocalDate fecha = null;
         if (jdcf.getDate() != null) {
             fecha = jdcf.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -257,8 +265,29 @@ public class Ordenes extends javax.swing.JInternalFrame {
         Afiliado afiliado = (Afiliado) jcba.getSelectedItem();
         Prestador prestador = (Prestador) jcbp.getSelectedItem();
         Orden orden2 = new Orden(fecha, (String) jcbf.getSelectedItem(), Double.parseDouble(jti.getText()), afiliado.getDNI(), prestador.getDNI());
-        od.añadirOrden(orden2);
+        
+        for(Orden orden3 : od.listarOrdenes()){
+            if (orden2.getFecha().equals(orden3.getFecha()) && orden2.getDNIafiliado() == orden3.getDNIafiliado() && orden2.getDNIprestador() == orden3.getDNIprestador()) {
+                interruptor = true;
+                System.out.println(interruptor);
+                break;
+                
+            }else{
+                interruptor =false;
+                                System.out.println(interruptor);
+
+            }
+        }
+        System.out.println(interruptor);
+        if (interruptor == false) {
+            od.añadirOrden(orden2);
+        }else{
+             JOptionPane.showMessageDialog(this, "No se puede crear una orden con la misma fecha, afiliado y prestador.");
+        }
         cargarTabla();
+        }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(this, "Datos incorrectos o campos vacios");
+        }
     }//GEN-LAST:event_JBagregarOrdenActionPerformed
 
     private void JBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarActionPerformed
@@ -308,12 +337,59 @@ public class Ordenes extends javax.swing.JInternalFrame {
 
     private void masActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masActionPerformed
         // TODO add your handling code here:
+        try{
         DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.FLOOR);
         double masd = Double.valueOf(jti.getText()) + 0.1;
         masd = new Double(df.format(masd));
         jti.setText(String.valueOf(masd));
+        }catch(NumberFormatException ex){
+            jti.setText("0.0");
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.FLOOR);
+        double masd = Double.valueOf(jti.getText()) + 0.1;
+        masd = new Double(df.format(masd));
+        jti.setText(String.valueOf(masd));
+        }
     }//GEN-LAST:event_masActionPerformed
+
+    private void JBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBmodificarActionPerformed
+        // TODO add your handling code here:
+        try{
+        LocalDate fecha = null;
+        int idOrden;
+        
+        if (jdcf.getDate() != null) {
+            fecha = jdcf.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+        Afiliado afiliado = (Afiliado) jcba.getSelectedItem();
+        Prestador prestador = (Prestador) jcbp.getSelectedItem();
+        Orden orden2 = new Orden(fecha, (String) jcbf.getSelectedItem(), Double.parseDouble(jti.getText()), afiliado.getDNI(), prestador.getDNI());
+        idOrden = od.obtenerIdOrden(orden2);
+        for(Orden orden3 : od.listarOrdenes()){
+            if (orden2.getFecha().equals(orden3.getFecha()) && orden2.getDNIafiliado() == orden3.getDNIafiliado()
+                    && orden2.getDNIprestador() == orden3.getDNIprestador() && orden2.getImporte() == orden3.getImporte() && orden2.getFormaDePago().equals(orden3.getFormaDePago())) {
+                interruptor = true;
+                System.out.println(interruptor);
+                break;
+                
+            }else{
+                interruptor =false;
+                                System.out.println(interruptor);
+
+            }
+        }
+        System.out.println(interruptor);
+        if (interruptor == false) {
+            od.modificarOrden(idOrden, orden2);
+        }else{
+             JOptionPane.showMessageDialog(this, "No has modificado ninguno de los campos.");
+        }
+        cargarTabla();
+        }catch(NullPointerException | NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Datos incorrectos o campos vacios");
+        }
+    }//GEN-LAST:event_JBmodificarActionPerformed
 
     private void armarCabecera() {
         modelotabla.addColumn("Fecha");

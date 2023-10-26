@@ -7,6 +7,7 @@ package Vistas;
 
 import Principal.Depuracion;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -109,7 +110,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBafiliados);
-        JBafiliados.setBounds(180, 440, 160, 40);
+        JBafiliados.setBounds(180, 440, 160, 33);
 
         JBordenes.setBackground(new java.awt.Color(71, 71, 71));
         JBordenes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -122,7 +123,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBordenes);
-        JBordenes.setBounds(670, 440, 160, 40);
+        JBordenes.setBounds(670, 440, 160, 33);
 
         JBprestadores.setBackground(new java.awt.Color(71, 71, 71));
         JBprestadores.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -135,7 +136,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBprestadores);
-        JBprestadores.setBounds(180, 640, 160, 40);
+        JBprestadores.setBounds(180, 640, 160, 33);
 
         JBespecialidades.setBackground(new java.awt.Color(71, 71, 71));
         JBespecialidades.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -148,13 +149,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBespecialidades);
-        JBespecialidades.setBounds(670, 640, 160, 40);
+        JBespecialidades.setBounds(670, 640, 160, 33);
 
         JBayuda.setBackground(new java.awt.Color(71, 71, 71));
         JBayuda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         JBayuda.setForeground(new java.awt.Color(255, 255, 255));
         JBayuda.setText("Ayuda");
         JBayuda.setToolTipText("Reciba ayuda sobre el programa.");
+        JBayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBayudaActionPerformed(evt);
+            }
+        });
         jPanel.add(JBayuda);
         JBayuda.setBounds(474, 500, 80, 30);
 
@@ -347,6 +353,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Depuracion.depuracion(null);
     }//GEN-LAST:event_BtnDepActionPerformed
+
+    private void JBayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBayudaActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Bienvenido al programa de MasSalud S.A." + "\n" + "aquí podrás ver, borrar o modificar diferentes datos de la obra social." + 
+                "\n" + "Esta es la explicación de los siguientes botones:" + "\n" + "Afiliados: podrás realizar modificaciones en los datos de los socios de la obra social." + 
+                "\n" + "Prestadores: los prestadores pueden ser modificados o eliminados, también podrás cambiar las especialidades de cada prestador." + 
+                "\n" + "Especialidades: en este apartado podras ver las especialidades que existen en nuestra obra social junto con los especialistas que tenemos en nuestras lineas. Podrás editar las especialidades." +
+                "\n" + "Ordenes: Aqui podrás realizar, editar o eliminar ordenes medicas para nuestros socios de MasSalud");
+    }//GEN-LAST:event_JBayudaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -114,9 +114,9 @@ public class OrdenData {
         }
     }
 
-    public void modificarOrden(Orden orden) {
+    public void modificarOrden(int idOrden, Orden orden) {
         String sql = "UPDATE  orden SET DNIafiliado=?,"
-                + "DNIprestador=?,fecha=?,formaDePago=?,importe=? WHERE DNIafiliado = ?";
+                + "DNIprestador=?,fecha=?,formaDePago=?,importe=? WHERE idOrden = ?";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
@@ -125,6 +125,7 @@ public class OrdenData {
             ps.setDate(3, Date.valueOf(orden.getFecha()));
             ps.setString(4, orden.getFormaDePago());
             ps.setDouble(5, orden.getImporte());
+            ps.setInt(6, idOrden);
             ps.executeUpdate();
             int exito = ps.executeUpdate();
             if (exito == 1) {
