@@ -7,7 +7,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +45,10 @@ public class OrdenData {
 
     }
 
-    public int listarOrdenesPorId(Orden orden) {
-        String sql = "SELECT idOrden from orden WHERE ( fecha, DNIAfiliado, DNIPrestador) "
+    public int obtenerIdOrden(Orden orden) {
+        String sql = "SELECT idOrden from orden WHERE (fecha, DNIAfiliado, DNIPrestador) "
                 + "= (?,?,?);";
-        int idOrden=0;
+        int idOrden = 0;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(2, orden.getDNIafiliado());
@@ -60,18 +59,43 @@ public class OrdenData {
                 idOrden = rs.getInt("idOrden");
             }
             ps.close();
-            System.out.println("Orden(es) activa(s)" + "\n" + orden.getIdOrden());
+            System.out.println("ID de Orden: " + orden.getIdOrden());
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return idOrden;
+    }
+    
+    public Orden ListarOrdenPorId(int idOrden) {
+        String sql = "SELECT * FROM orden WHERE idOrden = ?";
+        Orden orden = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idOrden);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+            orden = new Orden();
+            orden.setIdOrden(rs.getInt("idOrden"));
+            orden.setFecha(rs.getDate("fecha").toLocalDate());
+            orden.setFormaDePago(rs.getString("formaDePago"));
+            orden.setImporte(rs.getDouble("importe"));
+            orden.setDNIafiliado(rs.getInt("DNIafiliado"));
+            orden.setDNIprestador(rs.getInt("DNIprestador"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro la orden.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Un error SQL ha ocurrido en listar por ID." + "\n" + "(" + ex.getMessage() + ")");
+        }
+        return orden;
     }
 
     public void añadirOrden(Orden orden) {
         String sql = "INSERT INTO orden(DNIafiliado, DNIprestador, fecha, formaDePago, importe)"
                 + "VALUES (?, ?, ?, ?, ?)";
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, orden.getDNIafiliado());
             ps.setInt(2, orden.getDNIprestador());
             ps.setDate(3, Date.valueOf(orden.getFecha()));
@@ -84,7 +108,6 @@ public class OrdenData {
             if (rs.next()) {
                 orden.setIdOrden(rs.getInt("idOrden"));
             }
-
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");

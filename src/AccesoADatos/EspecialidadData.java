@@ -80,8 +80,7 @@ public class EspecialidadData {
 
     }
 
-    public Especialidad especialidadPorNombre(int idEspecialidad) {
-
+    public Especialidad ListarEspecialidadPorId(int idEspecialidad) {
         String sql = "SELECT * FROM especialidad WHERE idEspecialidad = ?";
         Especialidad especialidad = null;
         try {
@@ -96,12 +95,10 @@ public class EspecialidadData {
                 JOptionPane.showMessageDialog(null, "No se encontro la especialidad");
             }
             ps.close();
-
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
         }
         return especialidad;
-
     }
 
     public String IdANombre(int idEspecialidad) {

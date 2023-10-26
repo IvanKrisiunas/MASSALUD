@@ -114,16 +114,9 @@ public class Depuracion {
             case 9:
                 ed.listarEspecialidades();
                 break;
-            case 10:
-                //ed.añadirEspecialidad(e);
-                break;
             case 11:
                 ed.modificarEspecialidad(idEspecialidad, especialidad);
                 break;
-            case 12:
-                //ed.eliminarEspecialidad(e.getIdEspecialidad());
-                break;
-            //Quitar especialidades
         }
     }
 
@@ -141,9 +134,7 @@ public class Depuracion {
                 + "8 - Quitar prestadores" + "\n"
                 + "=== Especialidades ===" + "\n"
                 + "9 - Listar especialidades" + "\n"
-                + "10 - Agregar especialidades" + "\n"
                 + "11 - Modificar especialidades" + "\n"
-                + "12 - Eliminar especialidades" + "\n"
                 + "-- Ingrese un número --");
     }
 }

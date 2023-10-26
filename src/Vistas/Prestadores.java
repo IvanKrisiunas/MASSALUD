@@ -97,7 +97,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
         JBmp.setBackground(new java.awt.Color(0, 153, 0));
         JBmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
-        JBmp.setToolTipText("Editar el afiliado actual.");
+        JBmp.setToolTipText("Editar el prestador actual.");
         JBmp.setMaximumSize(new java.awt.Dimension(110, 90));
         JBmp.setMinimumSize(new java.awt.Dimension(110, 90));
         JBmp.setPreferredSize(new java.awt.Dimension(110, 90));
@@ -110,7 +110,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
         JBap.setBackground(new java.awt.Color(0, 153, 0));
         JBap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prestadorMas.png"))); // NOI18N
-        JBap.setToolTipText("Añadir un nuevo afiliado.");
+        JBap.setToolTipText("Añadir un nuevo prestador.");
         JBap.setMaximumSize(new java.awt.Dimension(110, 90));
         JBap.setMinimumSize(new java.awt.Dimension(110, 90));
         JBap.setPreferredSize(new java.awt.Dimension(110, 90));
@@ -205,6 +205,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         textf.setOpaque(false);
 
         JCBe.setForeground(new java.awt.Color(255, 255, 255));
+        JCBe.setToolTipText("Seleccionar especialidad.");
         JCBe.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 JCBeKeyReleased(evt);
@@ -367,7 +368,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
         JCBp.setBackground(new java.awt.Color(0, 153, 0));
         JCBp.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        JCBp.setToolTipText("Lista de afiliados por nombre y apellido mas el DNI.");
+        JCBp.setToolTipText("Lista de prestadores por nombre y apellido mas el DNI.");
         JCBp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCBpActionPerformed(evt);
@@ -378,7 +379,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
         textop.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         textop.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textop.setText("Prestadores");
-        JPescritorio.add(textop, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 240, 70));
+        JPescritorio.add(textop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1020, 70));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BG.png"))); // NOI18N
         JPescritorio.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));

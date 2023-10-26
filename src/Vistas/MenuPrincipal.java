@@ -64,7 +64,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel.setLayout(null);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ordenGrande.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/especialidadGrande.png"))); // NOI18N
         jPanel.add(jLabel2);
         jLabel2.setBounds(670, 500, 160, 130);
 
@@ -79,14 +79,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel3.setBounds(180, 500, 160, 130);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/especialidadGrande.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ordenGrande.png"))); // NOI18N
         jPanel.add(jLabel4);
         jLabel4.setBounds(670, 300, 160, 130);
 
         BtnDep.setBackground(new java.awt.Color(158, 158, 198));
         BtnDep.setForeground(new java.awt.Color(158, 158, 198));
         BtnDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/depuracion.png"))); // NOI18N
-        BtnDep.setToolTipText("");
+        BtnDep.setToolTipText("Depuración; solo para testear.");
         BtnDep.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         BtnDep.setBorderPainted(false);
         BtnDep.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -109,7 +109,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBafiliados);
-        JBafiliados.setBounds(180, 440, 160, 33);
+        JBafiliados.setBounds(180, 440, 160, 40);
 
         JBordenes.setBackground(new java.awt.Color(71, 71, 71));
         JBordenes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -122,7 +122,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBordenes);
-        JBordenes.setBounds(670, 440, 160, 33);
+        JBordenes.setBounds(670, 440, 160, 40);
 
         JBprestadores.setBackground(new java.awt.Color(71, 71, 71));
         JBprestadores.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -135,20 +135,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBprestadores);
-        JBprestadores.setBounds(180, 640, 160, 33);
+        JBprestadores.setBounds(180, 640, 160, 40);
 
         JBespecialidades.setBackground(new java.awt.Color(71, 71, 71));
         JBespecialidades.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         JBespecialidades.setForeground(new java.awt.Color(255, 255, 255));
         JBespecialidades.setText("Especialidades");
-        JBespecialidades.setToolTipText("Administre,cree o liste las especialidades.");
+        JBespecialidades.setToolTipText("Administre, cree o liste las especialidades.");
         JBespecialidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBespecialidadesActionPerformed(evt);
             }
         });
         jPanel.add(JBespecialidades);
-        JBespecialidades.setBounds(670, 640, 160, 33);
+        JBespecialidades.setBounds(670, 640, 160, 40);
 
         JBayuda.setBackground(new java.awt.Color(71, 71, 71));
         JBayuda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -221,6 +221,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 o.setVisible(true);
                 o.toFront();
                 o.setResizable(false);
+                o.setBounds(0, -35, 1025, 769);
                 //remove the listeners from UI which make the frame move
                 BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) o.getUI());
                 for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
@@ -233,7 +234,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 JDescritorio.add(o);
                 o.setVisible(true);
                 o.toFront();
-                o.setResizable(false);
+                o.setBounds(0, -35, 1025, 769);
                 //remove the listeners from UI which make the frame move
                 BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) o.getUI());
                 for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
@@ -318,6 +319,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 e.setVisible(true);
                 e.toFront();
                 e.setResizable(false);
+                e.setBounds(0, -35, 1025, 769);
                 //remove the listeners from UI which make the frame move
                 BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) e.getUI());
                 for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
@@ -331,6 +333,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 e.setVisible(true);
                 e.toFront();
                 e.setResizable(false);
+                e.setBounds(0, -35, 1025, 769);
                 //remove the listeners from UI which make the frame move
                 BasicInternalFrameUI basicInternalFrameUI = ((javax.swing.plaf.basic.BasicInternalFrameUI) e.getUI());
                 for (MouseListener listener : basicInternalFrameUI.getNorthPane().getMouseListeners()) {
