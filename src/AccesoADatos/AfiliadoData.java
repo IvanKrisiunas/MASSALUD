@@ -14,7 +14,6 @@ import java.util.List;
 public class AfiliadoData {
 
     String afiliadoNombre;
-
     private Connection con = null;
 
     public AfiliadoData() {
@@ -42,6 +41,7 @@ public class AfiliadoData {
             System.out.println("Afiliado(s) inactivo(s): " + "\n" + listarAfiliadosEliminados());
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+
         }
         return afiliados;
     }
@@ -65,6 +65,7 @@ public class AfiliadoData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+
         }
         return afiliados;
     }
@@ -89,10 +90,11 @@ public class AfiliadoData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+
         }
         return afiliado;
     }
-    
+
     public Afiliado listarAfiliadoPorNombreApellido(String Nombre, String Apellido) {
         String sql = "SELECT * FROM afiliado WHERE nombre = ? AND apellido = ?";
         Afiliado afiliado = null;
@@ -114,12 +116,13 @@ public class AfiliadoData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+
         }
         return afiliado;
     }
 
     public void añadirAfiliado(Afiliado afiliado) {
-        int respuesta = JOptionPane.showConfirmDialog(null,"¿Desea agregar un nuevo afiliado?", "Afiliados", JOptionPane.YES_NO_OPTION);
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Desea agregar un nuevo afiliado?", "Afiliados", JOptionPane.YES_NO_OPTION);
         if (respuesta == 0) {
             String sql = "INSERT INTO afiliado(idAfiliado, nombre, apellido, DNI, domicilio, telefono, estado) "
                     + "VALUES ('', ?, ?, ?, ?, ?, ?)";
@@ -142,9 +145,11 @@ public class AfiliadoData {
                 ps.close();
             } catch (SQLException ex) {
                 System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
+    
             }
         } else {
-                System.out.println("* * * Método cancelado correctamente. * * *");
+            System.out.println("* * * Método cancelado correctamente. * * *");
         }
     }
 
@@ -171,6 +176,7 @@ public class AfiliadoData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+
         }
 
     }
@@ -188,6 +194,7 @@ public class AfiliadoData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+
         }
     }
 }

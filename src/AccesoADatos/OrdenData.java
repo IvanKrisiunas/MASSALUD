@@ -40,6 +40,7 @@ public class OrdenData {
             System.out.println("Orden(es) activa(s)" + "\n" + ordenes);
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return ordenes;
 
@@ -62,6 +63,7 @@ public class OrdenData {
             System.out.println("ID de Orden: " + orden.getIdOrden());
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return idOrden;
     }
@@ -111,6 +113,7 @@ public class OrdenData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
     }
 
@@ -137,6 +140,7 @@ public class OrdenData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
 
     }
@@ -159,6 +163,7 @@ public class OrdenData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
     }
 
@@ -183,6 +188,7 @@ public class OrdenData {
             System.out.println("OrdenesAf" + "\n" + ordenes);
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return ordenes;
 
@@ -209,6 +215,7 @@ public class OrdenData {
             System.out.println("OrdenesPres" + "\n" + ordenes);
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return ordenes;
 
@@ -235,6 +242,7 @@ public class OrdenData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return ordenes;
 

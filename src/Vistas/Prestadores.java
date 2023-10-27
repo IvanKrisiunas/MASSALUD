@@ -5,6 +5,8 @@ import AccesoADatos.PrestadorData;
 import Principal.Especialidad;
 import Principal.Prestador;
 import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Prestadores extends javax.swing.JInternalFrame {
@@ -125,6 +127,11 @@ public class Prestadores extends javax.swing.JInternalFrame {
         JBayuda.setForeground(new java.awt.Color(158, 158, 198));
         JBayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ayuda.png"))); // NOI18N
         JBayuda.setToolTipText("Ayuda.");
+        JBayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBayudaActionPerformed(evt);
+            }
+        });
         JPescritorio.add(JBayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, 100, 90));
 
         ID.setOpaque(false);
@@ -206,11 +213,6 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
         JCBe.setForeground(new java.awt.Color(255, 255, 255));
         JCBe.setToolTipText("Seleccionar especialidad.");
-        JCBe.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                JCBeKeyReleased(evt);
-            }
-        });
 
         JTnombre.setToolTipText("Nombre del afiliado.");
         JTnombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -460,7 +462,7 @@ public class Prestadores extends javax.swing.JInternalFrame {
 
     private void JTdniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdniKeyReleased
         // TODO add your handling code here:
-        if (JTdni.getText().isEmpty()) {
+        if (JTdni.getText().isEmpty() || JTdni.isEditable() == false) {
             JTdni.setBackground(Color.white);
         } else {
             try {
@@ -576,35 +578,40 @@ public class Prestadores extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ctbsKeyReleased
 
     private void JTnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTnombreKeyReleased
-        if(JTnombre.getText().isEmpty()){
-         }else{
-        if (!Character.isLetter(evt.getKeyChar())){
-            JTnombre.setText("");
-        }}
+        if (JTnombre.getText().isEmpty() || Character.isDigit(evt.getKeyChar())) {
+            String s = JTnombre.getText();
+            s = s.substring(0, s.length() - 1);
+            JTnombre.setText(s);
+        } else {
+            JTnombre.setBackground(Color.white);
+        }
     }//GEN-LAST:event_JTnombreKeyReleased
 
     private void JTapellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTapellidoKeyReleased
-                if(JTapellido.getText().isEmpty()){
-                }else{
-        
-        if (!Character.isLetter(evt.getKeyChar())){
-            JTapellido.setText("");
-       }
-    }     
+        if (JTapellido.getText().isEmpty() || Character.isDigit(evt.getKeyChar())) {
+            String s = JTapellido.getText();
+            s = s.substring(0, s.length() - 1);
+            JTapellido.setText(s);
+        } else {
+            JTnombre.setBackground(Color.white);
+        }
     }//GEN-LAST:event_JTapellidoKeyReleased
 
-    private void JCBeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCBeKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JCBeKeyReleased
-
     private void JTdomicilioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdomicilioKeyReleased
-         if(JTdomicilio.getText().isEmpty()){
-         }else{
-        if (!Character.isLetter(evt.getKeyChar())&&!Character.isDigit(evt.getKeyChar())&&!Character.isSpaceChar(evt.getKeyChar())){
-            JTdomicilio.setText("");
-       }
-    }     
+        if (JTdomicilio.getText().isEmpty()) {
+            JTdomicilio.setBackground(Color.white);
+        } else {
+            if (!Character.isLetter(evt.getKeyChar()) && !Character.isDigit(evt.getKeyChar()) && !Character.isSpaceChar(evt.getKeyChar())) {
+                JTdomicilio.setBackground(Color.red);
+            }
+        }
     }//GEN-LAST:event_JTdomicilioKeyReleased
+
+    private void JBayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBayudaActionPerformed
+        JLabel label = new JLabel("<html>Para añadir un prestador hay que rellenar los campos, luego presionar el botón correspondiente. <br> Cada vez que se agrega uno, se rellenarán los campos de textos con el nuevo prestador. <br> Al presionar editar el prestador cambia en base a los campos, el DNI no se puede cambiar. <br> Si el botón circular de activo no está marcado el prestador queda fuera de la lista principal. <br> Por último, se pueden buscar prestadores ya sea por su nombre y apellido o por su DNI. <br> La lista principal de prestadores están en la caja abajo, el espacio vacío genera uno nuevo.</html>");
+        label.setFont(new Font("Dialog", Font.BOLD, 18));
+        JOptionPane.showMessageDialog(this, label, "Ayuda", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_JBayudaActionPerformed
     
     private void rellenarCampos() {
         Prestador prestador = pd.listarPrestadorPorDNI(Integer.parseInt(JLdni.getText()));

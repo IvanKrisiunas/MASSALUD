@@ -6,7 +6,9 @@
 package Vistas;
 
 import Principal.Depuracion;
+import java.awt.Font;
 import java.awt.event.MouseListener;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -54,7 +56,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jms = new javax.swing.JMenuItem();
+        jmetodos = new javax.swing.JMenu();
+        jma = new javax.swing.JMenuItem();
+        jmp = new javax.swing.JMenuItem();
+        jme = new javax.swing.JMenuItem();
+        jmo = new javax.swing.JMenuItem();
+        jmad = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -110,7 +118,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBafiliados);
-        JBafiliados.setBounds(180, 440, 160, 33);
+        JBafiliados.setBounds(180, 440, 160, 40);
 
         JBordenes.setBackground(new java.awt.Color(71, 71, 71));
         JBordenes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -123,7 +131,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBordenes);
-        JBordenes.setBounds(670, 440, 160, 33);
+        JBordenes.setBounds(670, 440, 160, 40);
 
         JBprestadores.setBackground(new java.awt.Color(71, 71, 71));
         JBprestadores.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -136,7 +144,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBprestadores);
-        JBprestadores.setBounds(180, 640, 160, 33);
+        JBprestadores.setBounds(180, 640, 160, 40);
 
         JBespecialidades.setBackground(new java.awt.Color(71, 71, 71));
         JBespecialidades.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -149,7 +157,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel.add(JBespecialidades);
-        JBespecialidades.setBounds(670, 640, 160, 33);
+        JBespecialidades.setBounds(670, 640, 160, 40);
 
         JBayuda.setBackground(new java.awt.Color(71, 71, 71));
         JBayuda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -190,11 +198,73 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
+        jMenuBar1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
+        jMenu1.setText("Programa");
+
+        jms.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jms.setText("Salir");
+        jms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmsActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jms);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jmetodos.setText("Métodos");
+
+        jma.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jma.setText("Afiliados");
+        jma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmaActionPerformed(evt);
+            }
+        });
+        jmetodos.add(jma);
+
+        jmp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jmp.setText("Prestadores");
+        jmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmpActionPerformed(evt);
+            }
+        });
+        jmetodos.add(jmp);
+
+        jme.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jme.setText("Especialidades");
+        jme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmeActionPerformed(evt);
+            }
+        });
+        jmetodos.add(jme);
+
+        jmo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jmo.setText("Ordenes");
+        jmo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmoActionPerformed(evt);
+            }
+        });
+        jmetodos.add(jmo);
+
+        jMenuBar1.add(jmetodos);
+
+        jmad.setText("Acerca de...");
+        jmad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmadMouseClicked(evt);
+            }
+        });
+        jmad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmadActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jmad);
 
         setJMenuBar(jMenuBar1);
 
@@ -356,12 +426,55 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void JBayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBayudaActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Bienvenido al programa de MasSalud S.A." + "\n" + "aquí podrás ver, borrar o modificar diferentes datos de la obra social." + 
-                "\n" + "Esta es la explicación de los siguientes botones:" + "\n" + "Afiliados: podrás realizar modificaciones en los datos de los socios de la obra social." + 
-                "\n" + "Prestadores: los prestadores pueden ser modificados o eliminados, también podrás cambiar las especialidades de cada prestador." + 
-                "\n" + "Especialidades: en este apartado podras ver las especialidades que existen en nuestra obra social junto con los especialistas que tenemos en nuestras lineas. Podrás editar las especialidades." +
-                "\n" + "Ordenes: Aqui podrás realizar, editar o eliminar ordenes medicas para nuestros socios de MasSalud");
+        JLabel label = new JLabel("<html>Bienvenido al programa de MasSalud S.A. <br> aquí podrás ver, borrar o modificar diferentes datos de la obra social. <br> Esta es la explicación de los siguientes botones: <br> Afiliados: podrás realizar modificaciones en los datos de las personas partes de esta obra social. <br> Prestadores: los prestadores pueden ser modificados o eliminados, también podrás cambiar las especialidades de cada prestador. <br> Especialidades: en este apartado podrás ver o editar los diferentes trabajos que existen, además de ver a los especialistas que tenemos en nuestras líneas. <br> Ordenes: Aquí se realizan, editan o eliminan las diferentes ordenes médicas para nuestros socios de MasSalud.</html>");
+        label.setFont(new Font("Dialog", Font.BOLD, 18));
+        JOptionPane.showMessageDialog(this, label, "Ayuda", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_JBayudaActionPerformed
+
+    private void jmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmaActionPerformed
+        // TODO add your handling code here:
+        JBafiliadosActionPerformed(evt);
+    }//GEN-LAST:event_jmaActionPerformed
+
+    private void jmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmpActionPerformed
+        // TODO add your handling code here:
+        JBprestadoresActionPerformed(evt);
+    }//GEN-LAST:event_jmpActionPerformed
+
+    private void jmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmeActionPerformed
+        // TODO add your handling code here:
+        JBespecialidadesActionPerformed(evt);
+    }//GEN-LAST:event_jmeActionPerformed
+
+    private void jmoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmoActionPerformed
+        // TODO add your handling code here:
+        JBordenesActionPerformed(evt);
+    }//GEN-LAST:event_jmoActionPerformed
+
+    private void jmadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmadActionPerformed
+
+    private void jmsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmsActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jmsActionPerformed
+
+    private void jmadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmadMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this,
+                "MasSalud Programa 1.0"
+                + "\n" + "\n" + "- - - Créditos - - -"
+                + "\n" + "Código: "
+                + "\n" + "Elian Krusinas"
+                + "\n" + "Gonzalo Vallejos"
+                + "\n" + "Ivan Krusinas"
+                + "\n" + "Leo Dócimo"
+                + "\n" + "Íconos: "
+                + "\n" + "Gonzalo Vallejos"
+                + "\n" + "\n" + "ALL YOUR BASE ARE BELONG TO US.",
+                "abc", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jmadMouseClicked
 
     /**
      * @param args the command line arguments
@@ -413,9 +526,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel;
+    private javax.swing.JMenuItem jma;
+    private javax.swing.JMenu jmad;
+    private javax.swing.JMenuItem jme;
+    private javax.swing.JMenu jmetodos;
+    private javax.swing.JMenuItem jmo;
+    private javax.swing.JMenuItem jmp;
+    private javax.swing.JMenuItem jms;
     // End of variables declaration//GEN-END:variables
 
 }

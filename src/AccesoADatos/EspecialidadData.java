@@ -34,6 +34,7 @@ public class EspecialidadData {
             System.out.println("Especialidad(es)" + "\n" + especialidades);
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return especialidades;
     }
@@ -55,6 +56,7 @@ public class EspecialidadData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
     }
     
@@ -76,6 +78,7 @@ public class EspecialidadData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
 
     }
@@ -97,6 +100,7 @@ public class EspecialidadData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return especialidad;
     }
@@ -118,6 +122,7 @@ public class EspecialidadData {
 
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return tipo;
     }
@@ -137,6 +142,7 @@ public class EspecialidadData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return idEspecialidad;
     }

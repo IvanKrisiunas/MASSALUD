@@ -9,7 +9,10 @@ import AccesoADatos.EspecialidadData;
 import AccesoADatos.PrestadorData;
 import Principal.Especialidad;
 import Principal.Prestador;
+import java.awt.Font;
 import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -136,6 +139,11 @@ public class Especialidades extends javax.swing.JInternalFrame {
         JBayuda.setForeground(new java.awt.Color(158, 158, 198));
         JBayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ayuda.png"))); // NOI18N
         JBayuda.setToolTipText("Ayuda.");
+        JBayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBayudaActionPerformed(evt);
+            }
+        });
         jPanel2.add(JBayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, 100, 90));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -205,6 +213,12 @@ public class Especialidades extends javax.swing.JInternalFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_salirActionPerformed
+
+    private void JBayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBayudaActionPerformed
+        JLabel label = new JLabel("<html>Para listar los prestadores por especialidad hay que presionar una especialidad en la tabla.<br> Haciendo doble cliqueo en la filas te permite editar el nombre y luego gurdar los cambios con el botón. <br> Más abajo están el campo y botón para añadir una nueva especialidad. <br> Dichas especialidades no se puede eliminar una vez ingresadas.</html>");
+        label.setFont(new Font("Dialog", Font.BOLD, 18));
+        JOptionPane.showMessageDialog(this, label, "Ayuda", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_JBayudaActionPerformed
    
     private void armarCabeceraEspecialidad() {
         modelotablaEspecialidad.addColumn("Nombre de la especialidad");

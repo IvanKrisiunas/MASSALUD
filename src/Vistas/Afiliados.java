@@ -3,6 +3,8 @@ package Vistas;
 import AccesoADatos.AfiliadoData;
 import Principal.Afiliado;
 import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class Afiliados extends javax.swing.JInternalFrame {
@@ -78,6 +80,11 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JPescritorio.add(btnbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
 
         ctbs.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        ctbs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ctbsKeyReleased(evt);
+            }
+        });
         JPescritorio.add(ctbs, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 210, -1));
 
         JBma.setBackground(new java.awt.Color(0, 153, 0));
@@ -110,6 +117,11 @@ public class Afiliados extends javax.swing.JInternalFrame {
         JBayuda.setForeground(new java.awt.Color(158, 158, 198));
         JBayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ayuda.png"))); // NOI18N
         JBayuda.setToolTipText("Ayuda.");
+        JBayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBayudaActionPerformed(evt);
+            }
+        });
         JPescritorio.add(JBayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, 100, 90));
 
         ID.setOpaque(false);
@@ -429,7 +441,7 @@ public class Afiliados extends javax.swing.JInternalFrame {
 
     private void JTdniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdniKeyReleased
         // TODO add your handling code here:
-        if (JTdni.getText().isEmpty()) {
+        if (JTdni.getText().isEmpty() || JTdni.isEditable() == false) {
             JTdni.setBackground(Color.white);
         } else {
             try {
@@ -485,13 +497,14 @@ public class Afiliados extends javax.swing.JInternalFrame {
 
     private void JTelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTelKeyReleased
         // TODO add your handling code here:
-        if (JTel.getText().isEmpty()) {
+           if ("".equals(JTel.getText())) {
             JTel.setBackground(Color.white);
         } else {
             try {
-            } catch (NullPointerException ex) {
+                int i;
                 JTel.setBackground(Color.white);
-            } catch (NumberFormatException ez) {
+                i = Integer.parseInt(JTel.getText());
+            } catch (java.lang.RuntimeException ex) {
                 JTel.setBackground(Color.red);
             }
         }
@@ -522,31 +535,53 @@ public class Afiliados extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnbsActionPerformed
 
-    private void JTnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTnombreKeyReleased
-       if(JTnombre.getText().isEmpty()){
-         }else{
-        if (!Character.isLetter(evt.getKeyChar())){
-            JTnombre.setText("");
-       }}
-    }//GEN-LAST:event_JTnombreKeyReleased
-
     private void JTapellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTapellidoKeyReleased
-          if(JTapellido.getText().isEmpty()){
-         }else{
-        if (!Character.isLetter(evt.getKeyChar())){
-            JTapellido.setText("");
-       }
-    }     
+        if (JTapellido.getText().isEmpty() || Character.isDigit(evt.getKeyChar())) {
+            String s = JTapellido.getText();
+            s = s.substring(0, s.length() - 1);
+            JTapellido.setText(s);
+        } else {
+            JTnombre.setBackground(Color.white);
+        }
     }//GEN-LAST:event_JTapellidoKeyReleased
 
+    private void JBayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBayudaActionPerformed
+                JLabel label = new JLabel("<html>Para añadir un afiliado hay que rellenar los campos, luego presionar el botón correspondiente. <br> Cada vez que se agrega uno, se rellenarán los campos de textos con el nuevo afiliado. <br> Al presionar editar el afiliado cambia en base a los campos, el DNI no se puede cambiar. <br> Si el botón circular de activo no está marcado el afiliado queda fuera de la lista principal. <br> Por último, se pueden buscar afiliados ya sea por su nombre y apellido o por su DNI. <br> La lista principal de afiliados están en la caja abajo, el espacio vacío genera uno nuevo.</html>");
+                label.setFont(new Font("Dialog", Font.BOLD, 18));
+                JOptionPane.showMessageDialog(this,label,"Ayuda", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_JBayudaActionPerformed
+
+    private void ctbsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ctbsKeyReleased
+        // TODO add your handling code here:
+        if ("".equals(ctbs.getText())) {
+            ctbs.setBackground(Color.white);
+        } else {
+            if (jcbbs.getSelectedIndex() == 1) {
+                try {
+                    int i;
+                    ctbs.setBackground(Color.white);
+                    i = Integer.parseInt(ctbs.getText());
+                } catch (java.lang.RuntimeException ex) {
+                    ctbs.setBackground(Color.red);
+                }
+            }
+        }
+    }//GEN-LAST:event_ctbsKeyReleased
+
     private void JTdomicilioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTdomicilioKeyReleased
-        if(JTdomicilio.getText().isEmpty()){
-         }else{
-        if (!Character.isLetter(evt.getKeyChar())){
-            JTdomicilio.setText("");
-       }
-    }     
+        // TODO add your handling code here:
     }//GEN-LAST:event_JTdomicilioKeyReleased
+
+    private void JTnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTnombreKeyReleased
+        // TODO add your handling code here:
+        if (JTnombre.getText().isEmpty() || Character.isDigit(evt.getKeyChar())) {
+            String s = JTnombre.getText();
+            s = s.substring(0, s.length() - 1);
+            JTnombre.setText(s);
+        } else {
+            JTnombre.setBackground(Color.white);
+        }
+    }//GEN-LAST:event_JTnombreKeyReleased
 
     private void rellenarCampos() {
         Afiliado afiliado = ad.listarAfiliadoPorDNI(Integer.parseInt(JLdni.getText()));

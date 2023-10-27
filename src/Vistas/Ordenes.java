@@ -11,12 +11,15 @@ import AccesoADatos.PrestadorData;
 import Principal.Afiliado;
 import Principal.Orden;
 import Principal.Prestador;
+import java.awt.Color;
+import java.awt.Font;
 import java.math.RoundingMode;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,7 +39,7 @@ public class Ordenes extends javax.swing.JInternalFrame {
     private boolean interruptor;
     private LocalDate valorFecha;
     Orden orden = new Orden();
-    
+
     public Ordenes() {
         initComponents();
         cargarComboAfiliado();
@@ -44,6 +47,8 @@ public class Ordenes extends javax.swing.JInternalFrame {
         armarCabecera();
         borrarFilas();
         cargarTabla();
+        jbm.setEnabled(false);
+        jbq.setEnabled(false);
     }
 
     /**
@@ -58,9 +63,9 @@ public class Ordenes extends javax.swing.JInternalFrame {
         jcbp = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        JBagregarOrden = new javax.swing.JButton();
-        JBeliminar = new javax.swing.JButton();
-        JBmodificar = new javax.swing.JButton();
+        jba = new javax.swing.JButton();
+        jbq = new javax.swing.JButton();
+        jbm = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jcbf = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -100,35 +105,35 @@ public class Ordenes extends javax.swing.JInternalFrame {
         jLabel5.setText("Fecha");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 150, -1));
 
-        JBagregarOrden.setBackground(new java.awt.Color(0, 153, 0));
-        JBagregarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ordenMas.png"))); // NOI18N
-        JBagregarOrden.setToolTipText("Añadir orden.");
-        JBagregarOrden.addActionListener(new java.awt.event.ActionListener() {
+        jba.setBackground(new java.awt.Color(0, 153, 0));
+        jba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ordenMas.png"))); // NOI18N
+        jba.setToolTipText("Añadir orden.");
+        jba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBagregarOrdenActionPerformed(evt);
+                jbaActionPerformed(evt);
             }
         });
-        getContentPane().add(JBagregarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, -1, -1));
+        getContentPane().add(jba, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, -1, -1));
 
-        JBeliminar.setBackground(new java.awt.Color(0, 153, 0));
-        JBeliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ordenMenos.png"))); // NOI18N
-        JBeliminar.setToolTipText("Quitar orden.");
-        JBeliminar.addActionListener(new java.awt.event.ActionListener() {
+        jbq.setBackground(new java.awt.Color(0, 153, 0));
+        jbq.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ordenMenos.png"))); // NOI18N
+        jbq.setToolTipText("Quitar orden.");
+        jbq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBeliminarActionPerformed(evt);
+                jbqActionPerformed(evt);
             }
         });
-        getContentPane().add(JBeliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, -1, -1));
+        getContentPane().add(jbq, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, -1, -1));
 
-        JBmodificar.setBackground(new java.awt.Color(0, 153, 0));
-        JBmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
-        JBmodificar.setToolTipText("Editar orden.");
-        JBmodificar.addActionListener(new java.awt.event.ActionListener() {
+        jbm.setBackground(new java.awt.Color(0, 153, 0));
+        jbm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar.png"))); // NOI18N
+        jbm.setToolTipText("Editar orden.");
+        jbm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBmodificarActionPerformed(evt);
+                jbmActionPerformed(evt);
             }
         });
-        getContentPane().add(JBmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, 120, 90));
+        getContentPane().add(jbm, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, 120, 90));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setText("Forma de pago");
@@ -149,9 +154,9 @@ public class Ordenes extends javax.swing.JInternalFrame {
 
         jti.setText("0.0");
         jti.setToolTipText("Importe en decimales.");
-        jti.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtiActionPerformed(evt);
+        jti.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtiKeyReleased(evt);
             }
         });
         getContentPane().add(jti, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 240, 30));
@@ -164,6 +169,11 @@ public class Ordenes extends javax.swing.JInternalFrame {
         JBayuda.setForeground(new java.awt.Color(158, 158, 198));
         JBayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ayuda.png"))); // NOI18N
         JBayuda.setToolTipText("Ayuda.");
+        JBayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBayudaActionPerformed(evt);
+            }
+        });
         getContentPane().add(JBayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 640, 100, 90));
 
         mas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -246,64 +256,76 @@ public class Ordenes extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, -1, -1));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BG.png"))); // NOI18N
+        bg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bgMouseEntered(evt);
+            }
+        });
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtiActionPerformed
+    private void jbaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtiActionPerformed
-
-    private void JBagregarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBagregarOrdenActionPerformed
-        // TODO add your handling code here:
-        try{
-        LocalDate fecha = null;
-        if (jdcf.getDate() != null) {
-            fecha = jdcf.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        }
-        Afiliado afiliado = (Afiliado) jcba.getSelectedItem();
-        Prestador prestador = (Prestador) jcbp.getSelectedItem();
-        Orden orden2 = new Orden(fecha, (String) jcbf.getSelectedItem(), Double.parseDouble(jti.getText()), afiliado.getDNI(), prestador.getDNI());
-        
-        for(Orden orden3 : od.listarOrdenes()){
-            if (orden2.getFecha().equals(orden3.getFecha()) && orden2.getDNIafiliado() == orden3.getDNIafiliado() && orden2.getDNIprestador() == orden3.getDNIprestador()) {
-                interruptor = true;
-                System.out.println(interruptor);
-                break;
-                
-            }else{
-                interruptor =false;
-                                System.out.println(interruptor);
-
+        try {
+            LocalDate fecha = null;
+            if (jdcf.getDate() != null) {
+                fecha = jdcf.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             }
-        }
-        System.out.println(interruptor);
-        if (interruptor == false) {
-            od.añadirOrden(orden2);
-        }else{
-             JOptionPane.showMessageDialog(this, "No se puede crear una orden con la misma fecha, afiliado y prestador.");
-        }
-        cargarTabla();
-        }catch(NullPointerException ex){
+            Afiliado afiliado = (Afiliado) jcba.getSelectedItem();
+            Prestador prestador = (Prestador) jcbp.getSelectedItem();
+            Orden orden2 = new Orden(fecha, (String) jcbf.getSelectedItem(), Double.parseDouble(jti.getText()), afiliado.getDNI(), prestador.getDNI());
+
+            for (Orden orden3 : od.listarOrdenes()) {
+                if (orden2.getFecha().equals(orden3.getFecha()) && orden2.getDNIafiliado() == orden3.getDNIafiliado() && orden2.getDNIprestador() == orden3.getDNIprestador()) {
+                    interruptor = true;
+                    System.out.println(interruptor);
+                    break;
+
+                } else {
+                    interruptor = false;
+                    System.out.println(interruptor);
+                }
+            }
+            System.out.println(interruptor);
+            if (interruptor == false) {
+                od.añadirOrden(orden2);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se puede crear una orden con la misma fecha, afiliado y prestador.");
+            }
+            cargarTabla();
+        } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(this, "Datos incorrectos o campos vacios");
         }
-    }//GEN-LAST:event_JBagregarOrdenActionPerformed
+    }//GEN-LAST:event_jbaActionPerformed
 
-    private void JBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBeliminarActionPerformed
+    private void jbqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbqActionPerformed
         // TODO add your handling code here:
         od.eliminarOrden(valorDNIa, valorFecha, valorDNIp);
         cargarTabla();
-    }//GEN-LAST:event_JBeliminarActionPerformed
+    }//GEN-LAST:event_jbqActionPerformed
 
     private void JTordenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTordenesMouseClicked
         // TODO add your handling code here:
+        try{
         seleccionarFila = JTordenes.rowAtPoint(evt.getPoint());
         valorDNIa = (int) JTordenes.getValueAt(seleccionarFila, 3);
         valorDNIp = (int) JTordenes.getValueAt(seleccionarFila, 4);
         valorFecha = (LocalDate) JTordenes.getValueAt(seleccionarFila, 0);
-        System.out.println(valorDNIa +" "+ valorDNIp +" "+ valorFecha);
+        System.out.println(valorDNIa + " " + valorDNIp + " " + valorFecha);
         llenarCampos();
+        jbm.setEnabled(true);
+        jbq.setEnabled(true);
+        } catch(java.lang.NullPointerException ex){
+            jcbp.setSelectedIndex(0);
+            jcba.setSelectedIndex(0);
+            jcbf.setSelectedIndex(0);
+            jti.setText("0.0");
+            jdcf.setDate(null);
+            jbm.setEnabled(false);
+            jbq.setEnabled(false);
+        }
     }//GEN-LAST:event_JTordenesMouseClicked
 
     private void jcbfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbfActionPerformed
@@ -328,68 +350,89 @@ public class Ordenes extends javax.swing.JInternalFrame {
 
     private void JBlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlimpiarActionPerformed
         // TODO add your handling code here:
-       jcbp.setSelectedIndex(0);
-       jcba.setSelectedIndex(0);
-       jcbf.setSelectedIndex(0);
-       jti.setText("0.0");
-       jdcf.setDate(null);
+        jcbp.setSelectedIndex(0);
+        jcba.setSelectedIndex(0);
+        jcbf.setSelectedIndex(0);
+        jti.setText("0.0");
+        jdcf.setDate(null);
     }//GEN-LAST:event_JBlimpiarActionPerformed
 
     private void masActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masActionPerformed
         // TODO add your handling code here:
-        try{
-        DecimalFormat df = new DecimalFormat("#.##");
-        df.setRoundingMode(RoundingMode.FLOOR);
-        double masd = Double.valueOf(jti.getText()) + 0.1;
-        masd = new Double(df.format(masd));
-        jti.setText(String.valueOf(masd));
-        }catch(NumberFormatException ex){
+        try {
+            DecimalFormat df = new DecimalFormat("#.##");
+            df.setRoundingMode(RoundingMode.FLOOR);
+            double masd = Double.valueOf(jti.getText()) + 0.1;
+            masd = new Double(df.format(masd));
+            jti.setText(String.valueOf(masd));
+        } catch (NumberFormatException ex) {
             jti.setText("0.0");
-        DecimalFormat df = new DecimalFormat("#.##");
-        df.setRoundingMode(RoundingMode.FLOOR);
-        double masd = Double.valueOf(jti.getText()) + 0.1;
-        masd = new Double(df.format(masd));
-        jti.setText(String.valueOf(masd));
+            DecimalFormat df = new DecimalFormat("#.##");
+            df.setRoundingMode(RoundingMode.FLOOR);
+            double masd = Double.valueOf(jti.getText()) + 0.1;
+            masd = new Double(df.format(masd));
+            jti.setText(String.valueOf(masd));
         }
     }//GEN-LAST:event_masActionPerformed
 
-    private void JBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBmodificarActionPerformed
+    private void jbmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbmActionPerformed
         // TODO add your handling code here:
-        try{
-        LocalDate fecha = null;
-        int idOrden;
-        
-        if (jdcf.getDate() != null) {
-            fecha = jdcf.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        }
-        Afiliado afiliado = (Afiliado) jcba.getSelectedItem();
-        Prestador prestador = (Prestador) jcbp.getSelectedItem();
-        Orden orden2 = new Orden(fecha, (String) jcbf.getSelectedItem(), Double.parseDouble(jti.getText()), afiliado.getDNI(), prestador.getDNI());
-        idOrden = od.obtenerIdOrden(orden2);
-        for(Orden orden3 : od.listarOrdenes()){
-            if (orden2.getFecha().equals(orden3.getFecha()) && orden2.getDNIafiliado() == orden3.getDNIafiliado()
-                    && orden2.getDNIprestador() == orden3.getDNIprestador() && orden2.getImporte() == orden3.getImporte() && orden2.getFormaDePago().equals(orden3.getFormaDePago())) {
-                interruptor = true;
-                System.out.println(interruptor);
-                break;
-                
-            }else{
-                interruptor =false;
-                                System.out.println(interruptor);
+        try {
+            LocalDate fecha = null;
+            int idOrden;
 
+            if (jdcf.getDate() != null) {
+                fecha = jdcf.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             }
-        }
-        System.out.println(interruptor);
-        if (interruptor == false) {
-            od.modificarOrden(idOrden, orden2);
-        }else{
-             JOptionPane.showMessageDialog(this, "No has modificado ninguno de los campos.");
-        }
-        cargarTabla();
-        }catch(NullPointerException | NumberFormatException ex){
+            Afiliado afiliado = (Afiliado) jcba.getSelectedItem();
+            Prestador prestador = (Prestador) jcbp.getSelectedItem();
+            Orden orden2 = new Orden(fecha, (String) jcbf.getSelectedItem(), Double.parseDouble(jti.getText()), afiliado.getDNI(), prestador.getDNI());
+            idOrden = od.obtenerIdOrden(orden2);
+            for (Orden orden3 : od.listarOrdenes()) {
+                if (orden2.getFecha().equals(orden3.getFecha()) && orden2.getDNIafiliado() == orden3.getDNIafiliado()
+                        && orden2.getDNIprestador() == orden3.getDNIprestador() && orden2.getImporte() == orden3.getImporte() && orden2.getFormaDePago().equals(orden3.getFormaDePago())) {
+                    interruptor = true;
+                    System.out.println(interruptor);
+                    break;
+
+                } else {
+                    interruptor = false;
+                    System.out.println(interruptor);
+
+                }
+            }
+            System.out.println(interruptor);
+            if (interruptor == false) {
+                od.modificarOrden(idOrden, orden2);
+            } else {
+                JOptionPane.showMessageDialog(this, "No has modificado ninguno de los campos.");
+            }
+            cargarTabla();
+        } catch (NullPointerException | NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Datos incorrectos o campos vacios");
         }
-    }//GEN-LAST:event_JBmodificarActionPerformed
+    }//GEN-LAST:event_jbmActionPerformed
+
+    private void JBayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBayudaActionPerformed
+        JLabel label = new JLabel("<html>Las órdenes están compuestas de un afiliado y un prestador. <br> Las mismas se muestran en la tabla, escribiendo o cambiando las cajas se pueden crear nuevas órdenes. <br> Al cliquear en una orden todos los campos y cajas cambian a la misma, de ahí se puede editar o borrar. <br> Al cliquear en una fila vacía se puede agregar una nueva orden.</html>");
+        label.setFont(new Font("Dialog", Font.BOLD, 18));
+        JOptionPane.showMessageDialog(this, label, "Ayuda", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_JBayudaActionPerformed
+
+    private void bgMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bgMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bgMouseEntered
+
+    private void jtiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtiKeyReleased
+        // TODO add your handling code here:
+        if (jti.getText().isEmpty()) {
+            jti.setText("0.0");
+        } else {
+            if (!Character.isLetter(evt.getKeyChar())) {
+                jti.setBackground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_jtiKeyReleased
 
     private void armarCabecera() {
         modelotabla.addColumn("Fecha");
@@ -416,7 +459,7 @@ public class Ordenes extends javax.swing.JInternalFrame {
         for (Prestador prestador : pd.listarPrestadores()) {
             jcbp.addItem(prestador);
         }
-    } 
+    }
 
     private void borrarFilas() {
         ((DefaultTableModel) JTordenes.getModel()).setRowCount(0);
@@ -426,11 +469,12 @@ public class Ordenes extends javax.swing.JInternalFrame {
         borrarFilas();
         List<Orden> listarEspecialidades = od.listarOrdenes();
         for (Orden ord : listarEspecialidades) {
-            modelotabla.addRow(new Object[]{ord.getFecha(),ord.getFormaDePago(),ord.getImporte(),ord.getDNIafiliado(), ord.getDNIprestador()});
+            modelotabla.addRow(new Object[]{ord.getFecha(), ord.getFormaDePago(), ord.getImporte(), ord.getDNIafiliado(), ord.getDNIprestador()});
         }
+        modelotabla.addRow(new Object[]{""});
     }
-    
-    private void llenarCampos(){
+
+    private void llenarCampos() {
         int idOrden;
         Orden orden1 = new Orden(valorFecha, valorDNIa, valorDNIp);
         idOrden = od.obtenerIdOrden(orden1);
@@ -441,14 +485,11 @@ public class Ordenes extends javax.swing.JInternalFrame {
         jti.setText(String.valueOf(orden1.getImporte()));
         jcbf.getModel().setSelectedItem(orden1.getFormaDePago());
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBagregarOrden;
     private javax.swing.JButton JBayuda;
-    private javax.swing.JButton JBeliminar;
     private javax.swing.JButton JBlimpiar;
-    private javax.swing.JButton JBmodificar;
     private javax.swing.JTable JTordenes;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel jLabel1;
@@ -460,6 +501,9 @@ public class Ordenes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jba;
+    private javax.swing.JButton jbm;
+    private javax.swing.JButton jbq;
     private javax.swing.JComboBox<Afiliado> jcba;
     private javax.swing.JComboBox<String> jcbf;
     private javax.swing.JComboBox<Prestador> jcbp;

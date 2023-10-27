@@ -1,6 +1,5 @@
 package AccesoADatos;
 import Principal.Conexion;
-import Principal.Especialidad;
 import Principal.Prestador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class PrestadorData {
 
@@ -20,7 +18,6 @@ public class PrestadorData {
     public PrestadorData() {
         con = Conexion.getConexion();
     }
-//    (String nombre, String apellido, int DNI, boolean estado, Especialidad especialidad
 
     public List<Prestador> listarPrestadores() {
         List<Prestador> prestadores = new ArrayList();
@@ -46,6 +43,7 @@ public class PrestadorData {
             System.out.println("Prestador(es) inactivo(s): " + "\n" + listarPrestadoresEliminados());
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return prestadores;
 
@@ -71,6 +69,7 @@ public class PrestadorData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return prestadores;
 
@@ -99,6 +98,7 @@ public class PrestadorData {
 
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return prestador;
     }
@@ -124,6 +124,7 @@ public class PrestadorData {
             ps.close();
         } catch (SQLException ex) { 
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return prestador;
     }
@@ -150,6 +151,7 @@ public class PrestadorData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
         return prestadores;
     }
@@ -175,6 +177,7 @@ public class PrestadorData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
     }
 
@@ -203,6 +206,7 @@ public class PrestadorData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
 
     }
@@ -220,6 +224,7 @@ public class PrestadorData {
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Un error SQL ha ocurrido." + "\n" + "(" + ex.getMessage() + ")");
+    
         }
     }
 }
